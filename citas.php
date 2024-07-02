@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facturas</title>
+    <title>Citas</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Facturas</h1>
+    <h1>Citas Medicas</h1>
     <?php
     include 'includes/conexion.php';
 
@@ -16,32 +16,20 @@
         die("Error de conexión: " . $conn->connect_error);
     }
 
-    $sql = "SELECT 
-    f.id_factura,
-    CONCAT(p.nombre, ' ', p.apellido) AS nombre_completo,
-    f.fecha_emision,
-    f.total,
-    CASE
-        WHEN f.pagada = 1 THEN 'LIQUIDADA'
-        WHEN f.pagada = 0 THEN 'ADEUDO'
-    END AS estatus
-FROM 
-    facturas f
-JOIN 
-    pacientes p ON f.id_paciente = p.id_paciente;";
+    $sql = "SELECT * from citas;";
 
     $resultado = $conn->query($sql);
 
     if ($resultado->num_rows > 0) {
         echo "<table>";
-        echo "<tr><th>ID</th><th>Paciente</th><th>Fecha de emision</th><th>Total</th><th>Estatus</th></tr>";
+        echo "<tr><th>ID</th><th>Paciente</th><th>Medico</th><th>Fecha de Cita</th><th>Tipo de Cita</th></tr>";
         while($fila = $resultado->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($fila["id_factura"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["nombre_completo"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["fecha_emision"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["total"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["estatus"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["id_cita"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["id_paciente"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["id_personal"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["fecha_hora"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["tipo"]) . "</td>";
                 echo "<td>";
                /* echo "<a class='button-33' href='editar_personal.php?id=" . htmlspecialchars($fila["id_personal"]) . "'>Editar</a>";
                 echo "<a class='button-34' href='eliminar_personal.php?id=" . htmlspecialchars($fila["id_personal"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";*/

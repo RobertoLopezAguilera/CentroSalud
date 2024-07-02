@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facturas</title>
+    <title>Pacientes</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Facturas</h1>
+    <h1>Pacientes del Hospital</h1>
     <?php
     include 'includes/conexion.php';
 
@@ -17,31 +17,36 @@
     }
 
     $sql = "SELECT 
-    f.id_factura,
-    CONCAT(p.nombre, ' ', p.apellido) AS nombre_completo,
-    f.fecha_emision,
-    f.total,
-    CASE
-        WHEN f.pagada = 1 THEN 'LIQUIDADA'
-        WHEN f.pagada = 0 THEN 'ADEUDO'
-    END AS estatus
+    pacientes.id_paciente, 
+    pacientes.nombre, 
+    pacientes.apellido, 
+    pacientes.fecha_nacimiento, 
+    pacientes.direccion, 
+    pacientes.telefono, 
+    habitaciones.numero AS numero_habitacion
 FROM 
-    facturas f
+    camas c
 JOIN 
-    pacientes p ON f.id_paciente = p.id_paciente;";
+    pacientes ON c.id_cama = pacientes.id_cama
+JOIN 
+    habitaciones ON c.id_habitacion = habitaciones.id_habitacion
+WHERE 
+    c.id_cama = pacientes.id_cama;";
 
     $resultado = $conn->query($sql);
 
     if ($resultado->num_rows > 0) {
         echo "<table>";
-        echo "<tr><th>ID</th><th>Paciente</th><th>Fecha de emision</th><th>Total</th><th>Estatus</th></tr>";
+        echo "<tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Direccion</th><th>Telefono</th><th>Habitacion</th></tr>";
         while($fila = $resultado->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($fila["id_factura"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["nombre_completo"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["fecha_emision"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["total"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["estatus"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["id_paciente"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["nombre"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["apellido"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["fecha_nacimiento"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["direccion"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["telefono"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["numero_habitacion"]) . "</td>";
                 echo "<td>";
                /* echo "<a class='button-33' href='editar_personal.php?id=" . htmlspecialchars($fila["id_personal"]) . "'>Editar</a>";
                 echo "<a class='button-34' href='eliminar_personal.php?id=" . htmlspecialchars($fila["id_personal"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";*/
