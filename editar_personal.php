@@ -47,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Personal</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>Editar Datos de Personal</h1>
@@ -64,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>"><br><br>
         <label for="telefono">Teléfono:</label><br>
         <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br><br>
-        <input type="submit" value="Guardar Cambios">
+        <input type="submit" class="button-29" value="Guardar Cambios">
     </form>
 </body>
 </html>
