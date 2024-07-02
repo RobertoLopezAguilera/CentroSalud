@@ -35,8 +35,8 @@
     } else {
         echo "No se encontraron resultados";
     }
-
     $conn->close();
     ?>
+    <a href="agregar_personal.php">Agregar Personal</a>
 </body>
 </html>
