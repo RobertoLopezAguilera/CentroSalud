@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@
             echo "<td>" . $fila["Correo"] . "</td>";
             echo "<td>" . $fila["telefono"] . "</td>";
             echo "<td>";
-            echo "<a class='edit' href='editar_personal.php?id=" . $fila["id_personal"] . "'>Editar</a>";
+            echo "<a class='edit' href='editar_personal.php?id=" . $fila["id_personal"] . "'>Editar</a> ";
             echo "<a class='delete' href='eliminar_personal.php?id=" . $fila["id_personal"] . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
             echo "</td>";
             echo "</tr>";

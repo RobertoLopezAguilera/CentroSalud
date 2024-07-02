@@ -2,9 +2,9 @@
 include 'includes/conexion.php';
 
 if (isset($_GET['id'])) {
-    $id_personal = $_GET['id'];
+    $id_equipo = $_GET['id'];
 
-    $sql = "DELETE FROM Personal WHERE id_personal = $id_personal";
+    $sql = "DELETE FROM Equipos_Medicos WHERE id_equipo = $id_equipo";
 
     if ($conn->query($sql) === TRUE) {
         echo "Registro eliminado correctamente.";
@@ -14,6 +14,7 @@ if (isset($_GET['id'])) {
 
     $conn->close();
 }
-header("Location: personal.php");
+
+header("Location: equipos.php");
 exit();
 ?>
