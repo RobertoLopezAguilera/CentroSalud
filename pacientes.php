@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Pacientes del Hospital</h1>
+    <a class="button-29" href="agregar_paciente.php">Agregar Nuevo Paciente</a>
     <?php
     include 'includes/conexion.php';
 
