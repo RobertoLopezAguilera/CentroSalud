@@ -344,3 +344,6 @@ BEGIN
     UPDATE Facturas SET total = total_factura WHERE id_factura = NEW.id_factura;
 END //
 DELIMITER ;
+
+ALTER TABLE `pacientes` ADD `CURP` VARCHAR(18) NOT NULL AFTER `id_cama`;
+ALTER TABLE `pacientes` ADD `contraseña` VARCHAR(64) NOT NULL AFTER `CURP`;

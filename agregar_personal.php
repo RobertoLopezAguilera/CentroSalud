@@ -36,11 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <h1>Agregar Personal</h1>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br><br>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
 
-        <label for="apellido">Apellido:</label><br>
-        <input type="text" id="apellido" name="apellido" required><br><br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required>
 
         <label for="tipo_personal">Tipo de Personal:</label><br>
         <input type="text" id="tipo_personal" name="tipo_personal" required><br><br>
