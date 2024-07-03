@@ -1,106 +1,32 @@
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include 'includes/conexion.php';
-
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $tipo_personal = $_POST['tipo_personal'];
-    $especialidad = $_POST['especialidad'];
-    $correo = $_POST['correo'];
-    $contraseña = sha1($_POST['contraseña']);
-    $telefono = $_POST['telefono'];
-
-    $sql = "INSERT INTO Personal (nombre, apellido, tipo_personal, especialidad, correo, contraseña, telefono)
-            VALUES ('$nombre', '$apellido', '$tipo_personal', '$especialidad', '$correo', '$contraseña', '$telefono')";
-
-    if ($conn->query($sql) === TRUE) {
-        header("Location: personal.php");
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Paciente</title>
     <link rel="stylesheet" href="css/style.css">
-    <title>Agregar Cita</title>
 </head>
 <body>
     <?php include 'assets/header.html'; ?>
     <div id="header"></div>
 
-    <h1>Agregar Cita</h1>
-    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <label for="nombre">Paciente:</label><br>
-        <?php
-        include 'includes/conexion.php';
-
-        // Verifica la conexión
-        if ($conn->connect_error) {
-            die("Error de conexión: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT p.id_paciente, concat(p.nombre, ' ', p.apellido) as paciente_completo
-            FROM pacientes p
-            JOIN citas c ON c.id_paciente = p.id_paciente";
-
-        $resultado = $conn->query($sql);
-
-        if ($resultado->num_rows > 0) {
-            echo "<select id='paciente' name='paciente' required>";
-            while ($fila = $resultado->fetch_assoc()){
-                echo "<option value=". htmlspecialchars($fila["id_paciente"]) .">". htmlspecialchars($fila["paciente_completo"]) ."</option>";
-            }
-            echo "</select><br><br>";
-        } else {
-            echo "No se encontraron resultados";
-        }
-    
-        $conn->close();
-        ?>
-
-        <label for="nombre">Médico:</label><br>
-        <?php
-        include 'includes/conexion.php';
-
-        // Verifica la conexión
-        if ($conn->connect_error) {
-            die("Error de conexión: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT concat(m.nombre, ' ', m.apellido) as medico_completo
-			FROM personal m
-            WHERE tipo_personal = 'Médico'";
-
-        $resultado = $conn->query($sql);
-
-        if ($resultado->num_rows > 0) {
-            echo "<select id='medico' name='medico' required>";
-            while ($fila = $resultado->fetch_assoc()){
-                echo "<option value=". htmlspecialchars($fila["id_personal"]) .">". htmlspecialchars($fila["medico_completo"]) ."</option>";
-            }
-            echo "</select><br><br>";
-        } else {
-            echo "No se encontraron resultados";
-        }
-    
-        $conn->close();
-        ?>
-
-        <label for="fecha">Fecha de Cita:</label><br>
-        <input type="datetime-local" id="fecha" name="fecha" required><br><br>
-
-        <label for="tipo">Tipo de Cita:</label><br>
-        <input type="text" id="tipo" name="tipo" required><br><br>
-
+    <h1>Agregar Paciente</h1>
+    <form action="procesar_agregar_paciente.php" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required><br>
+        <label for="fech_nac">Fecha de Nacimiento:</label>
+        <input type="text" id="fech_nac" name="fech_nac" required><br>
+        <label for="direccion">Direccion:</label>
+        <input type="text" id="direccion" name="direccion" required><br>
+        <label for="telefono">Telefono:</label>
+        <input type="text" id="telefono" name="telefono" required><br>
+        <label for="habitacion">Habitacion:</label>
+        <input type="text" id="habitacion" name="habitacion" required><br>
         <div class="inputdiv">
             <input type="submit" value="Agregar">
-            <a href="citas.php">Volver a la lista de citas</a>
+            <a href="pacientes.php">Volver a la lista de pacientes</a>
         </div>
     </form>
 
