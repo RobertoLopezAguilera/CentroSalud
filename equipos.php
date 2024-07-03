@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Equipos Médicos</h1>
+    <a href="agregar_equipo.php" class="button-29">Agregar Equipo</a>
     <?php
     include 'includes/conexion.php';
 
@@ -34,8 +35,8 @@
                 echo "<td>No hay imagen</td>";
             }
             echo "<td>";
-            echo "<a class='edit' href='editar_equipo.php?id=" . $fila["id_equipo"] . "'>Editar</a> ";
-            echo "<a class='delete' href='eliminar_equipo.php?id=" . $fila["id_equipo"] . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
+            echo "<a class='button-33' href='editar_equipo.php?id=" . $fila["id_equipo"] . "'>Editar</a> ";
+            echo "<a class='button-34' href='eliminar_equipo.php?id=" . $fila["id_equipo"] . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
 
         }
         echo "</table>";
@@ -44,6 +45,6 @@
     }
     $conn->close();
     ?>
-    <a href="agregar_equipo.php">Agregar Equipo</a>
+    
 </body>
 </html>

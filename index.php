@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <a href="personal.php">Personal</a>
+    <a href="areas.php">areas</a>
+    <a href="equipos.php">equipos</a>
+    <a href="habitaciones.php">habitacion</a>
 </body>
 </html>
