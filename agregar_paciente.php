@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <?php include 'assets/header.html'; ?>
+    <div id="header"></div>
+
     <h1>Agregar Paciente</h1>
     <form action="procesar_agregar_paciente.php" method="post">
         <label for="nombre">Nombre:</label>
@@ -21,7 +24,13 @@
         <input type="text" id="telefono" name="telefono" required><br>
         <label for="habitacion">Habitacion:</label>
         <input type="text" id="habitacion" name="habitacion" required><br>
-        <button class="button-29" type="submit">Agregar Área</button>
+        <div class="inputdiv">
+            <input type="submit" value="Agregar">
+            <a href="pacientes.php">Volver a la lista de pacientes</a>
+        </div>
     </form>
+
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

@@ -31,6 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Agregar Personal</title>
 </head>
 <body>
+    <?php include 'assets/header.html'; ?>
+    <div id="header"></div>
+
     <h1>Agregar Personal</h1>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <label for="nombre">Nombre:</label><br>
@@ -54,7 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="telefono">Teléfono:</label><br>
         <input type="text" id="telefono" name="telefono" required><br><br>
 
-        <input type="submit" value="Agregar">
+        <div class="inputdiv">
+            <input type="submit" value="Agregar">
+            <a href="personal.php">Volver a la lista de personal</a>
+        </div>
     </form>
+    
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

@@ -7,11 +7,20 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <?php include 'assets/header.html'; ?>
+    <div id="header"></div>
+    
     <h1>Agregar Área</h1>
     <form action="procesar_agregar_area.php" method="post">
         <label for="nombre">Nombre del Área:</label>
         <input type="text" id="nombre" name="nombre" required>
-        <button type="submit">Agregar Área</button>
+        <div class="inputdiv">
+            <input type="submit" value="Agregar">
+            <a href="areas.php">Volver a la lista de áreas</a>
+        </div>
     </form>
+
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

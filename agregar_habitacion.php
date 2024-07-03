@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <?php include 'assets/header.html'; ?>
+    <div id="header"></div>
+
     <h1>Agregar Habitación</h1>
     <form action="procesar_agregar_habitacion.php" method="post">
         <label for="numero">Número:</label>
@@ -28,7 +31,13 @@
             }
             ?>
         </select><br>
-        <button type="submit">Agregar Habitación</button>
+        <div class="inputdiv">
+            <input type="submit" value="Agregar">
+            <a href="habitaciones.php">Volver a la lista de habitaciones</a>
+        </div>
     </form>
+
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

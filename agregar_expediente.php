@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Agregar Expediente Médico</title>
 </head>
 <body>
+    <?php include 'assets/header.html'; ?>
+    <div id="header"></div>
+
     <h1>Agregar Expediente Médico</h1>
     <form action="procesar_agregar_expediente.php" method="post">
         <label for="id_paciente">Paciente:</label>
@@ -29,7 +33,13 @@
         <textarea id="antecedentes_familiares" name="antecedentes_familiares" required></textarea><br>
         <label for="otras_notas">Otras Notas:</label>
         <textarea id="otras_notas" name="otras_notas" required></textarea><br>
-        <button type="submit">Agregar Expediente</button>
+        <div class="inputdiv">
+            <input type="submit" value="Agregar">
+            <a href="expedientes_medicos.php">Volver a la lista de expedientes</a>
+        </div>
     </form>
+
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>
