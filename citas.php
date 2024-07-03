@@ -11,6 +11,7 @@
     <div id="header"></div>
 
     <h1>Citas Medicas</h1>
+    <a class="button-29" href="agregar_cita.php">Agregar Nueva Cita</a>
     <?php
     include 'includes/conexion.php';
 

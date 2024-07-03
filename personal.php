@@ -10,9 +10,6 @@
     <?php include 'assets/header.html'; ?>
     <div id="header"></div>
 
-    <?php include 'assets/header.html'; ?>
-    <div class="topnav" id="header"></div>
-
     <h1>Personal Médico y Administrativo</h1>
     <a class="button-29" href="agregar_personal.php">Agregar Nuevo Personal</a>
     <?php
