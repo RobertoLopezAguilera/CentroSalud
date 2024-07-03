@@ -11,5 +11,10 @@
     <a href="areas.php">areas</a>
     <a href="equipos.php">equipos</a>
     <a href="habitaciones.php">habitacion</a>
+    <a href="expedientes_medicos.php">expedientes</a>
+    <a href="medicamentos.php">medicamentos</a>
+
+    // 2
+    <a href="pacientes.php">pacientes</a>
 </body>
 </html>
