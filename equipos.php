@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <?php include 'assets/header.html'; ?>
+    <div id="header"></div>
+
     <h1>Equipos Médicos</h1>
     <a href="agregar_equipo.php" class="button-29">Agregar Equipo</a>
     <?php
@@ -45,6 +48,8 @@
     }
     $conn->close();
     ?>
-    
+
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

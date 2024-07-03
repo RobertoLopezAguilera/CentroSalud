@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <a href="personal.php">Personal</a>
-    <a href="areas.php">areas</a>
-    <a href="equipos.php">equipos</a>
-    <a href="habitaciones.php">habitacion</a>
-    <a href="expedientes_medicos.php">expedientes</a>
-    <a href="medicamentos.php">medicamentos</a>
+    <?php include 'assets/header.html'; ?>
+    <div id="header"></div>
 
-    // 2
-    <a href="pacientes.php">pacientes</a>
+    <div class="main">
+    </div>
+
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

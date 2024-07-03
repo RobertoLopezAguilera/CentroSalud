@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <?php include 'assets/header.html'; ?>
+    <div id="header"></div>
+    
     <h1>Pacientes del Hospital</h1>
     <a class="button-29" href="agregar_paciente.php">Agregar Nuevo Paciente</a>
     <?php
@@ -61,5 +64,8 @@
 
     $conn->close();
     ?>
+            
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

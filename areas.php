@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <?php include 'assets/header.html'; ?>
+    <div id="header"></div>
+
     <h1>Áreas del Hospital</h1>
     <a href="agregar_area.php" class="button-29">Agregar Área</a>
     <?php
@@ -32,6 +35,8 @@
     }
     $conn->close();
     ?>
-    
+
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>
