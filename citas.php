@@ -16,7 +16,16 @@
         die("Error de conexión: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * from citas;";
+    $sql = "SELECT c.id_cita,
+        concat(p.nombre, ' ', p.apellido) as paciente_completo,
+        concat(m.nombre, ' ', m.apellido) as medico_completo,
+        c.fecha_hora,
+        c.tipo
+        FROM citas c
+        JOIN pacientes p ON c.id_paciente = p.id_paciente
+        JOIN personal m ON c.id_paciente = m.id_personal
+        WHERE c.id_paciente = p.id_paciente 
+        AND c.id_personal = m.id_personal;";
 
     $resultado = $conn->query($sql);
 
@@ -26,8 +35,8 @@
         while($fila = $resultado->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($fila["id_cita"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["id_paciente"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["id_personal"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["paciente_completo"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["medico_completo"]) . "</td>";
                 echo "<td>" . htmlspecialchars($fila["fecha_hora"]) . "</td>";
                 echo "<td>" . htmlspecialchars($fila["tipo"]) . "</td>";
                 echo "<td>";

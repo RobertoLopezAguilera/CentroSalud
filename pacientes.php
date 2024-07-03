@@ -24,13 +24,13 @@
     pacientes.direccion, 
     pacientes.telefono, 
     habitaciones.numero AS numero_habitacion
-FROM 
+    FROM 
     camas c
-JOIN 
+    JOIN 
     pacientes ON c.id_cama = pacientes.id_cama
-JOIN 
+    JOIN 
     habitaciones ON c.id_habitacion = habitaciones.id_habitacion
-WHERE 
+    WHERE 
     c.id_cama = pacientes.id_cama;";
 
     $resultado = $conn->query($sql);
