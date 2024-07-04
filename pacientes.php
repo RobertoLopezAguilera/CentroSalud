@@ -55,7 +55,7 @@
                 echo "<td>" . htmlspecialchars($fila["numero_habitacion"]) . "</td>";
                 echo "<td>";
                 echo "<a class='button-33' href='editar_paciente.php?id=" . htmlspecialchars($fila["id_paciente"]) . "'>Editar</a>";
-                /*echo "<a class='button-34' href='eliminar_personal.php?id=" . htmlspecialchars($fila["id_personal"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";*/
+                echo "<a class='button-34' href='eliminar_paciente.php?id=" . htmlspecialchars($fila["id_paciente"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
                 echo "</td>";
                 echo "</tr>";
         }
