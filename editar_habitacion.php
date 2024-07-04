@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Habitación</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<?php include 'assets/header.html'; ?>
+    <div id="header"></div>
     <h1>Editar Habitación</h1>
     <?php
     include 'includes/conexion.php';
@@ -35,7 +38,12 @@
             }
             ?>
         </select><br>
-        <button type="submit">Actualizar Habitación</button>
+        <div class="inputdiv">
+            <input type="submit" value="Actualizar">
+            <a href="habitaciones.php">Volver a la lista de habitaciones</a>
+        </div>
     </form>
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

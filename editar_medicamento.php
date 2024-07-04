@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<?php include 'assets/header.html'; ?>
+    <div id="header"></div>
     <h1>Editar Medicamento</h1>
     <?php
     include 'includes/conexion.php';
@@ -27,7 +29,12 @@
         <input type="number" step="0.01" id="precio" name="precio" value="<?php echo $fila['precio']; ?>" required><br>
         <label for="fecha_caducidad">Fecha de Caducidad:</label>
         <input type="date" id="fecha_caducidad" name="fecha_caducidad" value="<?php echo $fila['fecha_caducidad']; ?>" required><br>
-        <button type="submit">Actualizar Medicamento</button>
+        <div class="inputdiv">
+            <input type="submit" value="Actualizar">
+            <a href="medicamentos.php">Volver a la lista de medicamentos</a>
+        </div>
     </form>
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

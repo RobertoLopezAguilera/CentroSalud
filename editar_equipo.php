@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<?php include 'assets/header.html'; ?>
+    <div id="header"></div>
     <h1>Editar Equipo Médico</h1>
     <?php
     include 'includes/conexion.php';
@@ -32,9 +34,13 @@
                 <input type="number" id="id_habitacion" name="id_habitacion" value="<?php echo $equipo['id_habitacion']; ?>" required><br>
                 <label for="img">Imagen:</label>
                 <input type="file" id="img" name="img" accept="image/*"><br>
-                <input type="submit" value="Actualizar">
-            </form>
+                
+                <div class="inputdiv">
+            <input type="submit" value="Actualizar">
             <a href="equipos.php">Volver a la lista de equipos</a>
+        </div>
+            </form>
+           
             <?php
         } else {
             echo "No se encontró el equipo.";
@@ -42,5 +48,7 @@
         $conn->close();
     }
     ?>
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

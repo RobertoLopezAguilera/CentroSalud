@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Expediente Médico</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<?php include 'assets/header.html'; ?>
+    <div id="header"></div>
     <h1>Editar Expediente Médico</h1>
     <?php
     include 'includes/conexion.php';
@@ -37,7 +40,12 @@
         <textarea id="antecedentes_familiares" name="antecedentes_familiares" required><?php echo $fila['antecedentes_familiares']; ?></textarea><br>
         <label for="otras_notas">Otras Notas:</label>
         <textarea id="otras_notas" name="otras_notas" required><?php echo $fila['otras_notas']; ?></textarea><br>
-        <button type="submit">Actualizar Expediente</button>
+        <div class="inputdiv">
+            <input type="submit" value="Actualizar">
+            <a href="expedientes_medicos.php">Volver a la lista de expedientes</a>
+        </div>
     </form>
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

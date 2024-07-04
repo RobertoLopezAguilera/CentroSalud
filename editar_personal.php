@@ -50,6 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<?php include 'assets/header.html'; ?>
+    <div id="header"></div>
     <h1>Editar Datos de Personal</h1>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <input type="hidden" name="id_personal" value="<?php echo $id_personal; ?>">
@@ -65,7 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>"><br><br>
         <label for="telefono">Teléfono:</label><br>
         <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br><br>
-        <input type="submit" class="button-29" value="Guardar Cambios">
+        <div class="inputdiv">
+            <input type="submit" value="Actualizar">
+            <a href="personal.php">Volver a la lista de personal</a>
+        </div>
     </form>
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>
