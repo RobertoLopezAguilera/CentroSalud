@@ -381,3 +381,5 @@ UPDATE pacientes p
 SET CURP = 'HEUL001225JHRFYIO7',
     contraseña = SHA1('AY7JOD0K9SJ')
 WHERE p.id_paciente = 5;
+
+UPDATE `receta_medicamento` SET `id_receta` = '6' WHERE `receta_medicamento`.`id_receta_medicamento` = 2;
