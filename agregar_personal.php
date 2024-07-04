@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = $_POST['telefono'];
 
     $sql = "INSERT INTO Personal (nombre, apellido, tipo_personal, especialidad, correo, contraseña, telefono)
-            VALUES ('$nombre', '$apellido', '$tipo_personal', '$especialidad', '$correo', '$contraseña', '$telefono')";
+            VALUES ('$nombre', '$apellido', '$tipo_personal', '$especialidad', '$correo', sha1('$contraseña'), '$telefono')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: personal.php");
