@@ -22,12 +22,10 @@
         <input type="text" id="direccion" name="direccion" required><br>
         <label for="telefono">Telefono:</label>
         <input type="text" id="telefono" name="telefono" required><br>
-        <label for="habitacion">Habitacion:</label>
-        <input type="text" id="habitacion" name="habitacion" required><br>
         <label for="curp">CURP:</label>
         <input type="text" id="curp" name="curp" required><br>
         <label for="contrasenia">Contrasena:</label>
-        <input type="text" id="contrasenia" name="contrasenia" required><br>
+        <input type="password" id="contrasenia" name="contrasenia" required><br>
         <div class="inputdiv">
             <input type="submit" value="Agregar">
             <a href="pacientes.php">Volver a la lista de pacientes</a>
