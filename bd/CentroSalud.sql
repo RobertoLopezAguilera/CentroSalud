@@ -348,14 +348,13 @@ DELIMITER ;
 ALTER TABLE `pacientes` ADD `CURP` VARCHAR(18) NOT NULL AFTER `id_cama`;
 ALTER TABLE `pacientes` ADD `contraseña` VARCHAR(64) NOT NULL AFTER `CURP`;
 
-<<<<<<< HEAD
 UPDATE `personal` SET `Contraseña` = SHA1('Betos123') WHERE `personal`.`id_personal` = 1;
 UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 6;
 UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 5;
 UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 4;
 UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 3;
 UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 2;
-=======
+
 INSERT INTO areas (nombre)
 VALUES ('Espera');
 
@@ -364,7 +363,7 @@ VALUES (100, 'Espera', 'Disponible', '50.00', 10);
 
 UPDATE pacientes p
 SET CURP = 'PELJ800515BTYJUOK8',
-    contraseña = 'jlikos7896'
+    contraseña = SHA1('jlikos7896')
 WHERE p.id_paciente = 1;
 UPDATE pacientes p
 SET CURP = 'GOPM900822MKLPTGY9',
@@ -382,4 +381,3 @@ UPDATE pacientes p
 SET CURP = 'HEUL001225JHRFYIO7',
     contraseña = 'AY7JOD0K9SJ'
 WHERE p.id_paciente = 5;
->>>>>>> f58d690cfa0d9b1843eedd224280088c461e73fc

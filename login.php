@@ -26,8 +26,8 @@
     <form action="procesar_login.php" method="post">
         <label for="userType">Tipo de Usuario:</label>
         <select id="userType" name="userType" onchange="toggleFields()" required>
-            <option value="Personal">Personal</option>
             <option value="Paciente">Paciente</option>
+            <option value="Personal">Personal</option>
         </select><br>
 
         <div id="personalFields" style="display: block;">
