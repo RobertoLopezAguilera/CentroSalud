@@ -363,21 +363,21 @@ VALUES (100, 'Espera', 'Disponible', '50.00', 10);
 
 UPDATE pacientes p
 SET CURP = 'PELJ800515BTYJUOK8',
-    contraseña = 'jlikos7896'
+    contraseña = SHA1('hyg68in')
 WHERE p.id_paciente = 1;
 UPDATE pacientes p
 SET CURP = 'GOPM900822MKLPTGY9',
-    contraseña = SHA2('JVR5Y87UO0',256)
+    contraseña = SHA1('JVR5Y87UO0')
 WHERE p.id_paciente = 2;
 UPDATE pacientes p
 SET CURP = 'RATC751130LOPBTXR4',
-    contraseña = SHA2('AYH09IPLJA588',256)
+    contraseña = SHA1('AYH09IPLJA588')
 WHERE p.id_paciente = 3;
 UPDATE pacientes p
 SET CURP = 'MAQA850310ATVRIKN7',
-    contraseña = SHA2('ALP0*92+KIJ',256)
+    contraseña = SHA1('ALP0*92+KIJ')
 WHERE p.id_paciente = 4;
 UPDATE pacientes p
 SET CURP = 'HEUL001225JHRFYIO7',
-    contraseña = SHA2('AY7JOD0K9SJ',256)
+    contraseña = SHA1('AY7JOD0K9SJ')
 WHERE p.id_paciente = 5;
