@@ -154,11 +154,11 @@ CREATE TABLE Personal (
 
 INSERT INTO Personal (nombre, apellido, tipo_personal, especialidad, Correo, Contraseña, telefono)
 VALUES
-    ('DR. Roberto', 'Lopez', 'Médico', 'Cardiología', 'betos70700@gmail.com', SHA2('Betos123', 256), '123-456-7890'),
-    ('Claria', 'Garcia', 'Enfermera', 'Cuidados Intensivos', 'Clarisa@example.com', SHA2('123456789', 256), '987-654-3210'),
-    ('Brayan', 'Lopez', 'Médico', 'Pediatría', 'Brayan@example.com', SHA2('123456789', 256), '555-123-4567'),
-    ('Sofi', 'Hernández', 'Enfermera', 'Medicina Interna', 'Sofi@example.com', SHA2('123456789', 256), '333-987-6543'),
-    ('Carlos', 'Rodríguez', 'Médico', 'Anestesiología', 'Carlos@example.com', SHA2('123456789', 256), '777-222-1111');
+    ('DR. Roberto', 'Lopez', 'Médico', 'Cardiología', 'betos70700@gmail.com', SHA2('Betos123'), '123-456-7890'),
+    ('Claria', 'Garcia', 'Enfermera', 'Cuidados Intensivos', 'Clarisa@example.com', SHA2('123456789'), '987-654-3210'),
+    ('Brayan', 'Lopez', 'Médico', 'Pediatría', 'Brayan@example.com', SHA2('123456789'), '555-123-4567'),
+    ('Sofi', 'Hernández', 'Enfermera', 'Medicina Interna', 'Sofi@example.com', SHA2('123456789'), '333-987-6543'),
+    ('Carlos', 'Rodríguez', 'Médico', 'Anestesiología', 'Carlos@example.com', SHA2('123456789'), '777-222-1111');
 
 
 SELECT * FROM Personal;
@@ -348,6 +348,13 @@ DELIMITER ;
 ALTER TABLE `pacientes` ADD `CURP` VARCHAR(18) NOT NULL AFTER `id_cama`;
 ALTER TABLE `pacientes` ADD `contraseña` VARCHAR(64) NOT NULL AFTER `CURP`;
 
+UPDATE `personal` SET `Contraseña` = SHA1('Betos123') WHERE `personal`.`id_personal` = 1;
+UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 6;
+UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 5;
+UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 4;
+UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 3;
+UPDATE `personal` SET `Contraseña` = SHA1('123456789') WHERE `personal`.`id_personal` = 2;
+
 INSERT INTO areas (nombre)
 VALUES ('Espera');
 
@@ -356,7 +363,7 @@ VALUES (100, 'Espera', 'Disponible', '50.00', 10);
 
 UPDATE pacientes p
 SET CURP = 'PELJ800515BTYJUOK8',
-    contraseña = SHA2('12345678p', 256)
+    contraseña = 'jlikos7896'
 WHERE p.id_paciente = 1;
 UPDATE pacientes p
 SET CURP = 'GOPM900822MKLPTGY9',
@@ -374,6 +381,3 @@ UPDATE pacientes p
 SET CURP = 'HEUL001225JHRFYIO7',
     contraseña = SHA2('AY7JOD0K9SJ',256)
 WHERE p.id_paciente = 5;
-
-INSERT INTO camas(id_habitacion, numero_cama, estado)
-values (6, 0, 'espera');
