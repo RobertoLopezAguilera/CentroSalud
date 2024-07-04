@@ -1,8 +1,15 @@
 <?php
 include 'includes/conexion.php';
 $nombre = $_POST['nombre'];
+$apellido = $_POST['apellido'];
+$fecha_nacimiento = $_POST['fecha_nacimiento'];
+$direccion = $_POST['direccion'];
+$telefono = $_POST['telefono'];
+$habitacion = $_POST['habitacion'];
+$CURP = $_POST['CURP'];
+$contrasena = $_POST['contrasena'];
 
-$sql = "INSERT INTO Areas (nombre) VALUES ('$nombre')";
+$sql = "INSERT INTO Pacientes (nombre, apellido, fecha_nacimiento, direccion, telefono, habitacion, CURP, contrasena) VALUES ('$nombre','$apellido','$fecha_nacimiento','$direccion','$telefono','$habitacion','$CURP','$contrasena')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Nueva área agregada exitosamente.";
@@ -11,6 +18,6 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
-header("Location: areas.php");
+header("Location: pacientes.php");
 exit;
 ?>

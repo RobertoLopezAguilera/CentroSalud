@@ -27,6 +27,7 @@
     pacientes.fecha_nacimiento, 
     pacientes.direccion, 
     pacientes.telefono, 
+    pacientes.CURP,
     habitaciones.numero AS numero_habitacion
     FROM 
     camas c
@@ -41,7 +42,7 @@
 
     if ($resultado->num_rows > 0) {
         echo "<table>";
-        echo "<tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Direccion</th><th>Telefono</th><th>Habitacion</th></tr>";
+        echo "<tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Direccion</th><th>Telefono</th><th>CURP</th><th>Habitacion</th></tr>";
         while($fila = $resultado->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($fila["id_paciente"]) . "</td>";
@@ -50,6 +51,7 @@
                 echo "<td>" . htmlspecialchars($fila["fecha_nacimiento"]) . "</td>";
                 echo "<td>" . htmlspecialchars($fila["direccion"]) . "</td>";
                 echo "<td>" . htmlspecialchars($fila["telefono"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["CURP"]) . "</td>";
                 echo "<td>" . htmlspecialchars($fila["numero_habitacion"]) . "</td>";
                 echo "<td>";
                /* echo "<a class='button-33' href='editar_personal.php?id=" . htmlspecialchars($fila["id_personal"]) . "'>Editar</a>";
