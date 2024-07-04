@@ -361,9 +361,8 @@ VALUES ('Espera');
 INSERT INTO habitaciones (numero, tipo, estado, costo, id_area)
 VALUES (100, 'Espera', 'Disponible', '50.00', 10);
 
-UPDATE pacientes p
-SET CURP = 'PELJ800515BTYJUOK8',
-    contraseña = SHA1('jlikos7896')
+UPDATE pacientes p SET CURP = 'PELJ800515BTYJUOK8',
+contraseña = SHA1('123456789') 
 WHERE p.id_paciente = 1;
 UPDATE pacientes p
 SET CURP = 'GOPM900822MKLPTGY9',
