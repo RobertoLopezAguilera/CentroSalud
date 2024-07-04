@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_paciente = $_POST['id_paciente'];
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
-    $fecha_nacimiento = $_POST['fech_nac'];
+    $fecha_nacimiento = $_POST['fecha_nacimiento'];
     $direccion = $_POST['direccion'];
     $telefono = $_POST['telefono'];
     $CURP = $_POST['curp'];
@@ -31,10 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fila = $resultado->fetch_assoc();
         $nombre = $fila['nombre'];
         $apellido = $fila['apellido'];
-        $tipo_personal = $fila['tipo_personal'];
-        $especialidad = $fila['especialidad'];
-        $correo = $fila['Correo'];
+        $fecha_nacimiento = $fila['fecha_nacimiento'];
+        $direccion = $fila['direccion'];
         $telefono = $fila['telefono'];
+        $CURP = $fila['CURP'];
+        
     } else {
         echo "No se encontró el registro.";
         exit; 
@@ -61,13 +62,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="apellido" name="apellido" value="<?php echo $apellido; ?>"><br>
         <label for="fecha_nacimiento">Fecha de nacimiento:</label><br>
         <input type="text" id="fech_nac" name="fecha_nacimiento" value="<?php echo $fecha_nacimiento; ?>"><br>
-        <label for="especialidad">Especialidad:</label><br>
-        <input type="text" id="especialidad" name="especialidad" value="<?php echo $especialidad; ?>"><br>
-        <label for="correo">Correo Electrónico:</label><br>
-        <input type="email" id="correo" name="correo" value="<?php echo $correo; ?>"><br>
+        <label for="direccion">Direccion:</label><br>
+        <input type="text" id="direccion" name="direccion" value="<?php echo $direccion; ?>"><br>
+        <label for="curp">CURP:</label><br>
+        <input type="text" id="curp" name="curp" value="<?php echo $CURP; ?>"><br>
         <label for="telefono">Teléfono:</label><br>
         <input type="text" id="telefono" name="telefono" value="<?php echo $telefono; ?>"><br>
-        <input type="submit" class="button-29" value="Guardar Cambios">
+        <label for="id_area">Area:</label>
+        <select id="id_area" name="id_area" required>
+            <?php
+            $sql_areas = "SELECT * FROM Areas";
+            $resultado_areas = $conn->query($sql_areas);
+            while ($fila_area = $resultado_areas->fetch_assoc()) {
+                $selected = ($fila_area["id_area"] == $fila["id_area"]) ? "selected" : "";
+                echo "<option value='" . $fila_area["id_area"] . "' $selected>" . $fila_area["nombre"] . "</option>";
+            }
+            ?> 
+        </select><br>
+        <div class="inputdiv">
+            <input type="submit" value="Actualizar">
+            <a href="pacientes.php">Volver a la lista de pacientes</a>
+        </div>
     </form>
 </body>
 </html>
