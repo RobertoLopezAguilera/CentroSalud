@@ -356,21 +356,24 @@ VALUES (100, 'Espera', 'Disponible', '50.00', 10);
 
 UPDATE pacientes p
 SET CURP = 'PELJ800515BTYJUOK8',
-    contraseña = 'jlikos7896'
+    contraseña = SHA2('12345678p', 256)
 WHERE p.id_paciente = 1;
 UPDATE pacientes p
 SET CURP = 'GOPM900822MKLPTGY9',
-    contraseña = 'JVR5Y87UO0'
+    contraseña = SHA2('JVR5Y87UO0',256)
 WHERE p.id_paciente = 2;
 UPDATE pacientes p
 SET CURP = 'RATC751130LOPBTXR4',
-    contraseña = 'AYH09IPLJA588'
+    contraseña = SHA2('AYH09IPLJA588',256)
 WHERE p.id_paciente = 3;
 UPDATE pacientes p
 SET CURP = 'MAQA850310ATVRIKN7',
-    contraseña = 'ALP0*92+KIJ'
+    contraseña = SHA2('ALP0*92+KIJ',256)
 WHERE p.id_paciente = 4;
 UPDATE pacientes p
 SET CURP = 'HEUL001225JHRFYIO7',
-    contraseña = 'AY7JOD0K9SJ'
+    contraseña = SHA2('AY7JOD0K9SJ',256)
 WHERE p.id_paciente = 5;
+
+INSERT INTO camas(id_habitacion, numero_cama, estado)
+values (6, 0, 'espera');
