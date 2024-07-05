@@ -5,7 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: Arial, sans-serif;
-  background-color: #b7dcf5;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='800' preserveAspectRatio='none' viewBox='0 0 1440 800'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1395%26quot%3b)' fill='none'%3e%3crect width='1440' height='800' x='0' y='0' fill='url(%26quot%3b%23SvgjsRadialGradient1396%26quot%3b)'%3e%3c/rect%3e%3cpath d='M1440 0L969.3299999999999 0L1440 236.59z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M969.3299999999999 0L1440 236.59L1440 242.73L893.55 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M893.55 0L1440 242.73L1440 405.27L860.99 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M860.99 0L1440 405.27L1440 616.7L336.22 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 800L433.34 800L0 665.23z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 665.23L433.34 800L784.64 800L0 310.90000000000003z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 310.9L784.64 800L955.4 800L0 242.86999999999998z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 242.87L955.4 800L980.4 800L0 118.82000000000001z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1395'%3e%3crect width='1440' height='800' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cradialGradient cx='100%25' cy='0%25' r='1647.3' gradientUnits='userSpaceOnUse' id='SvgjsRadialGradient1396'%3e%3cstop stop-color='rgba(182%2c 214%2c 255%2c 1)' offset='0.57'%3e%3c/stop%3e%3cstop stop-color='rgba(157%2c 200%2c 255%2c 1)' offset='0.97'%3e%3c/stop%3e%3c/radialGradient%3e%3c/defs%3e%3c/svg%3e");
   margin: 0;
 }
 
@@ -33,7 +33,7 @@ header ul {
 }
 
 header ul li {
-  float: left;
+  position: relative; /* Añadir posición relativa */
 }
 
 header ul li a {
@@ -49,10 +49,36 @@ header ul li a:hover {
   color: black;
 }
 
-header ul li a.active {
-  background-color: #4cafaa;
-  color: white;
+/* Añadir estilos para el menú desplegable */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #57b816;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  left: 0;
 }
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Mostrar el menú desplegable al pasar el cursor */
+header ul li:hover .dropdown-content {
+  display: block;
+}
+
 
 .main {
   flex: 1;

@@ -22,6 +22,7 @@
     </script>
 </head>
 <body>
+<?php include 'assets/header.php'; ?>
     <h1>Login</h1>
     <form action="procesar_login.php" method="post">
         <label for="userType">Tipo de Usuario:</label>
