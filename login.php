@@ -22,6 +22,8 @@
     </script>
 </head>
 <body>
+<?php include 'assets/header.php'; ?>
+<div id="header"></div>
     <h1>Login</h1>
     <form action="procesar_login.php" method="post">
         <label for="userType">Tipo de Usuario:</label>
@@ -46,5 +48,7 @@
 
         <button type="submit">Login</button>
     </form>
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>
