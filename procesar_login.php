@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'includes/conexion.php';
 
 $userType = $_POST['userType'];
@@ -10,10 +11,12 @@ if ($userType === 'Personal') {
     $resultado = $conn->query($sql);
 
     if ($resultado->num_rows > 0) {
-        echo "Login exitoso. Bienvenido, Personal!";
-        header("Location: personal.php");
+        $row = $resultado->fetch_assoc();
+        $_SESSION['userName'] = $row['nombre'];
+        $_SESSION['userType'] = 'Personal';
+        header("Location: index.php");
+        exit();
     } else {
-        echo"$contraseña";
         echo "Correo o contraseña incorrectos.";
     }
 } elseif ($userType === 'Paciente') {
@@ -23,8 +26,11 @@ if ($userType === 'Personal') {
     $resultado = $conn->query($sql);
 
     if ($resultado->num_rows > 0) {
-        echo "Login exitoso. Bienvenido, Paciente!";
-        header("Location: pacientes.php");
+        $row = $resultado->fetch_assoc();
+        $_SESSION['userName'] = $row['nombre'];
+        $_SESSION['userType'] = 'Paciente';
+        header("Location: index.php");
+        exit();
     } else {
         echo "CURP o contraseña incorrectos.";
     }

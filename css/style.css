@@ -12,6 +12,7 @@ body {
 header {
   width: 100%;
   background-color: #227adf;
+  display: flex;
 }
 
 header h1 {
@@ -27,13 +28,15 @@ header nav {
 
 header ul {
   list-style-type: none;
-  margin: 0;
+  margin-top: 0;
   padding: 0;
   display: flex;
+  align-items: center
 }
 
 header ul li {
-  position: relative; /* Añadir posición relativa */
+  display: flex;
+position: relative;
 }
 
 header ul li a {
@@ -49,11 +52,10 @@ header ul li a:hover {
   color: black;
 }
 
-/* Añadir estilos para el menú desplegable */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #57b816;
+  background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -71,14 +73,23 @@ header ul li a:hover {
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: #81c1f5;
 }
 
-/* Mostrar el menú desplegable al pasar el cursor */
 header ul li:hover .dropdown-content {
   display: block;
 }
 
+header ul li:hover .dropdown-content {
+  display: block;
+}
+.contacto{
+    padding-top:0.5rem;
+    display: flex;
+}
+.ubicaion{
+  color: red;
+}
 
 .main {
   flex: 1;

@@ -23,16 +23,14 @@
 </head>
 <body>
 <?php include 'assets/header.php'; ?>
-<<<<<<< HEAD
-=======
 <div id="header"></div>
->>>>>>> ec034a26a64015cb5b348df95ac90e7fa2f3aa21
     <h1>Login</h1>
     <form action="procesar_login.php" method="post">
         <label for="userType">Tipo de Usuario:</label>
         <select id="userType" name="userType" onchange="toggleFields()" required>
-            <option value="Paciente">Paciente</option>
-            <option value="Personal">Personal</option>
+        <option value="Personal">Personal</option>    
+        <option value="Paciente">Paciente</option>
+            
         </select><br>
 
         <div id="personalFields" style="display: block;">
