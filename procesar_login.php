@@ -14,7 +14,7 @@ if ($userType === 'Personal') {
         $row = $resultado->fetch_assoc();
         $_SESSION['userName'] = $row['nombre'];
         $_SESSION['userType'] = 'Personal';
-        header("Location: index.php");
+        header("Location: vistaP_index.php");
         exit();
     } else {
         echo "Correo o contraseña incorrectos.";
