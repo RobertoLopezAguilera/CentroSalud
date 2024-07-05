@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php include 'assets/header.html'; ?>
+    <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
     <h1>Habitaciones del Hospital</h1>
-    <a href="agregar_habitacion.php" class="button-29">Agregar Habitación</a>
+    <a href="agregar_habitacion.php" class="button-29">Agregar Habitación<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="-2 2 32 32"><path fill="#ffffff" d="M25 16h-8a2 2 0 0 0-2 2v6H4V14H2v16h2v-4h24v4h2v-9a5.006 5.006 0 0 0-5-5m3 8H17v-6h8a3.003 3.003 0 0 1 3 3Z"/><path fill="#ffffff" d="M9.5 17A1.5 1.5 0 1 1 8 18.5A1.5 1.5 0 0 1 9.5 17m0-2a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 9.5 15M21 6h-4V2h-2v4h-4v2h4v4h2V8h4z"/></svg> </a>
     <?php
     include 'includes/conexion.php';
     $sql = "SELECT Habitaciones.id_habitacion, Habitaciones.numero, Habitaciones.tipo, Habitaciones.estado, Habitaciones.costo, Areas.nombre AS nombre_area FROM Habitaciones JOIN Areas ON Habitaciones.id_area = Areas.id_area";
