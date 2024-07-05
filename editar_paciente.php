@@ -53,6 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<?php include 'assets/header.php'; ?>
+<div id="header"></div>
     <h1>Editar Datos del Paciente</h1>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <input type="hidden" name="id_paciente" value="<?php echo $id_paciente; ?>">
@@ -84,5 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="pacientes.php">Volver a la lista de pacientes</a>
         </div>
     </form>
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
+
 </body>
 </html>

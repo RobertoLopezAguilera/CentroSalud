@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Agregar Personal</title>
 </head>
 <body>
-    <?php include 'assets/header.html'; ?>
+    <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
     <h1>Agregar Personal</h1>

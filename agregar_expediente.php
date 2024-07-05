@@ -7,7 +7,7 @@
     <title>Agregar Expediente Médico</title>
 </head>
 <body>
-    <?php include 'assets/header.html'; ?>
+    <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
     <h1>Agregar Expediente Médico</h1>
