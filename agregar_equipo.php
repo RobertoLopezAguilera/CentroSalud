@@ -7,7 +7,7 @@
     <title>Agregar Equipo Médico</title>
 </head>
 <body>
-    <?php include 'assets/header.html'; ?>
+    <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
     <h1>Agregar Equipo Médico</h1>

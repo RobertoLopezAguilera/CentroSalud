@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php include 'assets/header.html'; ?>
+    <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
     <h1>Citas Medicas</h1>

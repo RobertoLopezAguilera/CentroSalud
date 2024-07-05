@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<?php include 'assets/header.html'; ?>
+<?php include 'assets/header.php'; ?>
     <div id="header"></div>
     <h1>Editar Datos de Personal</h1>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
