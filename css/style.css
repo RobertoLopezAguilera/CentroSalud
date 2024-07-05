@@ -87,7 +87,7 @@ header ul li:hover .dropdown-content {
     padding-top:0.5rem;
     display: flex;
 }
-.ubicaion{
+.ubicacion{
   color: red;
 }
 
@@ -387,4 +387,19 @@ input[type="submit"]:hover {
 
 form textarea {
   resize: vertical; /* Permitir cambiar el tamaño verticalmente */
+}
+
+@media only screen and (max-width: 600px) {
+  header ul {
+    flex-direction: column;
+  }
+  
+  header ul li {
+    margin: 0 5px;
+    float: none;
+  }
+  
+  footer .column {
+    flex: 1 1 100%;
+  }
 }
