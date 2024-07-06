@@ -1,25 +1,35 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include 'includes/conexion.php';
-
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $tipo_personal = $_POST['tipo_personal'];
-    $especialidad = $_POST['especialidad'];
-    $correo = $_POST['correo'];
-    $contraseña = sha1($_POST['contraseña']);
-    $telefono = $_POST['telefono'];
-
-    $sql = "INSERT INTO Personal (nombre, apellido, tipo_personal, especialidad, correo, contraseña, telefono)
-            VALUES ('$nombre', '$apellido', '$tipo_personal', '$especialidad', '$correo', '$contraseña', '$telefono')";
-
-    if ($conn->query($sql) === TRUE) {
-        header("Location: personal.php");
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    // Asegurarse de que el campo id_paciente ha sido enviado
+    if (isset($_POST['id_paciente']) && !empty($_POST['id_paciente'])) {
+        $id_paciente = isset($_POST['id_paciente']) ? filter_var($_POST['id_paciente'], FILTER_SANITIZE_NUMBER_INT) : null;
+        $id_personal = isset($_POST['id_personal']) ? filter_var($_POST['id_personal'], FILTER_SANITIZE_NUMBER_INT) : null;
+        $fecha_hora = isset($_POST['fecha_hora']) ? date('Y-m-d H:i:s', strtotime($_POST['fecha_hora'])) : null;
+        $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
+            // Obtener el valor de la opción seleccionada
+           /* $id_paciente = filter_var($_POST['id_paciente'], FILTER_SANITIZE_NUMBER_INT);
+            $id_personal = filter_var($_POST['id_personal'], FILTER_SANITIZE_NUMBER_INT);
+            $fecha_hora = date('Y-m-d H:i:s', strtotime($_POST['fecha_hora']));
+            $tipo = $_POST['tipo'];*/
+    
+                $sql = "INSERT INTO citas (id_paciente, id_personal, fecha_hora, tipo) 
+                        VALUES ('$id_paciente', '$id_personal', '$fecha_hora', '$tipo')";
+        
+                if ($conn->query($sql) === TRUE) {
+                    header("Location: citas.php");
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+        
+            $conn->close();
+    }else {
+        echo "No se ha seleccionado ningún paciente.";
     }
-
-    $conn->close();
+} else {
+    echo "Método de solicitud no válido.";
 }
-
 ?>
+
+
+

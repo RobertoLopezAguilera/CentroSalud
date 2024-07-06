@@ -44,8 +44,8 @@
                 echo "<td>" . htmlspecialchars($fila["fecha_hora"]) . "</td>";
                 echo "<td>" . htmlspecialchars($fila["tipo"]) . "</td>";
                 echo "<td>";
-               /* echo "<a class='button-33' href='editar_personal.php?id=" . htmlspecialchars($fila["id_personal"]) . "'>Editar</a>";
-                echo "<a class='button-34' href='eliminar_personal.php?id=" . htmlspecialchars($fila["id_personal"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";*/
+                echo "<a class='button-33' href='editar_cita.php?id=" . htmlspecialchars($fila["id_cita"]) . "'>Editar</a>";
+                echo "<a class='button-34' href='eliminar_cita.php?id=" . htmlspecialchars($fila["id_cita"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
                 echo "</td>";
                 echo "</tr>";
         }

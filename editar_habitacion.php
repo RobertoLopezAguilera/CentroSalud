@@ -38,6 +38,7 @@
             }
             ?>
         </select><br>
+        
         <div class="inputdiv">
             <input type="submit" value="Actualizar">
             <a href="habitaciones.php">Volver a la lista de habitaciones</a>
