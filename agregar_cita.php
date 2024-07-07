@@ -52,7 +52,7 @@
 
         <div class="inputdiv">
             <input type="submit" value="Agregar">
-            <a href="habitaciones.php">Volver a la lista de habitaciones</a>
+            <a href="citas.php">Volver a la lista de citas</a>
         </div>
     </form>
 

@@ -27,7 +27,7 @@
         c.tipo
         FROM citas c
         JOIN pacientes p ON c.id_paciente = p.id_paciente
-        JOIN personal m ON c.id_paciente = m.id_personal
+        JOIN personal m ON c.id_personal = m.id_personal
         WHERE c.id_paciente = p.id_paciente 
         AND c.id_personal = m.id_personal;";
 
