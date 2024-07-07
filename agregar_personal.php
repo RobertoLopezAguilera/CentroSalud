@@ -42,20 +42,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="apellido">Apellido:</label>
         <input type="text" id="apellido" name="apellido" required>
 
-        <label for="tipo_personal">Tipo de Personal:</label><br>
-        <input type="text" id="tipo_personal" name="tipo_personal" required><br><br>
+        <label for="tipo_personal">Tipo de Personal:</label>
+        <input type="text" id="tipo_personal" name="tipo_personal" required><br>
 
-        <label for="especialidad">Especialidad:</label><br>
-        <input type="text" id="especialidad" name="especialidad"><br><br>
+        <label for="especialidad">Especialidad:</label>
+        <input type="text" id="especialidad" name="especialidad"><br>
 
-        <label for="correo">Correo:</label><br>
-        <input type="email" id="correo" name="correo" required><br><br>
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" name="correo" required><br>
 
-        <label for="contraseña">Contraseña:</label><br>
-        <input type="password" id="contraseña" name="contraseña" required><br><br>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" required><br>
 
-        <label for="telefono">Teléfono:</label><br>
-        <input type="text" id="telefono" name="telefono" required><br><br>
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" required><br>
 
         <div class="inputdiv">
             <input type="submit" value="Agregar">

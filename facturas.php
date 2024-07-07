@@ -11,6 +11,7 @@
     <div id="header"></div>
 
     <h1>Facturas</h1>
+    <a href="agregar_factura.php" class="button-29">Agregar Factura</a>
     <?php
     include 'includes/conexion.php';
 

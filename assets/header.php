@@ -14,6 +14,7 @@ session_start();
         width: 100%;
         background-color: #227adf;
         display: flex;
+        justify-content: center;
       }
 
       header h1 {
@@ -32,7 +33,7 @@ session_start();
         margin-top: 0;
         padding: 0;
         display: flex;
-        align-items: center
+        align-items: center;
       }
 
       header ul li {
@@ -84,7 +85,7 @@ session_start();
           padding-top:0.5rem;
           display: flex;
       }
-      .ubicaion{
+      .ubicacion{
 
       }
     </style>

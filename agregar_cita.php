@@ -3,30 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Paciente</title>
+    <title>Agregar Cita</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
-    <h1>Agregar Paciente</h1>
-    <form action="procesar_agregar_paciente.php" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br>
-        <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" required><br>
-        <label for="fech_nac">Fecha de Nacimiento:</label>
-        <input type="text" id="fech_nac" name="fech_nac" required><br>
-        <label for="direccion">Direccion:</label>
-        <input type="text" id="direccion" name="direccion" required><br>
-        <label for="telefono">Telefono:</label>
-        <input type="text" id="telefono" name="telefono" required><br>
-        <label for="habitacion">Habitacion:</label>
-        <input type="text" id="habitacion" name="habitacion" required><br>
+    <h1>Agregar Citas</h1>
+    <form action="procesar_agregar_cita.php" method="post">
+
+    <label for="id_paicente">Paciente:</label>
+        <select id="id_paicente" name="id_paicente" required>
+            <?php
+            include 'includes/conexion.php';
+            $sql = "SELECT CONCAT(p.nombre,' ',p.apellido) as nombre_paciente,
+            p.id_paciente
+            FROM citas c
+            JOIN pacientes p ON c.id_paciente = p.id_paciente
+            WHERE c.id_paciente = p.id_paciente";
+            $resultado = $conn->query($sql);
+            while ($fila = $resultado->fetch_assoc()) {
+                echo "<option value='" . $fila["id_paciente"] . "'>" . $fila["nombre_paciente"] . "</option>";
+            }
+            ?>
+    </select><br>
+
+    <label for="id_personal">Medico:</label>
+        <select id="id_personal" name="id_personal" required>
+            <?php
+            include 'includes/conexion.php';
+            $sql = "SELECT CONCAT(p.nombre,' ',p.apellido) as nombre_personal
+            FROM citas c
+            JOIN personal p ON c.id_personal = p.id_personal
+            WHERE c.id_personal = p.id_personal";
+            $resultado = $conn->query($sql);
+            while ($fila = $resultado->fetch_assoc()) {
+                echo "<option value='" . $fila["id_personal"] . "'>" . $fila["nombre_personal"] . "</option>";
+            }
+            ?>
+    </select><br>
+
+        <label for="fecha_hora">Fecha de cita:</label>
+        <input type="datetime-local" id="fecha_hora" name="fecha_hora" required><br>
+
+        <label for="tipo">Tipo de cita:</label>
+        <input type="text" id="tipo" name="tipo" required><br>
+
         <div class="inputdiv">
             <input type="submit" value="Agregar">
-            <a href="pacientes.php">Volver a la lista de pacientes</a>
+            <a href="habitaciones.php">Volver a la lista de habitaciones</a>
         </div>
     </form>
 
