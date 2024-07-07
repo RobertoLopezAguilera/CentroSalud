@@ -395,3 +395,8 @@ VALUES
     (4, 5, '1'),
     (5, 6, '2');
 >>>>>>> 015438a5429332b4db2c50ddaa41de676368c0db
+
+
+INSERT INTO Habitaciones (numero, tipo, estado, costo, id_area) VALUES (108, 'Individual', 'Disponible', 150.00, 1);
+INSERT INTO Camas (id_habitacion, numero_cama, estado)
+VALUES(8, 1, 'Disponible'), (8, 2, 'Disponible'),(8,2,'Disponible');

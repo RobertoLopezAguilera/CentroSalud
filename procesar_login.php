@@ -12,6 +12,7 @@ if ($userType === 'Personal') {
 
     if ($resultado->num_rows > 0) {
         $row = $resultado->fetch_assoc();
+        $_SESSION['userId'] = $row['id_personal'];
         $_SESSION['userName'] = $row['nombre'];
         $_SESSION['userType'] = 'Personal';
         header("Location: vistaPer_index.php");
@@ -27,6 +28,7 @@ if ($userType === 'Personal') {
 
     if ($resultado->num_rows > 0) {
         $row = $resultado->fetch_assoc();
+        $_SESSION['userId'] = $row['id_paciente'];
         $_SESSION['userName'] = $row['nombre'];
         $_SESSION['userType'] = 'Paciente';
         header("Location: vistaPac_index.php");
