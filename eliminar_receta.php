@@ -4,9 +4,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     
     $id_receta = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 
-    $sql_delete_receta_medicamento = "DELETE FROM Receta_Medicamento WHERE id_receta = ?";
     $sql_delete_receta = "DELETE FROM Recetas_Medicas WHERE id_receta = ?";
-
+    $sql_delete_receta_medicamento = "DELETE FROM Receta_Medicamento WHERE id_receta = ?";
+    
     $stmt_rm = $conn->prepare($sql_delete_receta_medicamento);
     $stmt_rm->bind_param('i', $id_receta);
     $stmt_rm->execute();

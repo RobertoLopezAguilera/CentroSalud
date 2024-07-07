@@ -10,7 +10,7 @@
 <?php include 'assets/header.php'; ?>
 <div id="header"></div>
     <h1>Recetas Médicas</h1>
-    <a href="" class="button-29">Agregar Receta</a>
+    <a href="agregar_receta_medica.php" class="button-29">Agregar Receta</a>
     <?php
     include 'includes/conexion.php';
 
