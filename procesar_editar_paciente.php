@@ -3,11 +3,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'includes/conexion.php';
 
     $id_paciente = filter_var($_POST['id_paciente'], FILTER_SANITIZE_NUMBER_INT);
-    $nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
+    $nombre = filter_var($_POST['nombre_paciente'], FILTER_SANITIZE_STRING);
     $apellido = filter_var($_POST['apellido'], FILTER_SANITIZE_STRING);
     $fecha_nacimiento = filter_var($_POST['fecha_nacimiento'], FILTER_SANITIZE_STRING);
     $direccion = filter_var($_POST['direccion'], FILTER_SANITIZE_STRING);
     $telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_STRING);
+    $id_cama = filter_var($_POST['id_cama'], FILTER_SANITIZE_NUMBER_INT);
 
     $sql = "UPDATE pacientes p
             JOIN camas c ON p.id_cama = c.id_cama
@@ -17,15 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 p.apellido = ?, 
                 p.fecha_nacimiento = ?, 
                 p.direccion = ?, 
-                p.telefono = ?
-            WHERE p.id_paciente = ?
-              AND a.estatus = 'disponible'
-              AND h.estatus = 'disponible'";
+                p.telefono = ?,
+                p.id_cama = ?
+            WHERE p.id_paciente = ?";
 
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param('sssssi', $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $id_paciente);
+        $stmt->bind_param('sssssii', $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $id_cama, $id_paciente);
         if ($stmt->execute()) {
             echo "<p>Datos del paciente actualizados correctamente.</p>";
         } else {

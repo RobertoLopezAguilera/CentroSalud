@@ -22,26 +22,25 @@
 
         // Consulta SQL para obtener los datos del paciente según el ID
         $sql = "SELECT 
-                    p.id_paciente, 
-                    p.nombre AS nombre_Paciente, 
+	                p.id_paciente, 
+                    p.nombre AS nombre_paciente, 
                     p.apellido, 
                     p.fecha_nacimiento, 
                     p.direccion, 
                     p.telefono,
-                    c.id_cama,
+                    a.id_area,
+                    a.nombre AS nombre_area,
+                    h.id_habitacion,
                     h.numero AS numero_habitacion,
-                    c.estado AS estatus_cama,
-                    h.estado AS estatus_habitacion
-                FROM 
-                    pacientes p
-                JOIN 
-                    camas c ON p.id_cama = c.id_cama
-                JOIN 
-                    habitaciones h ON c.id_habitacion = h.id_habitacion
-                JOIN 
-                    areas a ON h.id_area = a.id_area
-                WHERE 
-                    p.id_paciente = ?";
+                    h.estado AS estatus_habitacion,
+                    p.id_cama,
+                    c.numero_cama,
+                    c.estado AS estatus_cama
+                FROM pacientes p 
+		            JOIN camas c ON p.id_cama = c.id_cama 
+		            JOIN habitaciones h ON c.id_habitacion = h.id_habitacion
+		            JOIN areas a ON h.id_area = a.id_area 
+	            WHERE p.id_paciente = ?";
 
         $stmt = $conn->prepare($sql);
 
@@ -58,13 +57,17 @@
                 // areas
                 $sql_areas = "SELECT id_area, nombre as nombre_area FROM areas";
                 $resultado_areas = $conn->query($sql_areas);
+
+                // habitaciones
+                $sql_habitaciones = "SELECT id_habitacion, numero as nombre_area, id_area FROM habitaciones";
+                $resultado_habitaciones = $conn->query($sql_habitaciones);
                 ?>
 
                 <form action="procesar_editar_paciente.php" method="POST">
                     <input type="hidden" name="id_paciente" value="<?php echo $paciente['id_paciente']; ?>">
 
-                    <label for="nombre_Paciente">Nombre:</label>
-                    <input type="text" id="nombre_Paciente" name="nombre_Paciente" value="<?php echo $paciente['nombre_Paciente']; ?>" required>
+                    <label for="nombre_paciente">Nombre:</label>
+                    <input type="text" id="nombre_paciente" name="nombre_paciente" value="<?php echo $paciente['nombre_paciente']; ?>" required>
 
                     <label for="apellido">Apellido:</label>
                     <input type="text" id="apellido" name="apellido" value="<?php echo $paciente['apellido']; ?>" required>
@@ -81,30 +84,26 @@
                     <label for="nombre_area">Area:</label>
                     <select id="id_area" name="id_area" required>
                         <?php
-                        // Mostrar opciones de areas
-                        while ($fila = $resultado_areas->fetch_assoc()) {
-                            $selected = ($fila['id_area'] == $paciente['id_area']) ? 'selected' : '';
-                            echo "<option value='" . $fila['id_area'] . "' $selected>" . $fila['nombre_area'] . "</option>";
+                        $sql_areas = "SELECT * FROM Areas";
+                        $resultado_areas = $conn->query($sql_areas);
+                        while ($fila_area = $resultado_areas->fetch_assoc()) {
+                            $selected = ($fila_area["id_area"] == $fila["id_area"]) ? "selected" : "";
+                            echo "<option value='" . $fila_area["id_area"] . "' $selected>" . $fila_area["nombre"] . "</option>";
                         }
                         ?>
-                    </select>
+                    </select><br>
 
                     <label for="numero">Habitaciones:</label>
                     <select id="id_habitacion" name="id_habitacion" required>
                         <?php
-                        // habitaciones
-                        $sql_habitaciones = "SELECT h.id_habitacion, h.numero as numero_habitacion FROM habitaciones h JOIN areas a ON a.id_area=h.id_area 
-                        WHERE h.estado='disponible' AND h.id_area=?;";
+                        $sql_habitaciones = "SELECT * FROM Habitaciones h JOIN Camas c WHERE h.id_habitacion = c.id_habitacion";
                         $resultado_habitaciones = $conn->query($sql_habitaciones);
-
-                        // Mostrar opciones de areas
-                        while ($fila = $resultado_habitaciones->fetch_assoc()) {
-                            $selected = ($fila['id_habitacion'] == $habitacion['id_habitacion']) ? 'selected' : '';
-                            echo "<option value='" . $fila['id_habitacion'] . "' $selected>" . $fila['numero'] . "</option>";
+                        while ($fila_habitaciones = $resultado_habitaciones->fetch_assoc()) {
+                            $selected = ($fila_habitaciones["h.id_habitacion"] == $fila_habitaciones["c.id_habitacion"]) ? "selected" : "";
+                            echo "<option value='" . $fila_habitaciones["id_habitacion"] . "' $selected>" . $fila_habitaciones["numero"] . "</option>";
                         }
                         ?>
-                    </select>
-
+                    </select><br>
                     <input type="submit" value="Actualizar"></input>
                 </form>
 
