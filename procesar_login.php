@@ -14,7 +14,7 @@ if ($userType === 'Personal') {
         $row = $resultado->fetch_assoc();
         $_SESSION['userName'] = $row['nombre'];
         $_SESSION['userType'] = 'Personal';
-        header("Location: vistaP_index.php");
+        header("Location: vistaPer_index.php");
         exit();
     } else {
         echo "Correo o contraseña incorrectos.";
@@ -29,7 +29,7 @@ if ($userType === 'Personal') {
         $row = $resultado->fetch_assoc();
         $_SESSION['userName'] = $row['nombre'];
         $_SESSION['userType'] = 'Paciente';
-        header("Location: index.php");
+        header("Location: vistaPac_index.php");
         exit();
     } else {
         echo "CURP o contraseña incorrectos.";
