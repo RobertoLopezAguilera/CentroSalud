@@ -1,3 +1,15 @@
+<?php
+include 'assets/header.php';
+
+if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
+    $errorMessage = "No tienes permiso para acceder a esta página.";
+} else {
+    $userName = $_SESSION['userName'];
+    if ($userName !== "DR. Roberto Lopez") {
+        $errorMessage = "No tienes permiso para acceder a esta página.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

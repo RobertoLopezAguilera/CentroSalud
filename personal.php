@@ -1,3 +1,15 @@
+<?php
+include 'assets/header.php';
+
+if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
+    $errorMessage = "No tienes permiso para acceder a esta página.";
+} else {
+    $userName = $_SESSION['userName'];
+    if ($userName !== "DR. Roberto Lopez") {
+        $errorMessage = "No tienes permiso para acceder a esta página.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +27,6 @@
     <?php
     include 'includes/conexion.php';
 
-    // Verifica la conexión
     if ($conn->connect_error) {
         die("Error de conexión: " . $conn->connect_error);
     }
