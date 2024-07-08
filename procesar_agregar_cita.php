@@ -50,6 +50,3 @@ exit;
     echo "Método de solicitud no válido.";
 }*/
 ?>
-
-
-

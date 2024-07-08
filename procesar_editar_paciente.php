@@ -3,7 +3,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'includes/conexion.php';
 
     $id_paciente = filter_var($_POST['id_paciente'], FILTER_SANITIZE_NUMBER_INT);
-    $nombre = filter_var($_POST['nombre_paciente'], FILTER_SANITIZE_STRING);
+    $id_area = filter_var($_POST['id_area'], FILTER_SANITIZE_NUMBER_INT);
+    $nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
     $apellido = filter_var($_POST['apellido'], FILTER_SANITIZE_STRING);
     $fecha_nacimiento = filter_var($_POST['fecha_nacimiento'], FILTER_SANITIZE_STRING);
     $direccion = filter_var($_POST['direccion'], FILTER_SANITIZE_STRING);

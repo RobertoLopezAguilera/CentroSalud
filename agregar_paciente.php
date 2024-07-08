@@ -17,7 +17,7 @@
         <label for="apellido">Apellido:</label>
         <input type="text" id="apellido" name="apellido" required><br>
         <label for="fech_nac">Fecha de Nacimiento:</label>
-        <input type="text" id="fech_nac" name="fech_nac" required><br>
+        <input type="date" id="fech_nac" name="fech_nac" required><br>
         <label for="direccion">Direccion:</label>
         <input type="text" id="direccion" name="direccion" required><br>
         <label for="telefono">Telefono:</label>

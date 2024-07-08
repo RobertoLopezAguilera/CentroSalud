@@ -27,7 +27,7 @@
     $sql_areas = "SELECT id_area, nombre FROM Areas";
     $resultado_areas = $conn->query($sql_areas);
     ?>
-    <form action="actualizar_paciente.php" method="post">
+    <form action="procesar_editar_paciente.php" method="post">
         <input type="hidden" name="id_paciente" value="<?php echo htmlspecialchars($paciente['id_paciente']); ?>">
 
         <label for="nombre">Nombre:</label>
