@@ -69,7 +69,10 @@
             <option value="">Seleccione una cama</option>
         </select>
 
-        <button type="submit">Actualizar</button>
+        <div class="inputdiv">
+            <input type="submit" value="Actualizar">
+            <a href="pacientes.php">Volver a la lista de pacientes</a>
+        </div>
     </form>
 
     <script>
