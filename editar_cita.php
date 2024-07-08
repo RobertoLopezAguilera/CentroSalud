@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Paciente</title>
+    <title>Editar Cita Medica</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <?php include 'assets/header.php'; ?>
     <div id="header"></div>
-    <h1>Editar Paciente</h1>
+    <h1>Editar Cita</h1>
     <?php
     include 'includes/conexion.php';
     $id = $_GET['id'];
