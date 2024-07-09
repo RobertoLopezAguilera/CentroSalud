@@ -1,6 +1,7 @@
 <?php
 include 'assets/header.php';
 
+// Verificar sesión y permisos
 if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     $errorMessage = "No tienes permiso para acceder a esta página.";
 } else {
@@ -10,6 +11,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
         $errorMessage = "No tienes permiso para ver todas las áreas.";
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -77,6 +79,8 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
                 echo "<td>";
                 echo "<a class='button-33' href='editar_area.php?id=" . htmlspecialchars($fila["id_area"]) . "'>Editar</a>";
                 echo "<a class='button-34' href='eliminar_area.php?id=" . htmlspecialchars($fila["id_area"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
+                echo "<a class='button-29' href='habitaciones.php?id_area=" . htmlspecialchars($fila["id_area"]) . "'>Ver Habitaciones</a>";
+
                 echo "</td>";
                 echo "</tr>";
             }

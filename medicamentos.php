@@ -7,7 +7,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     $userName = $_SESSION['userName'];
 
     if ($userName !== "DR. Roberto") {
-        $errorMessage = "No tienes permiso para ver todas las áreas.";
+        $errorMessage = "No tienes permiso para ver todos los medicamentos.";
     }
 }
 ?>
@@ -18,20 +18,72 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicamentos</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+        .search-form input[type="text"] {
+            margin-right: 10px;
+        }
+        .button-29 {
+            margin-left: 10px;
+        }
+        .a_excel svg {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
 <?php if (isset($errorMessage)): ?>
         <div class="error"><?php echo $errorMessage; ?></div>
     <?php else: ?>
         <div id="header"></div>
-        <h1>Medicamentos</h1>
+        <h1>Lista de medicamentos</h1>
         
-        <a href="agregar_medicamento.php" class="button-29">Agregar Medicamento</a>
-        
+        <div class="actions">
+            <a href="agregar_medicamento.php" class="button-29">Agregar Medicamento</a>
+            
+            <form method="GET" action="medicamentos.php" class="search-form">
+                <input type="text" name="search" placeholder="Buscar por nombre o descripción" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <button type="submit" class="button-29">Buscar</button>
+                <button type="button" class="button-29" onclick="window.location.href='medicamentos.php'">Borrar</button>
+            </form>
+            
+            <a href="descargar_medicamentos.php?search=<?php echo isset($_GET['search']) ? urlencode($_GET['search']) : ''; ?>" class="button-29">Descargar 
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
+                    <defs>
+                        <mask id="IconifyId1908b6f9a94f46a6f2">
+                            <g fill="none" stroke-linecap="round" stroke-width="4">
+                                <path stroke="#fff" stroke-linejoin="round" d="M8 15V6a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v36a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-9"/>
+                                <path stroke="#fff" d="M31 15h3m-6 8h6m-6 8h6"/>
+                                <path fill="#fff" stroke="#fff" stroke-linejoin="round" d="M4 15h18v18H4z"/>
+                                <path stroke="#000" stroke-linejoin="round" d="m10 21l6 6m0-6l-6 6"/>
+                            </g>
+                        </mask>
+                    </defs>
+                    <path fill="#ffffff" d="M0 0h48v48H0z" mask="url(#IconifyId1908b6f9a94f46a6f2)"/>
+                </svg>
+            </a>
+        </div>
+
         <?php
         include 'includes/conexion.php';
 
+        $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+
         $sql = "SELECT * FROM Medicamentos";
+        
+        if (!empty($search)) {
+            $sql .= " WHERE nombre LIKE '%$search%' OR descripcion LIKE '%$search%'";
+        }
+
         $resultado = $conn->query($sql);
 
         if ($resultado->num_rows > 0) {

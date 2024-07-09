@@ -92,13 +92,6 @@ header ul li a:hover {
 header ul li:hover .dropdown-content {
   display: block;
 }
-.contacto{
-    padding-top:0.5rem;
-    display: flex;
-}
-.ubicacion{
-  color:blue;
-}
 
 </style>
 <div class="contacto">

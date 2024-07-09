@@ -87,10 +87,11 @@ header ul li:hover .dropdown-content {
 .contacto{
     padding-top:0.5rem;
     display: flex;
+    align-items: center;
 }
 .ubicacion{
   color: blue;
-  font-size: 10px;
+  font-size: 20px;
 }
 
 .opciones {
