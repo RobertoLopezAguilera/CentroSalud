@@ -48,6 +48,7 @@
         </div>
 
         <button type="submit">Login</button>
+        <button type="submit">Registarse</button>
     </form>
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
