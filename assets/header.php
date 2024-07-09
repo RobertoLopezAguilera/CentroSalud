@@ -138,7 +138,7 @@ header ul li:hover .dropdown-content {
             </li>
             <li><a href="medicamentos.php">Servicios 24/7</a></li>
             <li><a href="carrusel_medicamentos.php">Medicamentos</a></li>
-            <li><a href="citas.php">Citas</a></li>
+            <li><a href="agendar_cita.php">Citas</a></li>
             <li><a href="medicamentos.php">Contacto</a></li>
             <?php if ($userName && $userType): ?>
                 <li class="dropdown">

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrusel de Imágenes</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="carrusel/swiper-bundle.css">
 </head>
 <body>
 <?php include 'assets/header.php'; ?>
@@ -16,7 +16,7 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <?php
-            $images = glob("Medicamentos/*.png");
+            $images = glob("Equipos_Medicos/*.jpg");
             foreach ($images as $image) {
                 echo '<div class="swiper-slide"><img src="' . $image . '" alt="Imagen" width = 1000 height = 583></div>';
             }
@@ -30,7 +30,7 @@
     </div>
 
     <!-- Link to Swiper's JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="carrusel/swiper-bundle.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
             loop: true,
