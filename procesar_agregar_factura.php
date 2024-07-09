@@ -16,6 +16,6 @@ if ($conn->query($sqlFactura) === TRUE) {
 }
 
 $conn->close();
-header("Location: agregar_detalle_factura.php");
+header("Location: agregar_detalle_factura.php?id=$id_factura");
 exit;
 ?>

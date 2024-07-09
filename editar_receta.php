@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Receta Médica</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<?php include 'assets/header.php'; ?>
-<div id="header"></div>
+    <?php include 'assets/header.php'; ?>
+    <div id="header"></div>
+
     <h1>Editar Receta Médica</h1>
 
     <?php
@@ -42,7 +45,7 @@
                     Medicamentos m ON rm.id_medicamento = m.id_medicamento
                 WHERE 
                     r.id_receta = ?";
-        
+
         $stmt = $conn->prepare($sql);
 
         if ($stmt) {
@@ -67,7 +70,8 @@
                     <input type="hidden" name="id_receta" value="<?php echo $receta['id_receta']; ?>">
 
                     <label for="id_paciente">Paciente:</label>
-                    <input type="text" id="id_paciente" name="id_paciente" value="<?php echo $receta['nombre_paciente'] . ' ' . $receta['apellido_paciente']; ?>" readonly>
+                    <input type="text" id="id_paciente" name="id_paciente"
+                        value="<?php echo $receta['nombre_paciente'] . ' ' . $receta['apellido_paciente']; ?>" readonly>
 
                     <label for="id_personal">Personal Médico:</label>
                     <select id="id_personal" name="id_personal" required>
@@ -81,10 +85,12 @@
                     </select>
 
                     <label for="fecha_emision">Fecha de Emisión:</label>
-                    <input type="datetime-local" id="fecha_emision" name="fecha_emision" value="<?php echo date('Y-m-d\TH:i', strtotime($receta['fecha_emision'])); ?>" required>
+                    <input type="datetime-local" id="fecha_emision" name="fecha_emision"
+                        value="<?php echo date('Y-m-d\TH:i', strtotime($receta['fecha_emision'])); ?>" required>
 
                     <label for="observaciones">Observaciones:</label>
-                    <textarea id="observaciones" name="observaciones" rows="4" required><?php echo $receta['observaciones']; ?></textarea>
+                    <textarea id="observaciones" name="observaciones" rows="4"
+                        required><?php echo $receta['observaciones']; ?></textarea>
 
                     <label for="dosis">Dosis:</label>
                     <input type="text" id="dosis" name="dosis" value="<?php echo $receta['dosis']; ?>" required>
@@ -125,4 +131,5 @@
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
 </body>
+
 </html>
