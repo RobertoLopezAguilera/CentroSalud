@@ -5,8 +5,9 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     $errorMessage = "No tienes permiso para acceder a esta página.";
 } else {
     $userName = $_SESSION['userName'];
-    if ($userName !== "DR. Roberto Lopez") {
-        $errorMessage = "No tienes permiso para acceder a esta página.";
+
+    if ($userName !== "DR. Roberto") {
+        $errorMessage = "No tienes permiso para ver todas las recetas.";
     }
 }
 ?>
@@ -17,6 +18,27 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recetas Médicas</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+        .search-form input[type="text"] {
+            margin-right: 10px;
+        }
+        .button-29 {
+            margin-left: 10px;
+        }
+        .a_excel svg {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
     <?php if (isset($errorMessage)): ?>
@@ -24,9 +46,35 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <?php else: ?>
         <div id="header"></div>
         <h1>Recetas Médicas</h1>
-        <a href="agregar_receta_medica.php" class="button-29">Agregar Receta</a>
+        
+        <div class="actions">
+            <a href="agregar_receta_medica.php" class="button-29">Agregar Receta</a>
+            <form method="GET" action="recetas.php" class="search-form">
+                <input type="text" name="search" placeholder="Buscar por paciente o medicamento" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <button type="submit" class="button-29">Buscar</button>
+                <button type="button" class="button-29" onclick="window.location.href='recetas.php'">Borrar</button>
+            </form>
+            <a href="descargar_excel.php?search=<?php echo isset($_GET['search']) ? urlencode($_GET['search']) : ''; ?>" class="button-29">Descargar 
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
+                    <defs>
+                        <mask id="IconifyId1908b6f9a94f46a6f2">
+                            <g fill="none" stroke-linecap="round" stroke-width="4">
+                                <path stroke="#fff" stroke-linejoin="round" d="M8 15V6a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v36a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-9"/>
+                                <path stroke="#fff" d="M31 15h3m-6 8h6m-6 8h6"/>
+                                <path fill="#fff" stroke="#fff" stroke-linejoin="round" d="M4 15h18v18H4z"/>
+                                <path stroke="#000" stroke-linejoin="round" d="m10 21l6 6m0-6l-6 6"/>
+                            </g>
+                        </mask>
+                    </defs>
+                    <path fill="#ffffff" d="M0 0h48v48H0z" mask="url(#IconifyId1908b6f9a94f46a6f2)"/>
+                </svg>
+            </a>
+        </div>
+
         <?php
         include 'includes/conexion.php';
+
+        $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
 
         $sql = "SELECT 
                     p.nombre AS nombre_paciente, 
@@ -48,6 +96,14 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
                     Receta_Medicamento rm ON r.id_receta = rm.id_receta
                 JOIN 
                     Medicamentos m ON rm.id_medicamento = m.id_medicamento";
+
+        if (!empty($search)) {
+            $sql .= " WHERE p.nombre LIKE '%$search%' 
+                      OR p.apellido LIKE '%$search%' 
+                      OR m.nombre LIKE '%$search%' 
+                      OR pe.nombre LIKE '%$search%'
+                      OR pe.apellido LIKE '%$search%'";
+        }
 
         $resultado = $conn->query($sql);
 

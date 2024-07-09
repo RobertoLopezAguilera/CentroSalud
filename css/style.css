@@ -89,7 +89,86 @@ header ul li:hover .dropdown-content {
     display: flex;
 }
 .ubicacion{
-  color: red;
+  color: blue;
+  font-size: 10px;
+}
+
+.opciones {
+  display : flex;
+  align-content: center;
+}
+
+a{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:35px;
+  font-size:1.3em;
+  padding:0 0em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+a:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+a:before,a:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+a:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+a:hover:before,a:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+.a_excel{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:35px;
+  font-size:1.3em;
+  padding:0 0em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.a_excel:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+.a_excel:before,.a_excel:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+.a_excel:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.a_excel:hover:before,.a_excel:hover:after{
+  width:100%;
+  transition:800ms ease all;
 }
 
 .main {

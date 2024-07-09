@@ -154,7 +154,7 @@ CREATE TABLE Personal (
 
 INSERT INTO Personal (nombre, apellido, tipo_personal, especialidad, Correo, Contraseña, telefono)
 VALUES
-    ('DR. Roberto', 'Lopez', 'Médico', 'Cardiología', 'betos70700@gmail.com', SHA2('Betos123'), '123-456-7890'),
+    ('DR. Roberto', 'Lopez', 'Médico', 'Cardiología', 'betos70700@gmail.com', SHA1('Betos123'), '123-456-7890'),
     ('Claria', 'Garcia', 'Enfermera', 'Cuidados Intensivos', 'Clarisa@example.com', SHA2('123456789'), '987-654-3210'),
     ('Brayan', 'Lopez', 'Médico', 'Pediatría', 'Brayan@example.com', SHA2('123456789'), '555-123-4567'),
     ('Sofi', 'Hernández', 'Enfermera', 'Medicina Interna', 'Sofi@example.com', SHA2('123456789'), '333-987-6543'),
