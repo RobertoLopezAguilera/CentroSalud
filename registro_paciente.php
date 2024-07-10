@@ -67,7 +67,7 @@
         .inputdiv a {
             display: inline-block;
             margin-top: 10px;
-            color: #4CAF50;
+            color: white;
             text-decoration: none;
         }
 	</style>
@@ -76,7 +76,7 @@
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
     <div class="principal">
-    <h1>Agregar Paciente</h1>
+    <h1>Registro</h1>
     <form class="formulario" action="procesar_agregar_paciente.php" method="post">
         
         <label for="nombre">Nombre:</label>
@@ -94,8 +94,8 @@
         <label for="contrasenia">Contrasena:</label>
         <input type="password" id="contrasenia" name="contrasenia" required><br>
         <div class="inputdiv">
-            <input type="submit" value="Agregar">
-            <a href="pacientes.php">Volver a la lista de pacientes</a>
+            <a href="vistaPac.php">Crear cuenta</a>
+            <a href="index.php">Cancelar</a>
         </div>
     </form>
 
