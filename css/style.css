@@ -87,12 +87,22 @@ header ul li:hover .dropdown-content {
 .contacto{
     padding-top:0.5rem;
     display: flex;
-    align-items: center;
+    background-color: white;
+    width: 100%;
 }
+
 .ubicacion{
   color: blue;
-  font-size: 25px;
+  font-size: 20px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.emergecia {
+  color: white;
+  background-color: red;
+  border-radius: 15px;
+  padding: 15px;
+  margin-left: 15px;
 }
 
 .main {
@@ -360,14 +370,7 @@ table tr:last-child td {
   opacity: 0.8;
 }
 
-h2 {
- color: white;
- font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
- border-radius: 15px;
- background-color: red;
- padding: 15px;
- margin-left: 15px; 
-}
+
 
 form {
   font-family: Arial, sans-serif;
@@ -446,6 +449,171 @@ input[type="submit"]:hover {
 textarea {
   resize: vertical; /* Permitir cambiar el tamaño verticalmente */
 }
+
+@media only screen and (max-width: 600px) {
+  header ul {
+    flex-direction: column;
+  }
+  
+  header ul li {
+    margin: 0 5px;
+    float: none;
+  }
+  
+  footer .column {
+    flex: 1 1 100%;
+  }
+}
+
+/* marco XD */
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel {
+  width: 15cm; /* Ancho del carrusel */
+  height: 15cm; /* Altura del carrusel */
+  margin-right: 20px; /* Espacio entre el carrusel y la imagen adicional */
+  overflow: hidden; /* Asegura que el contenido no sobresalga del tamaño especificado */
+}
+
+.carousel-inner {
+  display: flex;
+  width: 500%; /* Ajusta según el número de imágenes */
+  transition: transform 0.5s ease;
+}
+
+.carousel-item {
+  width: 20%; /* Ancho de cada imagen en el carrusel */
+  flex: 0 0 20%;
+}
+
+.carousel-item img {
+  width: 100%;
+}
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  transform: translateY(-50%);
+  z-index: 1000; /* Asegurarse de que los controles estén por encima de las imágenes */
+}
+
+.carousel-control.prev {
+  left: 1px;
+}
+
+.carousel-control.next {
+  right: 400px;
+}
+
+
+.additional-image {
+  width: 10cm; /* Ancho de la imagen adicional */
+  height: 10cm; /* Altura de la imagen adicional */
+}
+
+.additional-image img {
+  width: 100%; /* Asegura que la imagen ocupe todo el espacio disponible */
+  height: 100%; /* Asegura que la imagen ocupe todo el espacio disponible */
+  display: block;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
+  grid-gap: 10px; /* Espacio entre las celdas */
+  margin-top: 20px; /* Espacio superior */
+}
+
+.grid-item {
+  position: relative; /* Asegura que el contenedor sea relativo para imágenes absolutas */
+  padding: 10px; /* Espaciado interior */
+  border: 1px solid #ccc; /* Borde opcional */
+  overflow: hidden; /* Para recortar imágenes que excedan el tamaño del contenedor */
+}
+
+.grid-item img {
+  position: absolute; /* Imagen absoluta para cubrir el contenedor */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ancho completo del contenedor */
+  height: 100%; /* Altura completa del contenedor */
+  object-fit: cover; /* Ajusta la imagen manteniendo su relación de aspecto */
+}
+
+.grid-text {
+  flex: 1; /* Que el texto ocupe todo el espacio restante */
+  display: flex; /* Usar flexbox para organizar texto */
+  flex-direction: column; /* Alinear el texto en columna */
+  justify-content: center; /* Centrar verticalmente el texto */
+}
+
+.grid-text p {
+  margin: 0; /* Eliminar el margen predeterminado del párrafo */
+  font-size: 14px; /* Tamaño de fuente del texto */
+}
+
+
+
+
+.image-distributor {
+  position: relative;
+  max-width: 70%;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.image-item {
+  min-width: 100%;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.image-item.active {
+  opacity: 1;
+}
+
+.carousel-control2 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.carousel-control.prev2 {
+  left: 10px;
+}
+
+.carousel-control.next2 {
+  right: 10px;
+}
+
 
 @media only screen and (max-width: 600px) {
   header ul {
