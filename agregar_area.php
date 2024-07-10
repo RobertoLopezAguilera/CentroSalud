@@ -60,5 +60,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
             }
         });
     </script>
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 </body>
 </html>

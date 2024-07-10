@@ -5,13 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Agregar Medicamento</title>
+    <script>
+        function validarFormulario() {
+            var nombre = document.getElementById("nombre").value.trim();
+            var descripcion = document.getElementById("descripcion").value.trim();
+            var stock = document.getElementById("stock").value;
+            var precio = document.getElementById("precio").value;
+            var fechaCaducidad = document.getElementById("fecha_caducidad").value;
+
+            if (nombre === "") {
+                alert("Por favor, ingrese el nombre del medicamento.");
+                return false;
+            }
+
+            if (descripcion === "") {
+                alert("Por favor, ingrese una descripción.");
+                return false;
+            }
+
+            if (stock <= 0) {
+                alert("El stock debe ser mayor a 0.");
+                return false;
+            }
+
+            if (precio <= 0) {
+                alert("El precio debe ser mayor a 0.");
+                return false;
+            }
+
+            if (fechaCaducidad === "") {
+                alert("Por favor, ingrese una fecha de caducidad.");
+                return false;
+            }
+
+            var fechaActual = new Date();
+            var fechaCaducidadDate = new Date(fechaCaducidad);
+            if (fechaCaducidadDate <= fechaActual) {
+                alert("La fecha de caducidad debe ser posterior a la fecha actual.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
     <h1>Agregar Medicamento</h1>
-    <form action="procesar_agregar_medicamento.php" method="post">
+    <form action="procesar_agregar_medicamento.php" method="post" onsubmit="return validarFormulario()">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required><br>
         <label for="descripcion">Descripción:</label>

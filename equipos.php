@@ -52,6 +52,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
                 <button type="button" class="button-29" onclick="window.location.href='equipos.php'">Borrar</button>
             </form>
             <a href="descargar_equipos.php?search=<?php echo isset($_GET['search']) ? urlencode($_GET['search']) : ''; ?>" class="button-29">Descargar Excel</a>
+
         </div>
 
         <?php
