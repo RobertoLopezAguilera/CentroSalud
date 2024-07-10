@@ -5,6 +5,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Paciente') {
     $errorMessage = "No tienes permiso para acceder a esta página.";
 } else {
     $userName = $_SESSION['userName'];
+    $idPaciente =$_SESSION['userId'];
 }
 ?>
 <!DOCTYPE html>
@@ -20,11 +21,10 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Paciente') {
         <div class="error"><?php echo $errorMessage; ?></div>
     <?php else: ?>
         <h2>Bienvenido, <?php echo htmlspecialchars($userName); ?></h2>
-            <a href="recetas.php" class="button-29">Ver mis recetas</a>
+            <a href="vistaPac_index.php" class="button-29">Ver mi informacion</a>
             <div class = "opciones">
                 <a href="citas.php" class="button-29">Ver mis citas</a>
                 <a href="facturas.php" class="button-29">Ver mis facturas</a>
-                <a href="pacientes.php" class="button-29">Ver mi informacion</a>
                 <a href="expedientes_medicos.php" class="button-29">Ver mi expediente</a>
             </div>
             <?php
@@ -35,53 +35,46 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Paciente') {
             }
 
             $sql = "SELECT 
-                        p.nombre AS nombre_paciente, 
-                        p.apellido AS apellido_paciente, 
-                        pe.nombre AS nombre_personal, 
-                        pe.apellido AS apellido_personal, 
-                        r.fecha_emision, 
-                        r.observaciones, 
-                        rm.dosis, 
-                        rm.id_receta,
-                        m.nombre AS nombre_medicamento
-                    FROM 
-                        Recetas_Medicas r
-                    JOIN 
-                        Pacientes p ON r.id_paciente = p.id_paciente
-                    JOIN 
-                        Personal pe ON r.id_personal = pe.id_personal
-                    JOIN 
-                        Receta_Medicamento rm ON r.id_receta = rm.id_receta
-                    JOIN 
-                        Medicamentos m ON rm.id_medicamento = m.id_medicamento
-                    WHERE 
-                        pe.nombre = ?";
+                pacientes.id_paciente, 
+                pacientes.nombre, 
+                pacientes.apellido, 
+                pacientes.fecha_nacimiento, 
+                pacientes.direccion, 
+                pacientes.telefono, 
+                habitaciones.numero AS numero_habitacion
+            FROM 
+                camas c
+            JOIN 
+                pacientes ON c.id_cama = pacientes.id_cama
+            JOIN 
+                habitaciones ON c.id_habitacion = habitaciones.id_habitacion
+            WHERE 
+                pacientes.id_paciente = $idPaciente";
 
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $userName);
+           // $stmt->bind_param("s", $userName);
             $stmt->execute();
             $resultado = $stmt->get_result();
 
             if ($resultado->num_rows > 0) {
                 echo "<table>";
-                echo "<tr><th>Paciente</th><th>Personal Médico</th><th>Fecha Emisión</th><th>Observaciones</th><th>Dosis</th><th>Medicamento</th><th>Acciones</th></tr>";
+                echo "<tr><th>Nombre</th><th>Apellido/th><th>Fecha de Nacimiento</th><th>Direccion</th><th>Telefono</th><th>Habitacion</th><th>Acciones</th></tr>";
                 while($fila = $resultado->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . htmlspecialchars($fila["nombre_paciente"]) . " " . htmlspecialchars($fila["apellido_paciente"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($fila["nombre_personal"]) . " " . htmlspecialchars($fila["apellido_personal"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($fila["fecha_emision"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($fila["observaciones"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($fila["dosis"]) . "</td>";
-                    echo "<td>" . htmlspecialchars($fila["nombre_medicamento"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($fila["nombre"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($fila["apellido"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($fila["fecha_nacimiento"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($fila["direccion"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($fila["telefono"]) . "</td>";
+                    echo "<td>" . htmlspecialchars($fila["numero_habitacion"]) . "</td>";
                     echo "<td>";
-                    echo "<a class='button-33' href='editar_receta.php?id=" . htmlspecialchars($fila["id_receta"]) . "'>Editar</a>";
-                    echo "<a class='button-34' href='eliminar_receta.php?id=" . htmlspecialchars($fila["id_receta"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
+                    echo "<a class='button-33' href='editar_paciente.php?id=" . htmlspecialchars($fila["id_paciente"]) . "'>Editar</a>";
                     echo "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
             } else {
-                echo "No se encontraron recetas.";
+                echo "No se encontro informacion.";
             }
 
             $stmt->close();
@@ -92,3 +85,4 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Paciente') {
     <div id="footer"></div>
 </body>
 </html>
+
