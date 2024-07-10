@@ -149,7 +149,7 @@ if ($userName && $userType === 'Personal') {
         <?php endif; ?>
       </li>
 
-      <li><a href="medicamentos.php">Contacto</a></li>
+      <li><a href="contacto.php">Contacto</a></li>
       <?php if ($userName && $userType): ?>
         <li class="dropdown">
           <a href="#">
