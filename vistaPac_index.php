@@ -23,9 +23,9 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Paciente') {
         <h2>Bienvenido, <?php echo htmlspecialchars($userName); ?></h2>
             <a href="vistaPac_index.php" class="button-29">Ver mi informacion</a>
             <div class = "opciones">
-                <a href="citas.php" class="button-29">Ver mis citas</a>
-                <a href="facturas.php" class="button-29">Ver mis facturas</a>
-                <a href="expedientes_medicos.php" class="button-29">Ver mi expediente</a>
+                <a href="citas.php?id=<?php echo $userId; ?>" class="button-29">Ver mis citas</a>
+                <a href="facturas.php?id=<?php echo $userId; ?>" class="button-29">Ver mis facturas</a>
+                <a href="expedientes_medicos.php?id=<?php echo $userId; ?>" class="button-29">Ver mi expediente</a>
             </div>
             <?php
             include 'includes/conexion.php';
@@ -58,7 +58,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Paciente') {
 
             if ($resultado->num_rows > 0) {
                 echo "<table>";
-                echo "<tr><th>Nombre</th><th>Apellido/th><th>Fecha de Nacimiento</th><th>Direccion</th><th>Telefono</th><th>Habitacion</th><th>Acciones</th></tr>";
+                echo "<tr><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Direccion</th><th>Telefono</th><th>Habitacion</th></tr>";
                 while($fila = $resultado->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($fila["nombre"]) . "</td>";
@@ -67,9 +67,6 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Paciente') {
                     echo "<td>" . htmlspecialchars($fila["direccion"]) . "</td>";
                     echo "<td>" . htmlspecialchars($fila["telefono"]) . "</td>";
                     echo "<td>" . htmlspecialchars($fila["numero_habitacion"]) . "</td>";
-                    echo "<td>";
-                    echo "<a class='button-33' href='editar_paciente.php?id=" . htmlspecialchars($fila["id_paciente"]) . "'>Editar</a>";
-                    echo "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
