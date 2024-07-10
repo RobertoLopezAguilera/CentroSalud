@@ -28,7 +28,7 @@ $id_habitacion = isset($_GET['id_habitacion']) ? intval($_GET['id_habitacion']) 
         <div id="header"></div>
 
         <h1>Camas del hospital</h1>
-        <a href="agregar_cama.php" class="button-29">Agregar Cama</a>
+        <a href="agregar_cama.php?id_habitacion=<?php echo $id_habitacion; ?>" class="button-29">Agregar Cama</a>
         <?php
         if ($id_habitacion > 0) {
             include 'includes/conexion.php';

@@ -36,6 +36,7 @@ VALUES (101, 'Individual', 'Disponible', 150.00, 1),
        (103, 'Individual', 'Disponible', 150.00, 3),
        (104, 'Suite', 'Disponible', 300.00, 4),
        (105, 'Doble', 'Mantenimiento', 200.00, 5);
+       
 SELECT Habitaciones.numero AS Numero_Habitacion, 
        Habitaciones.tipo AS Tipo_Habitacion, 
        Habitaciones.estado AS Estado_Habitacion, 

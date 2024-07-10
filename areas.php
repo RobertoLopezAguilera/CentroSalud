@@ -1,7 +1,6 @@
 <?php
 include 'assets/header.php';
 
-// Verificar sesión y permisos
 if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     $errorMessage = "No tienes permiso para acceder a esta página.";
 } else {
