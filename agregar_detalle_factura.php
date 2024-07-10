@@ -55,23 +55,30 @@
         </select>
 
         <label for="precio_unitario">Precio unitario:</label>
-        <input type="number" id="precio_unitario" name="precio_unitario" required >
+        <input type="decimal" id="precio_unitario" name="precio_unitario" required disabled>
 
         <label for="cantidad">Cantidad:</label>
         <input type="number" id="cantidad" name="cantidad" value="1" required oninput="updateSubtotal()">
 
         <label for="subtotal">Subtotal:</label>
-        <input type="number" id="subtotal" name="subtotal" required>
+        <input type="decimal" id="subtotal" name="subtotal" required disabled>
 
         <label for="descripcion">Descripción:</label>
         <input type="text" id="descripcion" name="descripcion" required>
 
         <div class="inputdiv">
-            <input type="submit" value="Actualizar">
+            <input type="submit" value="Agregar elemento" onclick="enable()">
             <a href="facturas.php">Volver a la lista de facturas</a>
         </div>
 
         <script>
+            function enable() {
+                var precio_unitario = document.getElementById('precio_unitario');
+                var subtotal = document.getElementById('subtotal');
+                precio_unitario.disabled = false;
+                subtotal.disabled = false;
+            }
+
             function updatePrecio() {
                 var select = document.getElementById('servicios');
                 var precio_unitario = document.getElementById('precio_unitario');
