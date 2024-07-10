@@ -35,7 +35,7 @@
 
     if ($resultado->num_rows > 0) {
         echo "<table>";
-        echo "<tr><th>ID</th><th>Paciente</th><th>Medico</th><th>Fecha de Cita</th><th>Tipo de Cita</th></tr>";
+        echo "<tr><th>ID</th><th>Paciente</th><th>Medico</th><th>Fecha de Cita</th><th>Tipo de Cita</th><th>Acciones</th></tr>";
         while($fila = $resultado->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($fila["id_cita"]) . "</td>";

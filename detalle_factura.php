@@ -29,7 +29,7 @@
 
     if ($resultado->num_rows > 0) {
         echo "<table>";
-        echo "<tr><th>ID</th><th>Factura</th><th>Descripcion</th><th>Cantidad</th><th>Precio Unitario</th><th>Subtotal</th></tr>";
+        echo "<tr><th>ID</th><th>Factura</th><th>Descripcion</th><th>Cantidad</th><th>Precio Unitario</th><th>Subtotal</th><th>Acciones</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . htmlspecialchars($fila["id_detalle"]) . "</td>";

@@ -41,7 +41,7 @@
 
     if ($resultado->num_rows > 0) {
         echo "<table>";
-        echo "<tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Direccion</th><th>Telefono</th><th>CURP</th><th>Habitacion</th></tr>";
+        echo "<tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Direccion</th><th>Telefono</th><th>CURP</th><th>Habitacion</th><th>Acciones</th></tr>";
         while($fila = $resultado->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($fila["id_paciente"]) . "</td>";
