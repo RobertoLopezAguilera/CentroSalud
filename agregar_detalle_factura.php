@@ -6,7 +6,7 @@
     <title>Agregar elemento a la factura médica</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body onload="updatePrecio(); updateSubtotal()">
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
@@ -28,15 +28,14 @@
     ?>
 
     <form action="procesar_agregar_detalle_factura.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $fila['id_factura']; ?>" required>
-        <input type="hidden" name="id_detalle" value="<?php echo $fila['id_detalle']; ?>" required>
+        <input type="hidden" name="id_factura" id="id_factura" value="<?php echo $fila['id_factura']; ?>" required>
         <input type="hidden" name="id_paciente" value="<?php echo $fila['id_paciente']; ?>" required>
 
         <label for="nombre_paciente">Paciente:</label>
         <input type="text" id="nombre_paciente" name="nombre_paciente" value="<?php echo $filaPaciente['nombre_paciente']; ?>" required disabled><br>
 
         <label for="servicios">Servicio:</label>
-        <select id="servicios" name="servicios" onchange="updatePrecio()" required>
+        <select id="servicios" name="servicios" onchange="updatePrecio(); updateSubtotal()" required>
             <?php
             // Obtener habitaciones
             $sqlHabitaciones = "SELECT numero, costo FROM habitaciones";
@@ -56,13 +55,13 @@
         </select>
 
         <label for="precio_unitario">Precio unitario:</label>
-        <input type="number" id="precio_unitario" name="precio_unitario" required disabled>
+        <input type="number" id="precio_unitario" name="precio_unitario" required >
 
         <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" name="cantidad" required oninput="updateSubtotal()">
+        <input type="number" id="cantidad" name="cantidad" value="1" required oninput="updateSubtotal()">
 
         <label for="subtotal">Subtotal:</label>
-        <input type="number" id="subtotal" name="subtotal" required disabled>
+        <input type="number" id="subtotal" name="subtotal" required>
 
         <label for="descripcion">Descripción:</label>
         <input type="text" id="descripcion" name="descripcion" required>
