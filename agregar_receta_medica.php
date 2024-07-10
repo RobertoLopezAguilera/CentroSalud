@@ -11,16 +11,13 @@
     <div id="header"></div>
 
     <h1>Agregar Receta Medica</h1>
-    <form action="procesar_agregar_receta_medica.php" method="post">
+    <form id="agregarRecetaForm" action="procesar_agregar_receta_medica.php" method="post" onsubmit="return validarFormulario()">
 
         <label for="id_paciente">Paciente:</label>
         <select id="id_paciente" name="id_paciente" required>
-
             <?php
             include 'includes/conexion.php';
-            $sqlPaciente = "SELECT id_paciente, CONCAT(nombre, ' ', apellido) AS nombre_completo
-            FROM pacientes";
-
+            $sqlPaciente = "SELECT id_paciente, CONCAT(nombre, ' ', apellido) AS nombre_completo FROM pacientes";
             $resultadoPaciente = $conn->query($sqlPaciente);
             while ($fila = $resultadoPaciente->fetch_assoc()) {
                 echo "<option value='" . $fila["id_paciente"] . "'>" . $fila["nombre_completo"] . "</option>";
@@ -30,12 +27,8 @@
 
         <label for="id_personal">Medico:</label>
         <select id="id_personal" name="id_personal" required>
-
             <?php
-            include 'includes/conexion.php';
-            $sqlPersonal = "SELECT id_personal, CONCAT(nombre, ' ', apellido) AS nombre_personal
-            FROM personal";
-
+            $sqlPersonal = "SELECT id_personal, CONCAT(nombre, ' ', apellido) AS nombre_personal FROM personal";
             $resultadoPersonal = $conn->query($sqlPersonal);
             while ($fila = $resultadoPersonal->fetch_assoc()) {
                 echo "<option value='" . $fila["id_personal"] . "'>" . $fila["nombre_personal"] . "</option>";
@@ -48,13 +41,8 @@
 
         <label for="id_medicamento">Medicamento:</label>
         <select id="id_medicamento" name="id_medicamento" required>
-
             <?php
-            include 'includes/conexion.php';
-            $sqlMedicamento = "SELECT nombre AS nombre_medicamento,
-            id_medicamento
-            FROM medicamentos";
-
+            $sqlMedicamento = "SELECT nombre AS nombre_medicamento, id_medicamento FROM medicamentos";
             $resultadoMedicamento = $conn->query($sqlMedicamento);
             while ($fila = $resultadoMedicamento->fetch_assoc()) {
                 echo "<option value='" . $fila["id_medicamento"] . "'>" . $fila["nombre_medicamento"] . "</option>";
@@ -66,13 +54,56 @@
         <input type="text" id="dosis" name="dosis" required><br>
 
         <label for="observaciones">Observaciones:</label>
-        <textarea id="descripcion" name="observaciones" required></textarea><br>
+        <textarea id="observaciones" name="observaciones" required></textarea><br>
 
         <div class="inputdiv">
             <input type="submit" value="Agregar">
             <a href="recetas.php">Volver a la lista de recetas</a>
         </div>
     </form>
+
+    <script>
+        function validarFormulario() {
+            var idPaciente = document.getElementById('id_paciente').value;
+            var idPersonal = document.getElementById('id_personal').value;
+            var fechaEmision = document.getElementById('fecha_emision').value;
+            var idMedicamento = document.getElementById('id_medicamento').value;
+            var dosis = document.getElementById('dosis').value.trim();
+            var observaciones = document.getElementById('observaciones').value.trim();
+
+            if (idPaciente === '') {
+                alert('Por favor, seleccione un paciente.');
+                return false;
+            }
+
+            if (idPersonal === '') {
+                alert('Por favor, seleccione un médico.');
+                return false;
+            }
+
+            if (fechaEmision === '') {
+                alert('Por favor, ingrese la fecha de emisión.');
+                return false;
+            }
+
+            if (idMedicamento === '') {
+                alert('Por favor, seleccione un medicamento.');
+                return false;
+            }
+
+            if (dosis === '') {
+                alert('Por favor, ingrese la dosis.');
+                return false;
+            }
+
+            if (observaciones === '') {
+                alert('Por favor, ingrese las observaciones.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
