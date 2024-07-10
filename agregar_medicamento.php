@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Agregar Medicamento</title>
+    <style>
+        body {
+            background: 
+                url("Equipos_Medicos/istockphoto-680899226-612x612.jpg") left no-repeat,
+                url("Equipos_Medicos/istockphoto-680899226-612x612.jpg") right no-repeat;
+            margin: 0;
+        }
+    </style>
     <script>
         function validarFormulario() {
             var nombre = document.getElementById("nombre").value.trim();

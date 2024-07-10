@@ -11,7 +11,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     }
 }
 $id_habitacion = isset($_GET['id_habitacion']) ? intval($_GET['id_habitacion']) : 0;
-
+echo"$id_habitacion";
 ?>
 <!DOCTYPE html>
 <html lang="es">

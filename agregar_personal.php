@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contraseña = sha1(trim($_POST['contraseña']));
     $telefono = trim($_POST['telefono']);
 
-    // Validación de correo único
     $sql_verificar = "SELECT * FROM Personal WHERE correo = ?";
     $stmt_verificar = $conn->prepare($sql_verificar);
     $stmt_verificar->bind_param("s", $correo);
@@ -27,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt_verificar->close();
 
-    // Inserción en la base de datos
     $sql = "INSERT INTO Personal (nombre, apellido, tipo_personal, especialidad, correo, contraseña, telefono)
             VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
@@ -56,6 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: 
+                url("Equipos_Medicos/images.png") left no-repeat,
+                url("Equipos_Medicos/images.png") right no-repeat;
+            margin: 0;
+        }
+    </style>
     <title>Agregar Personal</title>
     <script>
         function validarFormulario() {

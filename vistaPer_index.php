@@ -14,6 +14,17 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vista Personal</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .opciones {
+            display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    max-width: 70%;
+        }
+    </style>
 </head>
 <body>
     <?php if (isset($errorMessage)): ?>
@@ -21,8 +32,8 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <?php else: ?>
         <h2>Bienvenido, <?php echo htmlspecialchars($userName); ?></h2>
         <?php if ($userName === "DR. Roberto"): ?>
-            <a href="recetas.php" class="button-29">Ver todas las recetas</a>
             <div class = "opciones">
+                <a href="recetas.php" class="button-29">Ver todas las recetas</a>
                 <a href="medicamentos.php" class="button-29">Administrar medicamentos</a>
                 <a href="pacientes.php" class="button-29">Administrar pacientes</a>
                 <a href="areas.php" class="button-29">Administrar areas</a>
