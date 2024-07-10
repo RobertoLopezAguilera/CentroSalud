@@ -37,7 +37,6 @@
                 <img src="imagen5.jpg" alt="imagen 5">
             </div>
             
-            <!-- Agrega más imágenes según sea necesario -->
         </div>
         <div class="carousel-control prev" onclick="moveCarousel(-1)">&#10094;</div>
         <div class="carousel-control next" onclick="moveCarousel(1)">&#10095;</div>
