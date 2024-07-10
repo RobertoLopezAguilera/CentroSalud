@@ -131,7 +131,7 @@ if ($userName && $userType === 'Personal') {
         </div>
       </li>
       <li><a href="servicios24.php">Servicios 24/7</a></li>
-      <li><a href="carrusel_medicamentos.php">Medicamentos</a></li>
+      <li><a href="medicamentos_venta.php">Medicamentos</a></li>
       <li>
         <?php if ($userType === 'Personal'): ?>
           <a href="citas.php">Citas</a>

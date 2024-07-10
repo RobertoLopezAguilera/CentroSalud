@@ -33,7 +33,7 @@
                 <img src="imagen4.jpg" alt="imagen 4">
             </div>
             <div class="carousel-item active" onclick="moveCarousel(4)">
-            <h2 style="text-align: center;">Visitas a las escuelas publicas</h2>
+            <h2 style="text-align: center;">Visitas a las escuelas públicas</h2>
                 <img src="imagen5.jpg" alt="imagen 5">
             </div>
             
@@ -139,12 +139,6 @@
     </div>
     <!-- Añadir más elementos según sea necesario -->
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <br>
     
 
