@@ -8,22 +8,24 @@
 	<title>Agendar Cita</title>
 
 	<style>
-		.principal{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		flex-direction: column;
-		background-image: url("https://clinicaeusalud.com.co/wp-content/uploads/2022/05/elderly-woman-doctor-appointment-in-modern-private-clinic-while-she-sitts-on-hospital-bed-and-the-physician-is-listening-her-heart-beat-health-care-medicine-treatment-specialist-consultation-scaled.jpg");
-		background-repeat: no-repeat;
-		background-size: cover;
+		.principal {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			flex-direction: column;
+			background-image: url("https://clinicaeusalud.com.co/wp-content/uploads/2022/05/elderly-woman-doctor-appointment-in-modern-private-clinic-while-she-sitts-on-hospital-bed-and-the-physician-is-listening-her-heart-beat-health-care-medicine-treatment-specialist-consultation-scaled.jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
 		}
-		.principal_agendar{
-		color: black;
-		text-shadow: -1px -1px 0 rgb(255, 255, 255),
-		1px -1px 0 rgb(255, 255, 255),
-		-1px 1px 0 rgb(255, 255, 255),
-		1px 1px 0 rgb(255, 255, 255);
+
+		.principal_agendar {
+			color: black;
+			text-shadow: -1px -1px 0 rgb(255, 255, 255),
+				1px -1px 0 rgb(255, 255, 255),
+				-1px 1px 0 rgb(255, 255, 255),
+				1px 1px 0 rgb(255, 255, 255);
 		}
 	</style>
 </head>
@@ -35,7 +37,7 @@
 	<div class="principal">
 		<section class="section_principal">
 			<div class="principal_agendar">
-				<h2 class="h_agendar">Consulta médica</h2>
+				<h1 class="h_agendar">Consulta médica</h1>
 				<p>Para brindar tratamientos oportunos y preventivos</p>
 				<svg xmlns="http://www.w3.org/2000/svg" width="62.5" height="50" viewBox="0 0 640 512">
 					<path fill="#4f46e5"
@@ -45,7 +47,26 @@
 				<p class="elementor-image-box-description">+123 456 7890</p>
 			</div>
 			<div class="agendar">
-			<a href="login.php" class="button-29">Agendar Cita</a><br><br>
+			<button class="button-29" onclick="confirmAction()">Agendar Cita</button>
+
+<!-- SweetAlert2 JS -->
+<script src="Ventana_Confirmar/sweetalert.js"></script>
+<script>
+	function confirmAction() {
+		Swal.fire({
+			title: '¿Cuentas con una cuenta?',
+			showCancelButton: true,
+			confirmButtonText: 'Sí',
+			cancelButtonText: 'No',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				window.location.href = "login.php";
+			} else {
+				window.location.href = "agregar_paciente.php";
+			}
+		});
+	}
+</script>
 			</div>
 		</section>
 		<section class="section_principal">
