@@ -91,11 +91,12 @@
         <input type="text" id="telefono" name="telefono" required><br>
         <label for="curp">CURP:</label>
         <input type="text" id="curp" name="curp" required><br>
-        <label for="contrasenia">Contrasena:</label>
-        <input type="password" id="contrasenia" name="contrasenia" required><br>
+        <label for="contraseñaPaciente">Contrasena:</label>
+        <input type="password" id="contraseñaPaciente" name="contraseñaPaciente" required><br>
+        <input type="hidden" id="userType" name="userType" value="Paciente" required><br>
         <div class="inputdiv">
-            <a href="vistaPac.php">Crear cuenta</a>
-            <a href="index.php">Cancelar</a>
+        <input type="submit" value="Crear cuenta">
+        <a href="index.php">Cancelar</a>
         </div>
     </form>
 
