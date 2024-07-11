@@ -18,12 +18,28 @@ $id_habitacion = isset($_GET['id_habitacion']) ? intval($_GET['id_habitacion']) 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Cita</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        function validateForm() {
+            var fechaCita = new Date(document.getElementById("fecha_hora").value);
+            var fechaActual = new Date();
+            fechaActual.setHours(0, 0, 0, 0); // Resetear la hora a las 00:00
+
+            var fechaLimite = new Date();
+            fechaLimite.setDate(fechaLimite.getDate() + 2);
+            fechaLimite.setHours(0, 0, 0, 0);
+            if (fechaCita < fechaLimite) {
+                alert("La fecha de la cita debe ser al menos dos días a partir de hoy.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body>
     <div class="principal">
         <h1>Agendar Citas</h1>
-        <form class="formulario" action="procesar_agregar_cita.php" method="post">
+        <form class="formulario" action="procesar_agregar_cita.php" method="post" onsubmit="return validateForm();">
 
             <?php if (!isset($errorMessage)): ?>
                 <label for="id_paciente">Paciente:</label>
