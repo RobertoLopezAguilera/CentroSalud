@@ -81,7 +81,7 @@ $isPersonal = $userType === 'Personal';
                     <input type="datetime-local" id="fecha_hora" name="fecha_hora" required><br>
 
                     <label for="tipo">Tipo de cita:</label>
-                    <input type="text" id="tipo" name="tipo" required><br>
+                    <input type="text" id="tipo" name="tipo" maxlength="100" minlength="2" required><br>
 
                     <div class="inputdiv">
                         <input type="submit" value="Agregar">
