@@ -154,8 +154,6 @@
     </div>
 </div>
 
-<?php include 'carrusel_global.php'; ?>
-
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
 <script>
