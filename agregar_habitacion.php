@@ -123,6 +123,7 @@ unset($_SESSION['error_message']);
             <option value="Doble">Doble</option>
             <option value="Triple">Triple</option>
         </select><br>
+        
         <label for="estado">Estado:</label>
         <select id="estado" name="estado" required>
             <option value="Disponible">Disponible</option>
