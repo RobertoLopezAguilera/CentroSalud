@@ -17,14 +17,21 @@
     $resultado = $conn->query($sql);
     $fila = $resultado->fetch_assoc();
     ?>
-    <form action="procesar_editar_habitacion.php" method="post">
+    <form id="editarHabitacionForm" action="procesar_editar_habitacion.php" method="post">
         <input type="hidden" name="id" value="<?php echo $fila['id_habitacion']; ?>">
         <label for="numero">Número:</label>
         <input type="number" id="numero" name="numero" value="<?php echo $fila['numero']; ?>" required><br>
         <label for="tipo">Tipo:</label>
-        <input type="text" id="tipo" name="tipo" value="<?php echo $fila['tipo']; ?>" required><br>
+        <select id="tipo" name="tipo" required>
+            <option value="Individual" <?php if ($fila['tipo'] == 'Individual') echo 'selected'; ?>>Individual</option>
+            <option value="Doble" <?php if ($fila['tipo'] == 'Doble') echo 'selected'; ?>>Doble</option>
+            <option value="Triple" <?php if ($fila['tipo'] == 'Triple') echo 'selected'; ?>>Triple</option>
+        </select><br>
         <label for="estado">Estado:</label>
-        <input type="text" id="estado" name="estado" value="<?php echo $fila['estado']; ?>" required><br>
+        <select id="estado" name="estado" required>
+            <option value="Disponible" <?php if ($fila['estado'] == 'Disponible') echo 'selected'; ?>>Disponible</option>
+            <option value="Ocupada" <?php if ($fila['estado'] == 'Ocupada') echo 'selected'; ?>>Ocupada</option>
+        </select><br>
         <label for="costo">Costo:</label>
         <input type="number" step="0.01" id="costo" name="costo" value="<?php echo $fila['costo']; ?>" required><br>
         <label for="id_area">Área:</label>
@@ -44,6 +51,25 @@
             <a href="habitaciones.php">Volver a la lista de habitaciones</a>
         </div>
     </form>
+    <script>
+        document.getElementById('editarHabitacionForm').addEventListener('submit', function(event) {
+            const numeroInput = document.getElementById('numero');
+            const costoInput = document.getElementById('costo');
+            const numeroValue = parseInt(numeroInput.value);
+            const costoValue = parseFloat(costoInput.value);
+
+            if (numeroValue <= 0) {
+                alert('El número de la habitación debe ser un valor positivo.');
+                event.preventDefault();
+                return;
+            }
+
+            if (costoValue <= 0 || costoValue > 30000) {
+                alert('El costo debe ser un valor positivo y no puede superar los 30,000.');
+                event.preventDefault();
+            }
+        });
+    </script>
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
 </body>
