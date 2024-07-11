@@ -7,10 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $apellido = trim($_POST['apellido']);
     $tipo_personal = trim($_POST['tipo_personal']);
     $especialidad = trim($_POST['especialidad']);
-    $correo = trim($_POST['correo']);
+    $correo = trim($_POST['Correo']);
     $telefono = trim($_POST['telefono']);
 
-    $sql_verificar = "SELECT * FROM Personal WHERE correo = ? AND id_personal != ?";
+    $sql_verificar = "SELECT * FROM Personal WHERE Correo = ? AND id_personal != ?";
     $stmt_verificar = $conn->prepare($sql_verificar);
     $stmt_verificar->bind_param("si", $correo, $id_personal);
     $stmt_verificar->execute();
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt_verificar->close();
 
-    $sql = "UPDATE Personal SET nombre=?, apellido=?, tipo_personal=?, especialidad=?, correo=?, telefono=? WHERE id_personal=?";
+    $sql = "UPDATE Personal SET nombre=?, apellido=?, tipo_personal=?, especialidad=?, Correo=?, telefono=? WHERE id_personal=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssssi", $nombre, $apellido, $tipo_personal, $especialidad, $correo, $telefono, $id_personal);
 
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $apellido = $fila['apellido'];
         $tipo_personal = $fila['tipo_personal'];
         $especialidad = $fila['especialidad'];
-        $correo = $fila['correo'];
+        $correo = $fila['Correo'];
         $telefono = $fila['telefono'];
     } else {
         echo "<script>
@@ -70,6 +70,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmt->close();
+
+    // Fetching options for the select element from the areas table
+    $sql_areas = "SELECT id_area, nombre FROM areas";
+    $result_areas = $conn->query($sql_areas);
+    $areas_options = "";
+    while ($area = $result_areas->fetch_assoc()) {
+        $selected = $area['id_area'] == $especialidad ? "selected" : "";
+        $areas_options .= "<option value='{$area['nombre']}' $selected>{$area['nombre']}</option>";
+    }
+
     $conn->close();
 }
 ?>
@@ -86,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             var nombre = document.getElementById("nombre").value.trim();
             var apellido = document.getElementById("apellido").value.trim();
             var tipoPersonal = document.getElementById("tipo_personal").value.trim();
-            var correo = document.getElementById("correo").value.trim();
+            var correo = document.getElementById("Correo").value.trim();
             var telefono = document.getElementById("telefono").value.trim();
 
             if (nombre === "") {
@@ -131,9 +141,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="tipo_personal">Tipo de Personal:</label><br>
         <input type="text" id="tipo_personal" name="tipo_personal" value="<?php echo htmlspecialchars($tipo_personal, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
         <label for="especialidad">Especialidad:</label><br>
-        <input type="text" id="especialidad" name="especialidad" value="<?php echo htmlspecialchars($especialidad, ENT_QUOTES, 'UTF-8'); ?>"><br><br>
+        <select id="especialidad" name="especialidad">
+            <?php echo $areas_options; ?>
+        </select><br><br>
         <label for="correo">Correo Electrónico:</label><br>
-        <input type="email" id="correo" name="correo" value="<?php echo htmlspecialchars($correo, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
+        <input type="email" id="Correo" name="Correo" value="<?php echo htmlspecialchars($correo, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
         <label for="telefono">Teléfono:</label><br>
         <input type="text" id="telefono" name="telefono" value="<?php echo htmlspecialchars($telefono, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
         <div class="inputdiv">
