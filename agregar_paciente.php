@@ -15,17 +15,37 @@
         }
     </style>
     <script>
-        function validarEdad() {
-            var fechaNacimiento = document.getElementById('fech_nac').value;
+        function validarFormulario() {
+            var nombre = document.getElementById('nombre').value.trim();
+            var apellido = document.getElementById('apellido').value.trim();
+            var fechaNacimiento = document.getElementById('fech_nac').value.trim();
+            var direccion = document.getElementById('direccion').value.trim();
+            var telefono = document.getElementById('telefono').value.trim();
+            var curp = document.getElementById('curp').value.trim();
+            var contraseña = document.getElementById('contraseñaPaciente').value.trim();
+
+            // Validación para nombre y apellido: solo letras y espacios
+            var letrasEspacios = /^[a-zA-Z\s]+$/;
+            if (!nombre.match(letrasEspacios) || !apellido.match(letrasEspacios)) {
+                alert('El nombre y apellido deben contener solo letras y espacios.');
+                return false;
+            }
+
+            // Validación para CURP: longitud 18 y letras mayúsculas
+            var curpRegex = /^[A-Z0-9]{18}$/;
+            if (!curp.match(curpRegex)) {
+                alert('La CURP debe tener exactamente 18 caracteres alfanuméricos en mayúsculas.');
+                return false;
+            }
+
+            // Validación de fecha de nacimiento: debe ser válida y mayor de 16 años
             var hoy = new Date();
             var fechaNac = new Date(fechaNacimiento);
             var edad = hoy.getFullYear() - fechaNac.getFullYear();
             var mes = hoy.getMonth() - fechaNac.getMonth();
-
             if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
                 edad--;
             }
-
             if (edad < 16) {
                 alert('Debes tener al menos 16 años para registrarte como paciente.');
                 return false;
@@ -35,8 +55,8 @@
         }
 
         document.getElementById('registroForm').addEventListener('submit', function(event) {
-            if (!validarEdad()) {
-                event.preventDefault(); // Detener el envío del formulario si no se cumple la validación
+            if (!validarFormulario()) {
+                event.preventDefault();
             }
         });
     </script>
@@ -53,7 +73,7 @@
             unset($_SESSION['error_message']); // Limpiar el mensaje de error
         }
         ?>
-        <form id="registroForm" class="formulario" action="procesar_agregar_paciente.php" method="post" onsubmit="return validarEdad();">
+        <form id="registroForm" class="formulario" action="procesar_agregar_paciente.php" method="post" onsubmit="return validarEdad() && validarFormulario();">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required><br>
             <label for="apellido">Apellido:</label>
