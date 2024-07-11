@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validación del nombre
     if (empty($nombre)) {
         $errorMessage = "El nombre del área es obligatorio.";
-    } elseif (!preg_match("/^[A-Za-z\s]+$/", $nombre)) {
+    } elseif (!preg_match("/^[A-Za-zÀ-ÿ\s]+$/", $nombre)) {
         $errorMessage = "El nombre del área solo puede contener letras y espacios.";
     } elseif (strlen($nombre) < 2) {
         $errorMessage = "El nombre del área debe tener al menos 2 caracteres.";
@@ -74,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,9 +90,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 return false;
             }
 
-            const nombrePattern = /^[A-Za-z\s]+$/;
+            const nombrePattern = /^[A-Za-zÀ-ÿ\s]+$/;
             if (!nombrePattern.test(nombreValue)) {
-                alert('El nombre del área solo puede contener letras y espacios.');
+                alert('El nombre del área solo puede contener letras, letras con acentos y espacios.');
                 return false;
             }
 
@@ -104,17 +105,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </head>
+
 <body>
-<?php include 'assets/header.php'; ?>
+    <?php include 'assets/header.php'; ?>
     <div id="header"></div>
     <h1>Editar Área</h1>
     <?php if (isset($errorMessage)): ?>
         <div class="error"><?php echo $errorMessage; ?></div>
     <?php endif; ?>
-    <form id="editarAreaForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return validarFormulario()">
+    <form id="editarAreaForm" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+        onsubmit="return validarFormulario()">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($id_area, ENT_QUOTES, 'UTF-8'); ?>">
         <label for="nombre">Nombre del Área:</label>
-        <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8'); ?>" required pattern="[A-Za-z\s]+" title="Solo letras y espacios permitidos">
+        <input type="text" id="nombre" name="nombre"
+            value="<?php echo htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8'); ?>" required pattern="[A-Za-z\s]+"
+            title="Solo letras y espacios permitidos">
         <div class="inputdiv">
             <input type="submit" value="Actualizar">
             <a href="areas.php">Volver a la lista de áreas</a>
@@ -123,4 +128,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
 </body>
+
 </html>
