@@ -63,27 +63,24 @@
     }
     $id_paciente = intval($_GET['id']);
 
-    // Consulta para obtener datos del paciente
     $sql_paciente = "SELECT * FROM pacientes WHERE id_paciente = ?";
     $stmt_paciente = $conn->prepare($sql_paciente);
     $stmt_paciente->bind_param("i", $id_paciente);
     $stmt_paciente->execute();
     $resultado_paciente = $stmt_paciente->get_result();
     
-    // Validar si se obtuvo correctamente el paciente
     if ($resultado_paciente->num_rows > 0) {
         $paciente = $resultado_paciente->fetch_assoc();
     } else {
         echo "No se encontró el paciente.";
-        exit; // Detener la ejecución si no se encontró el paciente
+        exit;
     }
 
-    // Consulta para obtener áreas
     $sql_areas = "SELECT id_area, nombre FROM Areas";
     $resultado_areas = $conn->query($sql_areas);
     if (!$resultado_areas) {
         echo "Error al obtener las áreas: " . $conn->error;
-        exit; // Detener la ejecución si hay un error
+        exit;
     }
     ?>
     <form id="registroForm" action="procesar_editar_paciente.php" method="post" onsubmit="return validarFormulario();">

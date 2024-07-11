@@ -34,8 +34,9 @@
         <input type="hidden" name="id_paciente" value="<?php echo $fila['id_paciente']; ?>">
 
         <label for="nombre_paciente">Paciente:</label>
-        <input type="text" id="nombre_paciente" name="nombre_paciente"
-            value="<?php echo $filaPaciente['nombre_paciente']; ?>" required disabled><br>
+<input type="text" id="nombre_paciente" name="nombre_paciente"
+    value="<?php echo isset($filaPaciente['nombre_paciente']) ? htmlspecialchars($filaPaciente['nombre_paciente']) : ''; ?>"
+    required disabled><br>
 
         <label for="id_personal">Medico:</label>
         <select id="id_personal" name="id_personal" required>
