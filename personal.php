@@ -7,7 +7,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     $userName = $_SESSION['userName'];
 
     if ($userName !== "DR. Roberto") {
-        $errorMessage = "No tienes permiso para ver todas las recetas.";
+        $errorMessage = "No tienes permiso para ver todos los medicamentos.";
     }
 }
 ?>
@@ -49,11 +49,13 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
         
         <div class="actions">
             <a href="agregar_personal.php" class="button-29">Agregar Nuevo Personal</a>
-            <form method="GET" action="persona.php" class="search-form">
+            
+            <form method="GET" action="personal.php" class="search-form">
                 <input type="text" name="search" placeholder="Buscar por nombre, apellido o especialidad" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                 <button type="submit" class="button-29">Buscar</button>
-                <button type="button" class="button-29" onclick="window.location.href='persona.php'">Borrar</button>
+                <button type="button" class="button-29" onclick="window.location.href='personal.php'">Borrar</button>
             </form>
+            
             <a href="descargar_excel_personal.php?search=<?php echo isset($_GET['search']) ? urlencode($_GET['search']) : ''; ?>" class="button-29">Descargar 
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
                     <defs>
@@ -77,7 +79,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
         $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
 
         $sql = "SELECT * FROM Personal";
-
+        
         if (!empty($search)) {
             $sql .= " WHERE nombre LIKE '%$search%' 
                       OR apellido LIKE '%$search%' 
