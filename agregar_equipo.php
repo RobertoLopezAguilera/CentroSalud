@@ -1,16 +1,3 @@
-<?php
-include 'assets/header.php';
-
-if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
-    $errorMessage = "No tienes permiso para acceder a esta página.";
-} else {
-    $userName = $_SESSION['userName'];
-
-    if ($userName !== "DR. Roberto") {
-        $errorMessage = "No tienes permiso para ver todas las recetas.";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,6 +7,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <title>Agregar Equipo Médico</title>
 </head>
 <body>
+<?php include 'assets/header.php'; ?>
 <?php if (isset($errorMessage)): ?>
     <div class="error"><?php echo $errorMessage; ?></div>
 <?php else: ?>
@@ -64,22 +52,31 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
             var estado = document.getElementById("estado").value;
             var idHabitacion = document.getElementById("id_habitacion").value;
             var img = document.getElementById("img").value;
-            
+
+            // Validación del nombre
             if (nombre.trim() === "") {
                 alert("Por favor, ingrese el nombre del equipo.");
                 return false;
             }
+            var nombrePattern = /^[A-Za-z0-9\sáéíóúÁÉÍÓÚñÑ]+$/;
+            if (!nombrePattern.test(nombre)) {
+                alert("El nombre del equipo solo puede contener letras, números, acentos y espacios.");
+                return false;
+            }
 
+            // Validación del estado
             if (estado !== "Operativo" && estado !== "No operativo") {
                 alert("Por favor, seleccione un estado válido.");
                 return false;
             }
 
+            // Validación de la habitación
             if (idHabitacion === "") {
                 alert("Por favor, seleccione una habitación.");
                 return false;
             }
 
+            // Validación de la imagen
             if (img !== "") {
                 var fileInput = document.getElementById("img");
                 var filePath = fileInput.value;
