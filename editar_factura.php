@@ -40,10 +40,10 @@
         <input type="text" id="id_paciente" name="id_paciente" value="<?php echo $filaPaciente['nombre_paciente']; ?>" required disabled><br>
 
         <label for="fecha_emision">Fecha de Emision:</label>
-        <input type="date" id="fecha_emision" name="fecha_emision" value="<?php echo $fecha_emision; ?>" required>
+        <input type="date" id="fecha_emision" name="fecha_emision" value="<?php echo $fecha_emision; ?>" required disabled>
 
         <label for="total">Total:</label>
-        <input type="number" id="total" name="total" step="0.01" value="<?php echo $fila['total']; ?>" required><br>
+        <input type="number" id="total" name="total" step="0.01" value="<?php echo $fila['total']; ?>" required disabled><br>
 
         <label for="pagada">Estatus:</label>
         <select id="pagada" name="pagada" required>

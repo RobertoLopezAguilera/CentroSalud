@@ -12,7 +12,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$id_paciente', '$id_personal', '$fecha_hora', '$tipo')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<script>alert('Nueva cita agregada exitosamente.'); window.location.href='vistaPac_index.php';</script>";
+            // Redirigir según el tipo de usuario
+            session_start();
+            if ($_SESSION['userType'] === 'Personal') {
+                header('Location: vistaPer_index.php');
+                exit;
+            } else {
+                echo "<script>alert('Nueva cita agregada exitosamente.'); window.location.href='vistaPac_index.php';</script>";
+            }
         } else {
             echo "<script>alert('Error: " . $sql . "<br>" . $conn->error . "'); window.history.back();</script>";
         }

@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param('sssssii', $nombre, $apellido, $fecha_nacimiento, $direccion, $telefono, $id_cama, $id_paciente);
         if ($stmt->execute()) {
             echo "<p>Datos del paciente actualizados correctamente.</p>";
+            header("Location: pacientes.php");
         } else {
             echo "<p>Error al actualizar los datos del paciente.</p>";
         }

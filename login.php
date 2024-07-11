@@ -116,7 +116,7 @@
         </div>
 
         <button class="button-29" type="submit">Login</button>
-        <button class="button-29" type="submit">Registarse</button>
+        <a class="button-29" href = "registro_paciente.php">Registarse</a>
     </form>
     </div>
     
