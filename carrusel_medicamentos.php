@@ -126,8 +126,6 @@
 
 
     </style>
-    <?php include 'assets/footer.html'; ?>
-    <div id="footer"></div>
 </body>
 </html>
 

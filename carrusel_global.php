@@ -14,7 +14,7 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <?php
-            $images = glob("Medicamentos/*.png");
+            $images = glob("Medicamentos/*.webp");
             foreach ($images as $image) {
                 echo '<div class="swiper-slide"><img src="' . $image . '" alt="Imagen" width = 1000 height = 583></div>';
             }

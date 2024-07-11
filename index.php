@@ -154,8 +154,8 @@
     </div>
 </div>
 
-    <?php include 'assets/footer.html'; ?>
-    <div id="footer"></div>
+<?php include 'carrusel_global.php'; ?>
+    <!-- JavaScript para el carrusel -->
 <script>
         let currentIndex = 0;
 
@@ -186,6 +186,9 @@
     }, 5000);
 </script>
 
+<!-- Termmina Contenido de la página -->
+<?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 
 </body>
 </html>
