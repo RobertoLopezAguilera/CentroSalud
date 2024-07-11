@@ -6,7 +6,7 @@ $fecha_emision = $_POST['fecha_emision'];
 $total = $_POST['total'];
 $pagada = $_POST['pagada'];
 
-$sql = "UPDATE facturas SET id_paciente='$id_paciente', fecha_emision = '$fecha_emision', total = '$total', pagada = '$pagada'
+$sql = "UPDATE facturas SET id_paciente='$id_paciente',pagada = '$pagada'
  WHERE id_factura=$id_factura";
 
 if ($conn->query($sql) === TRUE) {
