@@ -109,6 +109,13 @@
                 return false;
             }
 
+            var fechaActual = new Date();
+            var fechaEmisionDate = new Date(fechaEmision);
+            if (fechaEmisionDate <= fechaActual) {
+                alert("La fecha de emision debe ser posterior a la fecha actual.");
+                return false;
+            }
+
             return true;
         }
     </script>

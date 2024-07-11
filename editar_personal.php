@@ -66,13 +66,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             alert('No se encontró el registro.');
             window.history.back();
         </script>";
-        exit; 
+        exit;
     }
 
     $stmt->close();
 
     // Fetching options for the select element from the areas table
-    $sql_areas = "SELECT id_area, nombre FROM areas";
+    $sql_areas = "SELECT id_area, nombre FROM areas WHERE nombre != 'espera'";
     $result_areas = $conn->query($sql_areas);
     $areas_options = "";
     while ($area = $result_areas->fetch_assoc()) {
@@ -86,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,7 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             var nombre = document.getElementById("nombre").value.trim();
             var apellido = document.getElementById("apellido").value.trim();
             var tipoPersonal = document.getElementById("tipo_personal").value.trim();
-            var correo = document.getElementById("Correo").value.trim();
+            var correo = document.getElementById("correo").value.trim();
+            var contraseña = document.getElementById("contraseña").value.trim();
             var telefono = document.getElementById("telefono").value.trim();
 
             if (nombre === "") {
@@ -114,20 +116,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 return false;
             }
 
+            var letrasEspacios = /^[a-zA-Z\s]+$/;
+            if (!nombre.match(letrasEspacios) || !apellido.match(letrasEspacios) || !tipoPersonal.match(letrasEspacios)) {
+                alert('El nombre, apellido, tipo de personal y especialidad deben contener solo letras y espacios.');
+                return false;
+            }
+
             if (!correo.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
                 alert("Por favor, ingrese un correo electrónico válido.");
                 return false;
             }
 
-            if (!telefono.match(/^\d+$/)) {
-                alert("Por favor, ingrese un número de teléfono válido.");
+            if (contraseña === "") {
+                alert("Por favor, ingrese una contraseña.");
                 return false;
             }
+
+            if (!telefono.match(/^\d{3}-\d{3}-\d{4}$/)) {
+                alert('Por favor, ingrese un número de teléfono válido en el formato 123-123-1234.');
+                return false;
+            }
+
 
             return true;
         }
     </script>
 </head>
+
 <body>
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
@@ -135,19 +150,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return validarFormulario()">
         <input type="hidden" name="id_personal" value="<?php echo $id_personal; ?>">
         <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
+        <input type="text" id="nombre" name="nombre"
+            value="<?php echo htmlspecialchars($nombre, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
         <label for="apellido">Apellido:</label><br>
-        <input type="text" id="apellido" name="apellido" value="<?php echo htmlspecialchars($apellido, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
+        <input type="text" id="apellido" name="apellido"
+            value="<?php echo htmlspecialchars($apellido, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
         <label for="tipo_personal">Tipo de Personal:</label><br>
-        <input type="text" id="tipo_personal" name="tipo_personal" value="<?php echo htmlspecialchars($tipo_personal, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
+        <input type="text" id="tipo_personal" name="tipo_personal"
+            value="<?php echo htmlspecialchars($tipo_personal, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
         <label for="especialidad">Especialidad:</label><br>
         <select id="especialidad" name="especialidad">
             <?php echo $areas_options; ?>
         </select><br><br>
         <label for="correo">Correo Electrónico:</label><br>
-        <input type="email" id="Correo" name="Correo" value="<?php echo htmlspecialchars($correo, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
+        <input type="email" id="Correo" name="Correo"
+            value="<?php echo htmlspecialchars($correo, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
         <label for="telefono">Teléfono:</label><br>
-        <input type="text" id="telefono" name="telefono" value="<?php echo htmlspecialchars($telefono, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
+        <input type="text" id="telefono" name="telefono"
+            value="<?php echo htmlspecialchars($telefono, ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
         <div class="inputdiv">
             <input type="submit" value="Actualizar">
             <a href="personal.php">Volver a la lista de personal</a>
@@ -156,4 +176,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
 </body>
+
 </html>

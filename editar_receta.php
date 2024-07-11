@@ -6,6 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Receta Médica</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        function validarFormulario() {
+            var idPaciente = document.getElementById('id_paciente').value;
+            var idPersonal = document.getElementById('id_personal').value;
+            var fechaEmision = document.getElementById('fecha_emision').value;
+            var idMedicamento = document.getElementById('id_medicamento').value;
+            var dosis = document.getElementById('dosis').value.trim();
+            var observaciones = document.getElementById('observaciones').value.trim();
+
+            if (idPaciente === '') {
+                alert('Por favor, seleccione un paciente.');
+                return false;
+            }
+
+            if (idPersonal === '') {
+                alert('Por favor, seleccione un médico.');
+                return false;
+            }
+
+            if (fechaEmision === '') {
+                alert('Por favor, ingrese la fecha de emisión.');
+                return false;
+            }
+
+            if (idMedicamento === '') {
+                alert('Por favor, seleccione un medicamento.');
+                return false;
+            }
+
+            if (dosis === '') {
+                alert('Por favor, ingrese la dosis.');
+                return false;
+            }
+
+            if (observaciones === '') {
+                alert('Por favor, ingrese las observaciones.');
+                return false;
+            }
+
+            var fechaActual = new Date();
+            var fechaEmisionDate = new Date(fechaEmision);
+            if (fechaEmisionDate <= fechaActual) {
+                alert("La fecha de emision debe ser posterior a la fecha actual.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -66,7 +116,7 @@
                 $resultado_medicamentos = $conn->query($sql_medicamentos);
                 ?>
 
-                <form action="procesar_editar_receta.php" method="POST">
+                <form action="procesar_editar_receta.php" method="POST" onsubmit="return validarFormulario()>
                     <input type="hidden" name="id_receta" value="<?php echo $receta['id_receta']; ?>">
 
                     <label for="id_paciente">Paciente:</label>

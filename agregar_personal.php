@@ -87,6 +87,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 return false;
             }
 
+            var letrasEspacios = /^[a-zA-Z\s]+$/;
+            if (!nombre.match(letrasEspacios) || !apellido.match(letrasEspacios) || !tipoPersonal.match(letrasEspacios)) {
+                alert('El nombre y apellido deben contener solo letras y espacios.');
+                return false;
+            }
+
             if (!correo.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
                 alert("Por favor, ingrese un correo electrónico válido.");
                 return false;
@@ -122,7 +128,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="tipo_personal" name="tipo_personal" required><br>
 
         <label for="especialidad">Especialidad:</label>
-        <input type="text" id="especialidad" name="especialidad"><br>
+        <select id="especialidad" name="especialidad">
+            <?php
+            include 'includes/conexion.php';
+            $sql_areas = "SELECT nombre FROM areas WHERE nombre != 'espera'";
+            $result_areas = $conn->query($sql_areas);
+            while ($row = $result_areas->fetch_assoc()) {
+                echo "<option value='".$row['nombre']."'>".$row['nombre']."</option>";
+            }
+            $conn->close();
+            ?>
+        </select><br>
 
         <label for="correo">Correo:</label>
         <input type="email" id="correo" name="correo" required><br>
