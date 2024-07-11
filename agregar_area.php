@@ -37,29 +37,31 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <?php endif; ?>
 
     <script>
-        document.getElementById('agregarAreaForm').addEventListener('submit', function(event) {
-            const nombreInput = document.getElementById('nombre');
-            const nombreValue = nombreInput.value.trim();
+    document.getElementById('agregarAreaForm').addEventListener('submit', function(event) {
+        const nombreInput = document.getElementById('nombre');
+        const nombreValue = nombreInput.value.trim();
 
-            if (nombreValue === '') {
-                alert('El nombre del área es obligatorio.');
-                event.preventDefault();
-                return;
-            }
+        if (nombreValue === '') {
+            alert('El nombre del área es obligatorio.');
+            event.preventDefault();
+            return;
+        }
 
-            const nombrePattern = /^[A-Za-z\s]+$/;
-            if (!nombrePattern.test(nombreValue)) {
-                alert('El nombre del área solo puede contener letras y espacios.');
-                event.preventDefault();
-                return;
-            }
+        // Expresión regular que acepta letras, espacios y acentos
+        const nombrePattern = /^[A-Za-z\u00C0-\u00FF\s]+$/;
 
-            if (nombreValue.length < 2) {
-                alert('El nombre del área debe tener al menos 2 caracteres.');
-                event.preventDefault();
-            }
-        });
-    </script>
+        if (!nombrePattern.test(nombreValue)) {
+            alert('El nombre del área solo puede contener letras, espacios y acentos.');
+            event.preventDefault();
+            return;
+        }
+
+        if (nombreValue.length < 2) {
+            alert('El nombre del área debe tener al menos 2 caracteres.');
+            event.preventDefault();
+        }
+    });
+</script>
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
 </body>

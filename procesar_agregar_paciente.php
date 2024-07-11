@@ -27,7 +27,6 @@ if ($resultado->num_rows > 0) {
                      VALUES ('$nombre', '$apellido', '$fecha_nacimiento', '$direccion', '$telefono', '11', '$CURP', '$contraseñaPaciente')";
 
     if ($conn->query($sql_insertar) === TRUE) {
-        // Redirigir al usuario a login.php después de insertar correctamente
         header("Location: login.php");
         exit;
     } else {
