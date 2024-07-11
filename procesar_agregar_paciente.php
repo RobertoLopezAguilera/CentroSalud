@@ -2,7 +2,7 @@
 session_start(); // Asegúrate de iniciar la sesión
 if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Paciente') {
     $errorMessage = "No tienes permiso para acceder a esta página.";
-    $perfilPaciente = isset($_GET['perfil']) ? $_GET['perfil'] : 1;
+    $perfilPaciente = isset($_GET['perfil']) ? $_GET['perfil'] : 0;
 } else {
     $userName = $_SESSION['userName'];
     $idPaciente = $_SESSION['userId'];
@@ -35,17 +35,13 @@ if ($resultado->num_rows > 0) {
                      VALUES ('$nombre', '$apellido', '$fecha_nacimiento', '$direccion', '$telefono', '11', '$CURP', '$contraseñaPaciente')";
 
     if ($conn->query($sql_insertar) === TRUE) {
-<<<<<<< HEAD
         header("Location: login.php");
-=======
         // Redirigir al usuario a login.php después de insertar correctamente
         if($perfilPaciente==0){
             header("Location: pacientes.php");
         }else{
             header("Location: login.php");
         }
-        
->>>>>>> c1acc0f858946b34eaaa024164820fdf6a388b8e
         exit;
     } else {
         echo "Error: " . $sql_insertar . "<br>" . $conn->error;

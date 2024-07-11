@@ -38,6 +38,12 @@
                 return false;
             }
 
+            var telRegex = /^[0-9]{10}$/;
+            if (!telefono.match(telRegex)) {
+                alert('El telefono debe tener exactamente 10 caracteres númericos.');
+                return false;
+            }
+
             // Validación de fecha de nacimiento: debe ser válida y mayor de 16 años
             var hoy = new Date();
             var fechaNac = new Date(fechaNacimiento);
