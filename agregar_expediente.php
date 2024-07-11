@@ -24,15 +24,15 @@
             ?>
         </select><br>
         <label for="historial_medico">Historial Médico:</label>
-        <textarea id="historial_medico" name="historial_medico" required></textarea><br>
+        <textarea id="historial_medico" name="historial_medico" ></textarea><br>
         <label for="alergias">Alergias:</label>
-        <textarea id="alergias" name="alergias" required></textarea><br>
+        <textarea id="alergias" name="alergias" ></textarea><br>
         <label for="medicamentos_actuales">Medicamentos Actuales:</label>
-        <textarea id="medicamentos_actuales" name="medicamentos_actuales" required></textarea><br>
+        <textarea id="medicamentos_actuales" name="medicamentos_actuales" ></textarea><br>
         <label for="antecedentes_familiares">Antecedentes Familiares:</label>
-        <textarea id="antecedentes_familiares" name="antecedentes_familiares" required></textarea><br>
+        <textarea id="antecedentes_familiares" name="antecedentes_familiares" ></textarea><br>
         <label for="otras_notas">Otras Notas:</label>
-        <textarea id="otras_notas" name="otras_notas" required></textarea><br>
+        <textarea id="otras_notas" name="otras_notas" ></textarea><br>
         <div class="inputdiv">
             <input type="submit" value="Agregar">
             <a href="expedientes_medicos.php">Volver a la lista de expedientes</a>
