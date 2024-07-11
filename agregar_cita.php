@@ -33,6 +33,20 @@ $isPersonal = $userType === 'Personal';
                 alert("La fecha de la cita debe ser al menos dos días a partir de hoy.");
                 return false;
             }
+            
+            const nombreValue = document.getElementById("tipo").value;
+            const nombrePattern = /^[A-Za-z\u00C0-\u017F\s]+$/;
+
+            if (!nombrePattern.test(nombreValue)) {
+                alert('El tipo de cita solo puede contener letras, espacios y acentos.');
+                event.preventDefault();
+                return;
+            }
+
+            if (nombreValue.length < 5) {
+                alert('El tipo de cita debe tener al menos 5 caracteres.');
+                event.preventDefault();
+            }
             return true;
         }
     </script>

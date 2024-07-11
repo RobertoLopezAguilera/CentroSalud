@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 return false;
             }
 
-            const nombrePattern = /^[A-Za-zÀ-ÿ\s]+$/;
+            const nombrePattern = /^[A-Za-z\u00C0-\u017F\s]+$/;
             if (!nombrePattern.test(nombreValue)) {
                 alert('El nombre del área solo puede contener letras, letras con acentos y espacios.');
                 return false;
