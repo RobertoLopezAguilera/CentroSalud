@@ -138,7 +138,7 @@
 </div>
 <div class="grid-item" id="visitas">
     <div class="grid-content">
-        <img src="images/foto5.jpg" alt="Foto 5">
+        <img src="images/nino-con-doctor.jpg" alt="Foto 5">
     </div>
 </div>
 <div class="grid-item">
@@ -156,14 +156,8 @@
 
 <?php include 'carrusel_global.php'; ?>
 
-
-
-    <!-- Termmina Contenido de la página -->
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
-
-
-    <!-- JavaScript para el carrusel -->
 <script>
         let currentIndex = 0;
 

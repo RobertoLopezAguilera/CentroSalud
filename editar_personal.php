@@ -94,52 +94,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/style.css">
     <script>
         function validarFormulario() {
-            var nombre = document.getElementById("nombre").value.trim();
-            var apellido = document.getElementById("apellido").value.trim();
-            var tipoPersonal = document.getElementById("tipo_personal").value.trim();
-            var correo = document.getElementById("correo").value.trim();
-            var contraseña = document.getElementById("contraseña").value.trim();
-            var telefono = document.getElementById("telefono").value.trim();
+    var nombre = document.getElementById("nombre").value.trim();
+    var apellido = document.getElementById("apellido").value.trim();
+    var tipoPersonal = document.getElementById("tipo_personal").value.trim();
+    var correo = document.getElementById("correo").value.trim();
+    var telefono = document.getElementById("telefono").value.trim();
 
-            if (nombre === "") {
-                alert("Por favor, ingrese el nombre.");
-                return false;
-            }
+    if (nombre === "") {
+        alert("Por favor, ingrese el nombre.");
+        return false;
+    }
 
-            if (apellido === "") {
-                alert("Por favor, ingrese el apellido.");
-                return false;
-            }
+    if (apellido === "") {
+        alert("Por favor, ingrese el apellido.");
+        return false;
+    }
 
-            if (tipoPersonal === "") {
-                alert("Por favor, ingrese el tipo de personal.");
-                return false;
-            }
+    if (tipoPersonal === "") {
+        alert("Por favor, ingrese el tipo de personal.");
+        return false;
+    }
 
-            var letrasEspacios = /^[a-zA-Z\s]+$/;
-            if (!nombre.match(letrasEspacios) || !apellido.match(letrasEspacios) || !tipoPersonal.match(letrasEspacios)) {
-                alert('El nombre, apellido, tipo de personal y especialidad deben contener solo letras y espacios.');
-                return false;
-            }
+    var letrasEspacios = /^[a-zA-Z\s]+$/;
+    if (!nombre.match(letrasEspacios) || !apellido.match(letrasEspacios) || !tipoPersonal.match(letrasEspacios)) {
+        alert('El nombre, apellido y tipo de personal deben contener solo letras y espacios.');
+        return false;
+    }
 
-            if (!correo.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                alert("Por favor, ingrese un correo electrónico válido.");
-                return false;
-            }
+    if (!correo.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        alert("Por favor, ingrese un correo electrónico válido.");
+        return false;
+    }
 
-            if (contraseña === "") {
-                alert("Por favor, ingrese una contraseña.");
-                return false;
-            }
+    if (!telefono.match(/^\d{10}$/)) {
+        alert('Por favor, ingrese un número de teléfono válido de 10 dígitos.');
+        return false;
+    }
 
-            if (!telefono.match(/^\d{3}-\d{3}-\d{4}$/)) {
-                alert('Por favor, ingrese un número de teléfono válido en el formato 123-123-1234.');
-                return false;
-            }
+    return true;
+}
 
-
-            return true;
-        }
     </script>
 </head>
 
