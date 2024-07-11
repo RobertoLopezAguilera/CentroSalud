@@ -73,7 +73,7 @@
             unset($_SESSION['error_message']); // Limpiar el mensaje de error
         }
         ?>
-        <form id="registroForm" class="formulario" action="procesar_agregar_paciente.php" method="post" onsubmit="return validarEdad() && validarFormulario();">
+        <form id="registroForm" class="formulario" action="procesar_agregar_paciente.php" method="post" onsubmit="return validarFormulario();">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required><br>
             <label for="apellido">Apellido:</label>
