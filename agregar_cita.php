@@ -1,16 +1,12 @@
 <?php
 include 'assets/header.php';
-//session_start(); // Asegúrate de iniciar la sesión
 
-if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
+if (!isset($_SESSION['userName']) || !isset($_SESSION['userId'])) {
     $errorMessage = "No tienes permiso para acceder a esta página.";
-} else {
-    $userName = $_SESSION['userName'];
-
-    if ($userName !== "DR. Roberto") {
-        $errorMessage = "No tienes permiso para ver todas las habitaciones.";
-    }
 }
+
+$userName = $_SESSION['userName'];
+$userId = $_SESSION['userId'];
 $id_habitacion = isset($_GET['id_habitacion']) ? intval($_GET['id_habitacion']) : 0;
 ?>
 
@@ -19,61 +15,46 @@ $id_habitacion = isset($_GET['id_habitacion']) ? intval($_GET['id_habitacion']) 
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Cita</title>
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
-   
-
     <div class="principal">
         <h1>Agendar Citas</h1>
         <form class="formulario" action="procesar_agregar_cita.php" method="post">
 
             <?php if (!isset($errorMessage)): ?>
                 <label for="id_paciente">Paciente:</label>
-                <select id="id_paciente" name="id_paciente" required>
+                <input type="text" id="id_paciente" name="id_paciente_nombre" value="<?php echo htmlspecialchars($userName); ?>" readonly><br>
+                <input type="hidden" id="id_paciente" name="id_paciente" value="<?php echo htmlspecialchars($userId); ?>">
+
+                <label for="id_personal">Medico:</label>
+                <select id="id_personal" name="id_personal" required>
                     <?php
                     include 'includes/conexion.php';
-                    $sql = "SELECT id_paciente, CONCAT(nombre, ' ', apellido) as nombre_paciente FROM pacientes";
+                    $sql = "SELECT id_personal, CONCAT(nombre, ' ', apellido) as nombre_personal FROM personal";
                     $resultado = $conn->query($sql);
                     while ($fila = $resultado->fetch_assoc()) {
-                        echo "<option value='" . $fila["id_paciente"] . "'>" . $fila["nombre_paciente"] . "</option>";
+                        echo "<option value='" . $fila["id_personal"] . "'>" . $fila["nombre_personal"] . "</option>";
                     }
                     ?>
                 </select><br>
-            <?php else: ?>
-                <div class="error"></div>
-            <?php endif; ?>
 
-            <label for="id_personal">Medico:</label>
-            <select id="id_personal" name="id_personal" required>
-                <?php
-                include 'includes/conexion.php';
-                $sql = "SELECT id_personal, CONCAT(nombre, ' ', apellido) as nombre_personal FROM personal";
-                $resultado = $conn->query($sql);
-                while ($fila = $resultado->fetch_assoc()) {
-                    echo "<option value='" . $fila["id_personal"] . "'>" . $fila["nombre_personal"] . "</option>";
-                }
-                ?>
-            </select><br>
+                <label for="fecha_hora">Fecha de cita:</label>
+                <input type="datetime-local" id="fecha_hora" name="fecha_hora" required><br>
 
-            <label for="fecha_hora">Fecha de cita:</label>
-            <input type="datetime-local" id="fecha_hora" name="fecha_hora" required><br>
+                <label for="tipo">Tipo de cita:</label>
+                <input type="text" id="tipo" name="tipo" required><br>
 
-            <label for="tipo">Tipo de cita:</label>
-            <input type="text" id="tipo" name="tipo" required><br>
-
-            <div class="inputdiv">
-                <input type="submit" value="Agregar">
-                <?php if (!isset($errorMessage)): ?>
+                <div class="inputdiv">
+                    <input type="submit" value="Agregar">
                     <a href="citas.php">Volver a la lista de citas</a>
-                <?php else: ?>
-                    <div class="error"></div>
-                <?php endif; ?>
-            </div>
+                </div>
+            <?php else: ?>
+                <div class="error"><?php echo $errorMessage; ?></div>
+            <?php endif; ?>
         </form>
     </div>
 
