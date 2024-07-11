@@ -46,6 +46,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
             
         <?php else: ?>
             <a class="button-29" href="agregar_paciente.php">Agregar Nuevo Paciente</a>
+            <a class="button-29" href="citas.php">Agenda de citas</a>
             <?php
             include 'includes/conexion.php';
 
