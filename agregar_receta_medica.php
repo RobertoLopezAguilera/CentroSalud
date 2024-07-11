@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Agregar Receta Medica</title>
+    <title>Agregar Receta Médica</title>
     <style>
         body {
             background: 
@@ -18,7 +18,7 @@
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
-    <h1>Agregar Receta Medica</h1>
+    <h1>Agregar Receta Médica</h1>
     <form id="agregarRecetaForm" action="procesar_agregar_receta_medica.php" method="post" onsubmit="return validarFormulario()">
 
         <label for="id_paciente">Paciente:</label>
@@ -33,7 +33,7 @@
             ?>
         </select><br>
 
-        <label for="id_personal">Medico:</label>
+        <label for="id_personal">Médico:</label>
         <select id="id_personal" name="id_personal" required>
             <?php
             $sqlPersonal = "SELECT id_personal, CONCAT(nombre, ' ', apellido) AS nombre_personal FROM personal";
@@ -112,7 +112,13 @@
             var fechaActual = new Date();
             var fechaEmisionDate = new Date(fechaEmision);
             if (fechaEmisionDate <= fechaActual) {
-                alert("La fecha de emision debe ser posterior a la fecha actual.");
+                alert("La fecha de emisión debe ser posterior a la fecha actual.");
+                return false;
+            }
+
+            fechaMaxima.setFullYear(fechaMaxima.getFullYear() + 50);
+            if (fechaEmisionDate > fechaMaxima) {
+                alert("La fecha de emisión no debe ser más de 50 años desde la fecha actual.");
                 return false;
             }
 

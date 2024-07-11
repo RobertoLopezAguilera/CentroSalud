@@ -27,7 +27,7 @@
     $filaPaciente = $resultado_paciente->fetch_assoc();
     ?>
 
-    <form action="procesar_agregar_detalle_factura.php" method="post">
+    <form action="procesar_agregar_detalle_factura.php" method="post" onsubmit="return validarFormulario()">
         <input type="hidden" name="id_factura" id="id_factura" value="<?php echo $fila['id_factura']; ?>" required>
         <input type="hidden" name="id_paciente" value="<?php echo $fila['id_paciente']; ?>" required>
 
@@ -72,6 +72,36 @@
         </div>
 
         <script>
+            function validarFormulario() {
+                var precio_unitario = document.getElementById("precio_unitario").value.trim();
+                var cantidad = document.getElementById("cantidad").value.trim();
+                var subtotal = document.getElementById("subtotal").value.trim();
+                var descripcion = document.getElementById("descripcion").value.trim();
+
+                if (precio_unitario <= 0) {
+                    alert("El precio unitario debe ser mayor a 0.");
+                    return false;
+                }
+
+                if (cantidad <= 0 && cantidad > 9) {
+                    alert("La cantidad debe ser mayor a 0 y menor a 9.");
+                    return false;
+                }
+
+                if (subtotal <= 0) {
+                    alert("El subtotal debe ser mayor a 0.");
+                    return false;
+                }
+
+                const nombrePattern = /^[A-Za-z\u00C0-\u017F\s]+$/;
+
+                if (!nombrePattern.test(descripcion)) {
+                    alert('La descripción solo puede contener letras, espacios y acentos.');
+                    return false;
+                }
+
+                return true;
+            }
             function enable() {
                 var precio_unitario = document.getElementById('precio_unitario');
                 var subtotal = document.getElementById('subtotal');

@@ -45,6 +45,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
             </div>
             
         <?php else: ?>
+            <a href="agregar_receta_medica.php" class="button-29">Agregar recetas</a>
             <a class="button-29" href="agregar_paciente.php">Agregar Nuevo Paciente</a>
             <a class="button-29" href="citas.php">Agenda de citas</a>
             <?php

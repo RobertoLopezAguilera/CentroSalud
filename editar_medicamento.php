@@ -42,41 +42,57 @@
     </form>
 
     <script>
-        function validarFormulario() {
-            var nombre = document.getElementById('nombre').value.trim();
-            var descripcion = document.getElementById('descripcion').value.trim();
-            var stock = document.getElementById('stock').value;
-            var precio = document.getElementById('precio').value;
-            var fechaCaducidad = document.getElementById('fecha_caducidad').value;
+    function validarFormulario() {
+        var nombre = document.getElementById("nombre").value.trim();
+        var descripcion = document.getElementById("descripcion").value.trim();
+        var stock = document.getElementById("stock").value;
+        var precio = document.getElementById("precio").value;
+        var fechaCaducidad = document.getElementById("fecha_caducidad").value;
 
-            if (nombre === '') {
-                alert('Por favor, ingrese el nombre del medicamento.');
-                return false;
-            }
-
-            if (descripcion === '') {
-                alert('Por favor, ingrese la descripción del medicamento.');
-                return false;
-            }
-
-            if (stock === '' || isNaN(stock) || parseInt(stock) < 0) {
-                alert('Por favor, ingrese un stock válido.');
-                return false;
-            }
-
-            if (precio === '' || isNaN(precio) || parseFloat(precio) < 0) {
-                alert('Por favor, ingrese un precio válido.');
-                return false;
-            }
-
-            if (fechaCaducidad === '') {
-                alert('Por favor, ingrese la fecha de caducidad.');
-                return false;
-            }
-
-            return true;
+        if (nombre === "") {
+            alert("Por favor, ingrese el nombre del medicamento.");
+            return false;
         }
-    </script>
+
+        if (descripcion === "") {
+            alert("Por favor, ingrese una descripción.");
+            return false;
+        }
+
+        if (stock <= 0) {
+            alert("El stock debe ser mayor a 0.");
+            return false;
+        }
+
+        if (precio <= 0) {
+            alert("El precio debe ser mayor a 0.");
+            return false;
+        }
+
+        if (fechaCaducidad === "") {
+            alert("Por favor, ingrese una fecha de caducidad.");
+            return false;
+        }
+
+        var fechaActual = new Date();
+        var fechaCaducidadDate = new Date(fechaCaducidad);
+        if (fechaCaducidadDate <= fechaActual) {
+            alert("La fecha de caducidad debe ser posterior a la fecha actual.");
+            return false;
+        }
+
+        // Calcular la fecha máxima permitida (50 años a partir de la fecha actual)
+        var fechaMaxima = new Date();
+        fechaMaxima.setFullYear(fechaMaxima.getFullYear() + 50);
+        if (fechaCaducidadDate > fechaMaxima) {
+            alert("La fecha de caducidad no debe ser más de 50 años desde la fecha actual.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
 
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>

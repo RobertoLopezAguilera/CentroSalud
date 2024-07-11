@@ -29,6 +29,11 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
                 console.error("Área no encontrada: " + area);
             }
         }
+
+       
+    </script>
+
+
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,14 +47,14 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
         }
 
         #showcase {
-            min-height: 400px;
+            
             background: url('anestesia.jpg') no-repeat center center/cover;
             text-align: center;
-            color: #fff;
+            color: #000;
         }
 
         #showcase h1 {
-            margin-top: 100px;
+           
             font-size: 55px;
             margin-bottom: 10px;
             word-wrap: break-word;
@@ -138,22 +143,159 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
                 width: 100%;
             }
         }
+
+
+
+        /* espera */
+        .container2 {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        #showcase2 {
+            min-height: 400px;
+            background: url('anestesia.jpg') no-repeat center center/cover;
+            text-align: center;
+            color: #fff;
+        }
+
+        #showcase2 h1 {
+            margin-top: 100px;
+            font-size: 55px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .content2 {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin: 20px auto;
+            box-sizing: border-box;
+            word-wrap: break-word;
+        }
+
+        .area-content2 {
+            display: none;
+        }
+
+        .wait-time-box2 {
+            display: inline-block;
+            width: 45%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .wait-time2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d9534f;
+        }
+
+        .wait-label2 {
+            font-size: 16px;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media2 (max-width: 1200px) {
+            .container2 {
+                width: 90%;
+            }
+
+            #showcase2 h1 {
+                font-size: 45px;
+            }
+        }
+
+        @media2 (max-width: 992px) {
+            .container2 {
+                width: 95%;
+            }
+
+            #showcase2 h1 {
+                font-size: 35px;
+            }
+        }
+
+        @media2 (max-width: 768px) {
+            #showcase2 {
+                min-height: 300px;
+            }
+
+            #showcase2 h1 {
+                margin-top: 80px;
+                font-size: 30px;
+            }
+
+            .content2 {
+                padding: 15px;
+                margin: 10px;
+                width: 95%;
+            }
+
+            .wait-time-box2 {
+                width: 45%;
+                margin: 10px 2.5%;
+            }
+        }
+
+        @media2 (max-width: 576px) {
+            #showcase2 {
+                min-height: 200px;
+            }
+
+            #showcase2 h1 {
+                margin-top: 60px;
+                font-size: 25px;
+            }
+
+            .content2 {
+                padding: 10px;
+                margin: 5px;
+                width: 100%;
+            }
+
+            .wait-time-box2 {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        @media2 (max-width: 480px) {
+            #showcase2 h1 {
+                margin-top: 40px;
+                font-size: 20px;
+            }
+
+            .content2 {
+                padding: 8px;
+                margin: 5px;
+                width: 100%;
+            }
     </style>
 
 </head>
 
 <body>
 
-    <section id="showcase">
-        <div class="container">
-            <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
-
-        </div>
-    </section>
+    
 
     <div class="container">
         <div id="Anestesiologia" class="content area-content">
-            <h2>Anestesiología</h2>
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
             <p>
                 ¡Bienvenidos al área de Anestesiología del Hospital Centro de salud!
                 Nuestra misión es proporcionar cuidados anestésicos de alta calidad y garantizar la seguridad y
@@ -244,7 +386,12 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
 
         </div>
         <div id="Cuidados intensivos" class="content area-content">
-            <h2>Cuidados Intensivos</h2>
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
             <p>
                 ¡Bienvenidos al área de Cuidados Intensivos del Hospital Centro de salud!
                 Nuestro equipo altamente capacitado se dedica a proporcionar cuidados especializados a pacientes que
@@ -327,7 +474,12 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
             </p>
         </div>
         <div id="Pediatria" class="content area-content">
-            <h2>Pediatría</h2>
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
             <p>
                 ¡Bienvenidos al área de Pediatría del Hospital Centro de salud!
                 Nos especializamos en el cuidado de la salud de niños y adolescentes, proporcionando atención médica
@@ -420,7 +572,12 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
             </p>
         </div>
         <div id="Medicina Interna" class="content area-content">
-            <h2>Medicina Interna</h2>
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
             <p>
                 ¡Bienvenidos al área de Medicina Interna del Hospital Centro de salud!
                 Nos especializamos en el diagnóstico, tratamiento y manejo de enfermedades complejas en adultos,
@@ -508,7 +665,12 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
             </p>
         </div>
         <div id="Cardiologia" class="content area-content">
-            <h2>Cardiología</h2>
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
             <p>
                 ¡Bienvenidos al área de Cardiología del Hospital Centro de salud!
                 Nos especializamos en el diagnóstico y tratamiento de enfermedades del corazón, ofreciendo atención
@@ -597,7 +759,12 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
             </p>
         </div>
         <div id="Rehabilitacion" class="content area-content">
-            <h2>Rehabilitación</h2>
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
             <p>
                 ¡Bienvenidos al área de Rehabilitación del Hospital Centro de salud!
                 Nuestro objetivo es ayudar a nuestros pacientes a recuperar su funcionalidad física y mejorar su calidad
@@ -689,7 +856,12 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
             </p>
         </div>
         <div id="Laboratorista" class="content area-content">
-            <h2>Laboratorista</h2>
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
             <p>
                 ¡Bienvenidos al área de Laboratorista del Hospital Centro de salud!
                 Nuestro laboratorio está dedicado a proporcionar resultados precisos y confiables para apoyar el
@@ -785,6 +957,136 @@ $nombre_area = isset($_GET['nombre']) ? $_GET['nombre'] : '';
                 pude recibir el tratamiento adecuado a tiempo." - Leo
             </p>
         </div>
+        <div id="General" class="content area-content">
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
+            <p>
+                ¡Bienvenidos al Centro de Salud! Nos dedicamos a proporcionar atención médica de alta calidad y a garantizar la seguridad y comodidad de nuestros pacientes.
+            </p>
+
+            <h2>Visión</h2>
+            <p>
+                Ser un centro de salud líder reconocido por su excelencia en la atención médica integral y su compromiso con el bienestar de la comunidad.
+            </p>
+
+            <h2>Propósito</h2>
+            <p>
+                Brindar servicios de salud accesibles y de calidad, mejorando la vida de nuestros pacientes a través de una atención centrada en la persona.
+            </p>
+
+            <h2>Misión</h2>
+            <p>
+                Proporcionar atención médica de alta calidad con un enfoque humanizado, utilizando tecnologías avanzadas y promoviendo un entorno de bienestar para nuestros pacientes, sus familias y nuestra comunidad.
+            </p>
+
+            <h2>Valores</h2>
+            <ul>
+                <li><strong>Compromiso:</strong> Estamos dedicados a la salud y el bienestar de nuestros pacientes.</li>
+                <li><strong>Calidad:</strong> Ofrecemos servicios médicos de la más alta calidad.</li>
+                <li><strong>Empatía:</strong> Escuchamos y entendemos las necesidades de nuestros pacientes.</li>
+                <li><strong>Innovación:</strong> Utilizamos tecnologías avanzadas para mejorar la atención médica.</li>
+                <li><strong>Integridad:</strong> Actuamos con ética y transparencia en todos nuestros servicios.</li>
+                <li><strong>Trabajo en Equipo:</strong> Fomentamos la colaboración y el respeto entre nuestros profesionales de salud.</li>
+            </ul>
+        </div>
+
+        <!-- Otras áreas aquí -->
+        <div id="Anestesiologia" class="content area-content">
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
+            <p>
+                ¡Bienvenidos al área de Anestesiología del Centro de Salud!
+                Nuestra misión es proporcionar cuidados anestésicos de alta calidad y garantizar la seguridad y comodidad de nuestros pacientes durante procedimientos quirúrgicos, diagnósticos y terapéuticos.
+            </p>
+
+            <h2>Nuestro Equipo</h2>
+            <p>
+                Contamos con un equipo de anestesiólogos altamente capacitados y experimentados, comprometidos con la excelencia en el cuidado del paciente. Nuestro personal está especializado en diversas subespecialidades de la anestesiología, incluyendo:
+            </p>
+            <ul>
+                <li>Anestesia general</li>
+                <li>Anestesia regional</li>
+                <li>Anestesia para procedimientos ambulatorios</li>
+                <li>Manejo del dolor</li>
+                <li>Anestesia pediátrica</li>
+                <li>Anestesia obstétrica</li>
+            </ul>
+
+            <h2>Servicios Ofrecidos</h2>
+            <p>En el área de Anestesiología, ofrecemos una amplia gama de servicios para atender las necesidades específicas de cada paciente:</p>
+            <ul>
+                <li>
+                    <strong>Evaluación Preanestésica:</strong> Una consulta detallada antes de su procedimiento para evaluar su estado de salud y planificar el tipo de anestesia más adecuado.
+                </li>
+                <li>
+                    <strong>Anestesia Intraoperatoria:</strong> Proporcionamos diferentes tipos de anestesia, adaptadas a las necesidades específicas de cada intervención quirúrgica.
+                </li>
+                <li>
+                    <strong>Manejo del Dolor:</strong> Estrategias efectivas para el control del dolor postoperatorio, asegurando una recuperación cómoda y segura.
+                </li>
+                <li>
+                    <strong>Anestesia Ambulatoria:</strong> Servicios de anestesia para procedimientos que no requieren hospitalización prolongada.
+                </li>
+                <li>
+                    <strong>Sedación para Procedimientos Diagnósticos:</strong> Sedación segura y efectiva para procedimientos como endoscopias, colonoscopias y resonancias magnéticas.
+                </li>
+            </ul>
+
+            <h2>Tecnologías Avanzadas</h2>
+            <p>
+                Utilizamos tecnologías de última generación para proporcionar el mejor cuidado posible, incluyendo:
+            </p>
+            <ul>
+                <li>Monitoreo avanzado durante la cirugía para asegurar la estabilidad y seguridad del paciente.</li>
+                <li>Técnicas de anestesia regional guiadas por ultrasonido para mayor precisión y efectividad.</li>
+                <li>Protocolos de manejo del dolor multimodal para minimizar el uso de opioides y mejorar la recuperación.</li>
+            </ul>
+
+            <h2>Preguntas Frecuentes</h2>
+            <p><strong>¿Qué es la evaluación preanestésica?</strong></p>
+            <p>
+                Es una consulta con un anestesiólogo antes de su procedimiento para revisar su historial médico, realizar un examen físico y planificar su cuidado anestésico.
+            </p>
+            <p><strong>¿Cómo se controla el dolor después de la cirugía?</strong></p>
+            <p>
+                Utilizamos una combinación de medicamentos y técnicas de manejo del dolor adaptadas a las necesidades individuales de cada paciente para asegurar una recuperación cómoda.
+            </p>
+            <p><strong>¿Es seguro recibir anestesia?</strong></p>
+            <p>
+                La anestesia moderna es muy segura. Nuestro equipo de anestesiólogos está altamente capacitado y utiliza equipos de monitoreo avanzados para asegurar su seguridad en todo momento.
+            </p>
+        </div>
+
+
+        
+        <div id="Espera" class="content area-content">
+            <section id="showcase">
+                <div class="container">
+                    <h1>Area de <?php echo htmlspecialchars($nombre_area); ?></h1>
+
+                </div>
+            </section>
+            <div class="wait-time-box2">
+                <div class="wait-time2">25 min</div>
+                <div class="wait-label2">Tiempo de espera consulta general</div>
+            </div>
+
+            <div class="wait-time-box2">
+                <div class="wait-time2">60 min</div>
+                <div class="wait-label2">Tiempo de espera consulta especializada</div>
+            </div>
+        </div>
+
+
+
     </div>
 </body>
 <?php include 'assets/footer.html'; ?>

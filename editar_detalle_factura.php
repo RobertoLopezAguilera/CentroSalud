@@ -35,7 +35,7 @@
     $filaPaciente = $resultado_paciente->fetch_assoc();
     ?>
 
-    <form action="procesar_editar_detalle_factura.php" method="post">
+    <form action="procesar_editar_detalle_factura.php" method="post" onsubmit="return validarFormulario()">
         <input type="hidden" name="id_factura" id="id_factura" value="<?php echo $fila['id_factura']; ?>" required>
         <input type="hidden" name="id_detalle" id="id_detalle" value="<?php echo $fila['id_detalle']; ?>" required>
         <input type="hidden" name="id_paciente" value="<?php echo $filaPaciente['id_paciente']; ?>" required>
@@ -68,13 +68,13 @@
         <input type="decimal" id="precio_unitario" name="precio_unitario" required disabled>
 
         <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" name="cantidad" value="1" required oninput="updateSubtotal()">
+        <input type="number" id="cantidad" name="cantidad" minlength="1" maxlength="1" value="1" required oninput="updateSubtotal()">
 
         <label for="subtotal">Subtotal:</label>
         <input type="decimal" id="subtotal" name="subtotal" required disabled>
 
         <label for="descripcion">Descripción:</label>
-        <input type="text" id="descripcion" name="descripcion" required>
+        <input type="text" id="descripcion" minlength="1" maxlength="70" name="descripcion" required>
 
         <div class="inputdiv">
             <input type="submit" value="Agregar elemento" onclick="updatePrecio(); updateSubtotal(); enable()">
@@ -82,6 +82,37 @@
         </div>
 
         <script>
+            function validarFormulario() {
+                var precio_unitario = document.getElementById("precio_unitario").value.trim();
+                var cantidad = document.getElementById("cantidad").value.trim();
+                var subtotal = document.getElementById("subtotal").value.trim();
+                var descripcion = document.getElementById("descripcion").value.trim();
+
+                if (precio_unitario <= 0) {
+                    alert("El precio unitario debe ser mayor a 0.");
+                    return false;
+                }
+
+                if (cantidad <= 0 || cantidad > 9) {
+                    alert("La cantidad debe ser mayor a 0 y menor a 9   .");
+                    return false;
+                }
+
+                if (subtotal <= 0) {
+                    alert("El subtotal debe ser mayor a 0.");
+                    return false;
+                }
+
+                const nombrePattern = /^[A-Za-z\u00C0-\u017F\s]+$/;
+
+                if (!nombrePattern.test(descripcion)) {
+                    alert('La descripción solo puede contener letras, espacios y acentos.');
+                    return false;
+                }
+
+                return true;
+            }
+
             document.getElementById('descripcion').addEventListener('input', function () {
                 var descripcion = document.getElementById('descripcion').value;
                 var precio_unitario = document.getElementById('precio_unitario');

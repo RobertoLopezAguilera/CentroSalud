@@ -52,7 +52,7 @@
             if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
                 edad--;
             }
-            if (edad < 16) {
+            if (edad < 16 && edad<100) {
                 alert('Debes tener al menos 16 años para registrarte como paciente.');
                 return false;
             }
