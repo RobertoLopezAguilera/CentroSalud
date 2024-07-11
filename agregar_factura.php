@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Agregar Factura Medica</title>
 </head>
+
 <body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var fechaActual = new Date().toISOString().split('T')[0];
+            document.getElementById('fecha_emision').value = fechaActual;
+        });
+    </script>
+
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
@@ -35,9 +44,10 @@
             }
             ?>
         </select><br>
-        
+            
         <label for="fecha_emision">Fecha de Emision:</label>
-        <input type ="date" id="fecha_emision" name="fecha_emision" required><br><br>
+        
+        <input type="date" id="fecha_emision" name="fecha_emision"><br><br>
 
         <div class="inputdiv">
             <input type="submit" value="Agregar">
@@ -48,4 +58,5 @@
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
 </body>
+
 </html>
