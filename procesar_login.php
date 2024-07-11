@@ -18,7 +18,11 @@ if ($userType === 'Personal') {
         header("Location: vistaPer_index.php");
         exit();
     } else {
-        echo "Correo o contraseña incorrectos.";
+        echo "<script>
+            alert('Correo o contraseña incorrectos');
+            window.location.href = 'login.php';
+        </script>";
+        
     }
 } elseif ($userType === 'Paciente') {
     $curp = $_POST['curp'];
@@ -34,8 +38,13 @@ if ($userType === 'Personal') {
         header("Location: vistaPac_index.php");
         exit();
     } else {
-        echo "CURP o contraseña incorrectos.";
+        echo "<script>
+            alert('CURP o contraseña incorrectos');
+            window.location.href = 'login.php';
+        </script>";
     }
+}else{
+    header("Location: login.php");
 }
 
 $conn->close();

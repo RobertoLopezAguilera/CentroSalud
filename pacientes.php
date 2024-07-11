@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pacientes</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
-    
+
     <h1>Pacientes del Hospital</h1>
+    
     <a class="button-29" href="agregar_paciente.php">Agregar Nuevo Paciente</a>
     <?php
     include 'includes/conexion.php';
@@ -33,30 +36,28 @@
     JOIN 
     pacientes ON c.id_cama = pacientes.id_cama
     JOIN 
-    habitaciones ON c.id_habitacion = habitaciones.id_habitacion
-    WHERE 
-    c.id_cama = pacientes.id_cama;";
+    habitaciones ON c.id_habitacion = habitaciones.id_habitacion";
 
     $resultado = $conn->query($sql);
 
     if ($resultado->num_rows > 0) {
         echo "<table>";
         echo "<tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Direccion</th><th>Telefono</th><th>CURP</th><th>Habitacion</th><th>Acciones</th></tr>";
-        while($fila = $resultado->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($fila["id_paciente"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["nombre"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["apellido"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["fecha_nacimiento"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["direccion"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["telefono"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["CURP"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["numero_habitacion"]) . "</td>";
-                echo "<td>";
-                echo "<a class='button-33' href='editar_paciente.php?id=" . htmlspecialchars($fila["id_paciente"]) . "'>Editar</a>";
-                echo "<a class='button-34' href='eliminar_paciente.php?id=" . htmlspecialchars($fila["id_paciente"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
-                echo "</td>";
-                echo "</tr>";
+        while ($fila = $resultado->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($fila["id_paciente"]) . "</td>";
+            echo "<td>" . htmlspecialchars($fila["nombre"]) . "</td>";
+            echo "<td>" . htmlspecialchars($fila["apellido"]) . "</td>";
+            echo "<td>" . htmlspecialchars($fila["fecha_nacimiento"]) . "</td>";
+            echo "<td>" . htmlspecialchars($fila["direccion"]) . "</td>";
+            echo "<td>" . htmlspecialchars($fila["telefono"]) . "</td>";
+            echo "<td>" . htmlspecialchars($fila["CURP"]) . "</td>";
+            echo "<td>" . htmlspecialchars($fila["numero_habitacion"]) . "</td>";
+            echo "<td>";
+            echo "<a class='button-33' href='editar_paciente.php?id=" . htmlspecialchars($fila["id_paciente"]) . "'>Editar</a>";
+            echo "<a class='button-34' href='eliminar_paciente.php?id=" . htmlspecialchars($fila["id_paciente"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
+            echo "</td>";
+            echo "</tr>";
         }
         echo "</table>";
     } else {
@@ -65,8 +66,9 @@
 
     $conn->close();
     ?>
-            
+
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
 </body>
+
 </html>

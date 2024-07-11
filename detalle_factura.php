@@ -25,13 +25,17 @@
 
     // Modifica la consulta SQL para seleccionar solo los registros relacionados al ID obtenido
     $sql = "SELECT * FROM detalle_factura WHERE id_factura = $id_factura;";
-    $resultado = $conn->query($sql);
-
+    $resultado = $conn->query($sql); ?>
+    
+    <?php
+     echo "<a class='button-29' href='agregar_detalle_factura.php?id=$id_factura'>Agregar Elemento a la Factura</a>";
     if ($resultado->num_rows > 0) {
         echo "<table>";
+
         echo "<tr><th>ID</th><th>Factura</th><th>Descripcion</th><th>Cantidad</th><th>Precio Unitario</th><th>Subtotal</th><th>Acciones</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             echo "<tr>";
+
             echo "<td>" . htmlspecialchars($fila["id_detalle"]) . "</td>";
             echo "<td>" . htmlspecialchars($fila["id_factura"]) . "</td>";
             echo "<td>" . htmlspecialchars($fila["descripcion"]) . "</td>";

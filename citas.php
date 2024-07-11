@@ -46,7 +46,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
                     <button type="submit" class="button-29">Buscar</button>
                     <button type="button" class="button-29" onclick="window.location.href='citas.php'">Borrar</button>
                 </form>
-                <a href="descargar_excel_citas.php?search=<?php echo isset($_GET['search']) ? urlencode($_GET['search']) : ''; ?>" class="button-29">Descargar Excel</a>
+                <a href="descargar_excel_areas.php?search=<?php echo isset($_GET['search']) ? urlencode($_GET['search']) : ''; ?>" class="button-29">Descargar Excel</a>
             </div>
         <?php endif; ?>
         <?php
@@ -86,7 +86,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
         $resultado = $stmt->get_result();
 
         if ($resultado->num_rows > 0) {
-            echo "<a href='agregar_cita.php' class='button-29'>Agregar Cita Médica</a>";
+           
             echo "<table>";
             echo "<tr><th>ID</th><th>Paciente</th><th>Medico</th><th>Fecha de Cita</th><th>Tipo de Cita</th><th>Acciones</th></tr>";
             while($fila = $resultado->fetch_assoc()) {

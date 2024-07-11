@@ -55,10 +55,10 @@
         </select>
 
         <label for="precio_unitario">Precio unitario:</label>
-        <input type="number" step="0.01" id="precio_unitario" name="precio_unitario" required disabled min="0">
+        <input type="number" step="0.01" id="precio_unitario" name="precio_unitario" required disabled min="1">
 
         <label for="cantidad">Cantidad:</label>
-        <input type="number" id="cantidad" name="cantidad" value="1" min="0" required oninput="updateSubtotal()">
+        <input type="number" id="cantidad" name="cantidad" value="1" min="1" required oninput="updateSubtotal()">
 
         <label for="subtotal">Subtotal:</label>
         <input type="decimal" id="subtotal" name="subtotal" required disabled>

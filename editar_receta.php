@@ -105,8 +105,10 @@
                         }
                         ?>
                     </select>
-
+                    <div class="inputdiv">
                     <input type="submit" value="Actualizar"></input>
+                    <a href="recetas.php">Volver a la lista de recetas</a>
+                    </div>
                 </form>
 
                 <?php
@@ -127,7 +129,6 @@
     }
     ?>
 
-    <a href="recetas.php">Volver a la Lista de Recetas</a>
     <?php include 'assets/footer.html'; ?>
     <div id="footer"></div>
 </body>
