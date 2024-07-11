@@ -14,6 +14,24 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas Medicas</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+        .search-form input[type="text"] {
+            margin-right: 10px;
+        }
+        .button-29 {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
     <?php if (isset($errorMessage)): ?>
