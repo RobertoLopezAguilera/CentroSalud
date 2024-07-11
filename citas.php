@@ -12,7 +12,7 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Citas Medicas</title>
+    <title>Citas Médicas</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .actions {
@@ -39,13 +39,13 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <?php else: ?>
         <h1>Citas Médicas</h1>
         <div class="actions">
-            <a href="agregar_area.php" class="button-29">Agregar Área</a>
-            <form method="GET" action="areas.php" class="search-form">
-                <input type="text" name="search" placeholder="Buscar por nombre" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <a href="agregar_cita.php" class="button-29">Agregar Cita Médica</a>
+            <form method="GET" action="citas.php" class="search-form">
+                <input type="text" name="search" placeholder="Buscar por paciente o médico" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                 <button type="submit" class="button-29">Buscar</button>
-                <button type="button" class="button-29" onclick="window.location.href='areas.php'">Borrar</button>
+                <button type="button" class="button-29" onclick="window.location.href='citas.php'">Borrar</button>
             </form>
-            <a href="descargar_excel_areas.php?search=<?php echo isset($_GET['search']) ? urlencode($_GET['search']) : ''; ?>" class="button-29">Descargar Excel</a>
+            <a href="descargar_excel_citas.php?search=<?php echo isset($_GET['search']) ? urlencode($_GET['search']) : ''; ?>" class="button-29">Descargar Excel</a>
         </div>
         <?php
         include 'includes/conexion.php';
@@ -56,48 +56,32 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
 
         if ($userName === "DR. Roberto") {
             $sql = "SELECT 
-                        p.nombre AS nombre_paciente, 
-                        p.apellido AS apellido_paciente, 
-                        pe.nombre AS nombre_personal, 
-                        pe.apellido AS apellido_personal, 
-                        r.fecha_emision, 
-                        r.observaciones, 
-                        rm.dosis, 
-                        rm.id_receta,
-                        m.nombre AS nombre_medicamento
+                        c.id_cita,
+                        CONCAT(p.nombre, ' ', p.apellido) AS paciente_completo,
+                        CONCAT(m.nombre, ' ', m.apellido) AS medico_completo,
+                        c.fecha_hora,
+                        c.tipo
                     FROM 
-                        Recetas_Medicas r
+                        citas c
                     JOIN 
-                        Pacientes p ON r.id_paciente = p.id_paciente
+                        pacientes p ON c.id_paciente = p.id_paciente
                     JOIN 
-                        Personal pe ON r.id_personal = pe.id_personal
-                    JOIN 
-                        Receta_Medicamento rm ON r.id_receta = rm.id_receta
-                    JOIN 
-                        Medicamentos m ON rm.id_medicamento = m.id_medicamento";
+                        personal m ON c.id_personal = m.id_personal";
         } else {
             $sql = "SELECT 
-                        p.nombre AS nombre_paciente, 
-                        p.apellido AS apellido_paciente, 
-                        pe.nombre AS nombre_personal, 
-                        pe.apellido AS apellido_personal, 
-                        r.fecha_emision, 
-                        r.observaciones, 
-                        rm.dosis, 
-                        rm.id_receta,
-                        m.nombre AS nombre_medicamento
+                        c.id_cita,
+                        CONCAT(p.nombre, ' ', p.apellido) AS paciente_completo,
+                        CONCAT(m.nombre, ' ', m.apellido) AS medico_completo,
+                        c.fecha_hora,
+                        c.tipo
                     FROM 
-                        Recetas_Medicas r
+                        citas c
                     JOIN 
-                        Pacientes p ON r.id_paciente = p.id_paciente
+                        pacientes p ON c.id_paciente = p.id_paciente
                     JOIN 
-                        Personal pe ON r.id_personal = pe.id_personal
-                    JOIN 
-                        Receta_Medicamento rm ON r.id_receta = rm.id_receta
-                    JOIN 
-                        Medicamentos m ON rm.id_medicamento = m.id_medicamento
+                        personal m ON c.id_personal = m.id_personal
                     WHERE 
-                        pe.nombre = ?";
+                        m.nombre = ?";
         }
 
         $stmt = $conn->prepare($sql);
@@ -111,24 +95,23 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
 
         if ($resultado->num_rows > 0) {
             echo "<table>";
-            echo "<tr><th>Paciente</th><th>Personal Médico</th><th>Fecha Emisión</th><th>Observaciones</th><th>Dosis</th><th>Medicamento</th><th>Acciones</th></tr>";
+            echo "<tr><th>ID</th><th>Paciente</th><th>Medico</th><th>Fecha de Cita</th><th>Tipo de Cita</th><th>Acciones</th></tr>";
             while($fila = $resultado->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($fila["nombre_paciente"]) . " " . htmlspecialchars($fila["apellido_paciente"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["nombre_personal"]) . " " . htmlspecialchars($fila["apellido_personal"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["fecha_emision"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["observaciones"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["dosis"]) . "</td>";
-                echo "<td>" . htmlspecialchars($fila["nombre_medicamento"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["id_cita"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["paciente_completo"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["medico_completo"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["fecha_hora"]) . "</td>";
+                echo "<td>" . htmlspecialchars($fila["tipo"]) . "</td>";
                 echo "<td>";
-                echo "<a class='button-33' href='editar_receta.php?id=" . htmlspecialchars($fila["id_receta"]) . "'>Editar</a>";
-                echo "<a class='button-34' href='eliminar_receta.php?id=" . htmlspecialchars($fila["id_receta"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
+                echo "<a class='button-33' href='editar_cita.php?id=" . htmlspecialchars($fila["id_cita"]) . "'>Editar</a>";
+                echo "<a class='button-34' href='eliminar_cita.php?id=" . htmlspecialchars($fila["id_cita"]) . "' onclick='return confirm(\"¿Estás seguro de que deseas eliminar este registro?\")'>Eliminar</a>";
                 echo "</td>";
                 echo "</tr>";
             }
             echo "</table>";
         } else {
-            echo "No se encontraron recetas.";
+            echo "No se encontraron citas.";
         }
 
         $stmt->close();
