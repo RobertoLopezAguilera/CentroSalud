@@ -20,21 +20,25 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<?php if (isset($errorMessage)): ?>
+    <?php if (isset($errorMessage)): ?>
         <div class="error"><?php echo $errorMessage; ?></div>
     <?php else: ?>
         <div id="header"></div>
 
-    <h1>Agregar Nueva Área</h1>
-    <form id="agregarAreaForm" action="procesar_agregar_area.php" method="post">
-        <label for="nombre">Nombre del Área:</label>
-        <input type="text" id="nombre" name="nombre" required pattern="[A-Za-z\s]+" title="Solo letras y espacios permitidos">
-        <div class="inputdiv">
-            <input type="submit" value="Agregar">
-            <a href="areas.php">Volver a la lista de áreas</a>
-        </div>
-    </form>
+        <h1>Agregar Nueva Área</h1>
+        <form id="agregarAreaForm" action="procesar_agregar_area.php" method="post">
+            <label for="nombre">Nombre del Área:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <div class="inputdiv">
+                <input type="submit" value="Agregar">
+                <a href="areas.php">Volver a la lista de áreas</a>
+            </div>
+        </form>
+
     <?php endif; ?>
+
+    <?php include 'assets/footer.html'; ?>
+    <div id="footer"></div>
 
     <script>
         document.getElementById('agregarAreaForm').addEventListener('submit', function(event) {
@@ -47,9 +51,11 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
                 return;
             }
 
-            const nombrePattern = /^[A-Za-z\s]+$/;
+            // Expresión regular que acepta letras, espacios y acentos
+            const nombrePattern = /^[A-Za-z\u00C0-\u017F\s]+$/;
+
             if (!nombrePattern.test(nombreValue)) {
-                alert('El nombre del área solo puede contener letras y espacios.');
+                alert('El nombre del área solo puede contener letras, espacios y acentos.');
                 event.preventDefault();
                 return;
             }
@@ -60,7 +66,5 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
             }
         });
     </script>
-    <?php include 'assets/footer.html'; ?>
-    <div id="footer"></div>
 </body>
 </html>
