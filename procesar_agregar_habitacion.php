@@ -1,6 +1,5 @@
 <?php
 include 'includes/conexion.php';
-include 'assets/header.php';
 
 $numero = intval($_POST['numero']);
 $tipo = $_POST['tipo'];
@@ -15,6 +14,7 @@ $resultado = $conn->query($sql_verificar_numero);
 if ($resultado->num_rows > 0) {
     // Mostrar mensaje de error si el número ya existe
     $_SESSION['error_message'] = "El número de la habitación ya está registrado.";
+    $conn->close(); // Cerrar conexión aquí si no se realizan más operaciones
     header("Location: agregar_habitacion.php");
     exit;
 } else {
@@ -22,6 +22,7 @@ if ($resultado->num_rows > 0) {
     $sql_insertar = "INSERT INTO Habitaciones (numero, tipo, estado, costo, id_area) VALUES ('$numero', '$tipo', '$estado', '$costo', '$id_area')";
 
     if ($conn->query($sql_insertar) === TRUE) {
+        $conn->close(); // Cerrar conexión después de la operación exitosa
         header("Location: habitaciones.php");
         exit;
     } else {
@@ -29,5 +30,5 @@ if ($resultado->num_rows > 0) {
     }
 }
 
-$conn->close();
+$conn->close(); // Cerrar conexión aquí si no se ha cerrado antes
 ?>
