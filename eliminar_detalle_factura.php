@@ -2,12 +2,12 @@
 include 'includes/conexion.php';
 $id = $_GET['id'];
 
-$sql = "DELETE FROM detalle_factura WHERE id_detalle=$id";
+$sqlFacturas = "DELETE FROM detalle_factura WHERE id_detalle=$id";
 
-if ($conn->query($sql) === TRUE) {
+if ($conn->query($sqlFacturas) === TRUE) {
     echo "Detalle factura eliminada exitosamente.";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sqlFacturas . "<br>" . $conn->error;
 }
 
 $conn->close();

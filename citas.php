@@ -5,13 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+        .search-form input[type="text"] {
+            margin-right: 10px;
+        }
+        .button-29 {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
 
     <h1>Citas Medicas</h1>
-    <a class="button-29" href="agregar_cita.php">Agregar Nueva Cita</a>
+    <div class="actions">
+            <a href="agregar_cita.php" class="button-29">Agregar Área</a>
+            <form method="GET" action="citas.php" class="search-form">
+                <input type="text" name="search" placeholder="Buscar por nombre" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <button type="submit" class="button-29">Buscar</button>
+                <button type="button" class="button-29" onclick="window.location.href='citas.php'">Borrar</button>
+            </form>
+            <a href="descargar_excel_citas.php?search=<?php echo isset($_GET['search']) ? urlencode($_GET['search']) : ''; ?>" class="button-29">Descargar Excel</a>
+        </div>
     <?php
     include 'includes/conexion.php';
 
@@ -20,7 +46,7 @@
         die("Error de conexión: " . $conn->connect_error);
     }
 
-    $sql = "SELECT c.id_cita,
+    $sqlFacturas = "SELECT c.id_cita,
         concat(p.nombre, ' ', p.apellido) as paciente_completo,
         concat(m.nombre, ' ', m.apellido) as medico_completo,
         c.fecha_hora,
@@ -31,7 +57,7 @@
         WHERE c.id_paciente = p.id_paciente 
         AND c.id_personal = m.id_personal;";
 
-    $resultado = $conn->query($sql);
+    $resultado = $conn->query($sqlFacturas);
 
     if ($resultado->num_rows > 0) {
         echo "<table>";
