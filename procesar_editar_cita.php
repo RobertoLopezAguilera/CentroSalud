@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Ejecutar la consulta y manejar el resultado
                 if ($conn->query($sql) === TRUE) {
                     /*header("Location: citas.php");*/
-                    echo "Cita actualizada exitosamente.";
+                    header("Location: citas.php");
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }

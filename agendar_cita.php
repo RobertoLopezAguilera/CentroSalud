@@ -62,7 +62,7 @@
 			if (result.isConfirmed) {
 				window.location.href = "login.php";
 			} else {
-				window.location.href = "registro_paciente.php";
+				window.location.href = "agregar_paciente.php";
 			}
 		});
 	}

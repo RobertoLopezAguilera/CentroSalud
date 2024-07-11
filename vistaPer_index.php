@@ -40,6 +40,8 @@ if (!isset($_SESSION['userName']) || $_SESSION['userType'] !== 'Personal') {
                 <a href="equipos.php" class="button-29">Administrar equipos</a>
                 <a href="expedientes_medicos.php" class="button-29">Ver expedientes</a>
                 <a href="personal.php" class="button-29">Administrar Personal</a>
+                <a href="facturas.php" class="button-29">Administrar facturas</a>
+                <a href="citas.php" class="button-29">Administrar citas</a>
             </div>
             
         <?php else: ?>
