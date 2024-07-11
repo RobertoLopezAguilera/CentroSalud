@@ -38,7 +38,7 @@ if ($resultado->num_rows > 0) {
         header("Location: login.php");
         // Redirigir al usuario a login.php después de insertar correctamente
         if($perfilPaciente==0){
-            header("Location: pacientes.php");
+            header("Location: login.php");
         }else{
             header("Location: login.php");
         }

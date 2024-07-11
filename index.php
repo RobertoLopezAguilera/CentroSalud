@@ -28,8 +28,7 @@
     <?php include 'assets/header.php'; ?>
     <div id="header"></div>
     <div>
-        <h1>Bienvenido al Centro de Salud</h1>
-        <p>Aquí puedes encontrar información sobre nuestros servicios y más.</p>
+        <h1>Aquí puedes encontrar información sobre nuestros servicios y más.</h1>
         <!-- Agrega más contenido según sea necesario -->
     </div>
 
@@ -39,11 +38,11 @@
     <div class="carousel" id="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" onclick="moveCarousel(0)">
-                <h2 style="text-align: center;">vive una vida saludable</h2>
+                <h2 style="text-align: center;">Vive una vida saludable</h2>
                 <img src="imagen1.jpg" alt="imagen 1">
             </div>
             <div class="carousel-item" onclick="moveCarousel(1)">
-                <h2 style="text-align: center;">tu entorno mas tecnologimante saludable</h2>
+                <h2 style="text-align: center;">Tu entorno mas técnologimante saludable</h2>
                 <img src="imagen2.jpg" alt="imagen 2">
             </div>
             <div class="carousel-item active" onclick="moveCarousel(2)">
@@ -51,11 +50,11 @@
                 <img src="imagen3.jpg" alt="imagen 3">
             </div>
             <div class="carousel-item" onclick="moveCarousel(3)">
-            <h2 style="text-align: center;">atencion todos los dias de la semana 24Hrs</h2>
+            <h2 style="text-align: center;">Atención todos los días de la semana 24Hrs</h2>
                 <img src="imagen4.jpg" alt="imagen 4">
             </div>
             <div class="carousel-item active" onclick="moveCarousel(4)">
-            <h2 style="text-align: center;">visitas a las escuelas publicas</h2>
+            <h2 style="text-align: center;">Visitas a las escuelas públicas</h2>
                 <img src="imagen5.jpg" alt="imagen 5">
             </div>
             
