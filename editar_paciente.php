@@ -29,6 +29,12 @@
                 return false;
             }
 
+            var telRegex = /^[0-9]{10}$/;
+            if (!telefono.match(telRegex)) {
+                alert('El telefono debe tener exactamente 10 caracteres númericos.');
+                return false;
+            }
+
             // Validación de fecha de nacimiento: debe ser válida y mayor de 16 años
             var hoy = new Date();
             var fechaNac = new Date(fechaNacimiento);
@@ -94,7 +100,7 @@
         <label for="direccion">Dirección:</label>
         <input type="text" id="direccion" name="direccion" value="<?php echo htmlspecialchars($paciente['direccion']); ?>" required>
         <label for="telefono">Teléfono:</label>
-        <input type="text" id="telefono" name="telefono" value="<?php echo htmlspecialchars($paciente['telefono']); ?>" required>
+        <input type="text" id="telefono" name="telefono" maxlength="10" minlength="10" value="<?php echo htmlspecialchars($paciente['telefono']); ?>" required>
         <label for="curp">CURP:</label>
         <input type="text" id="curp" name="curp" value="<?php echo htmlspecialchars($paciente['CURP']); ?>" required>
         <label for="id_area">Área:</label>
